@@ -1,6 +1,8 @@
 import type { Metadata } from 'next'
 
+import { cn } from '~/lib/utils'
 import '~/styles/globals.css'
+import { calSans, coraMontserra } from '~/styles/fonts'
 
 export const metadata: Metadata = {
   title: 'IndevProfile',
@@ -13,8 +15,14 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en">
-      <body className="min-h-dvh w-full overflow-x-hidden font-sans antialiased">
+    <html lang="en" suppressHydrationWarning>
+      <body
+        className={cn(
+          'min-h-dvh w-full overflow-x-hidden font-sans antialiased',
+          calSans.variable,
+          coraMontserra.variable
+        )}
+      >
         {children}
       </body>
     </html>
