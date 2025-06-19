@@ -1,0 +1,16 @@
+node_modules
+pnpm-lock.yaml
+.vite
+.vinxi
+.output
+.cache
+.turbo
+public
+bin
+**/routeTree.gen.ts
+*.md
+.vercel
+.next
+dist
+coverage
+*.log
