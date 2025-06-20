@@ -1,8 +1,9 @@
 import type { Metadata } from 'next'
 
+import { ThemeProvider } from '~/components/theme-provider'
 import { cn } from '~/lib/utils'
-import '~/styles/globals.css'
 import { calSans, coraMontserra } from '~/styles/fonts'
+import '~/styles/globals.css'
 
 export const metadata: Metadata = {
   title: 'IndevProfile',
@@ -15,7 +16,7 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en" className="dark" suppressHydrationWarning>
       <body
         className={cn(
           'min-h-dvh w-full overflow-x-hidden font-sans antialiased',
@@ -23,7 +24,14 @@ export default function RootLayout({
           coraMontserra.variable
         )}
       >
-        {children}
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="dark"
+          enableSystem
+          disableTransitionOnChange
+        >
+          {children}
+        </ThemeProvider>
       </body>
     </html>
   )
