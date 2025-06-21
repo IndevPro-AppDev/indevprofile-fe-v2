@@ -1,8 +1,13 @@
 import type { NextConfig } from 'next'
 
+// added by create cloudflare to enable calling `getCloudflareContext()` in `next dev`
+import { initOpenNextCloudflareForDev } from '@opennextjs/cloudflare'
 import createNextIntlPlugin from 'next-intl/plugin'
 
 const nextConfig: NextConfig = {
+  experimental: {
+    reactCompiler: true
+  },
   /* config options here */
   eslint: {
     ignoreDuringBuilds: true // Ignore ESLint errors during build
@@ -15,8 +20,6 @@ const withNextIntl = createNextIntlPlugin({
   }
 })
 
-export default withNextIntl(nextConfig)
-
-// added by create cloudflare to enable calling `getCloudflareContext()` in `next dev`
-import { initOpenNextCloudflareForDev } from '@opennextjs/cloudflare'
 initOpenNextCloudflareForDev()
+
+export default withNextIntl(nextConfig)
