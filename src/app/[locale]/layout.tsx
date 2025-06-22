@@ -9,7 +9,7 @@ import { cn } from '~/lib/utils'
 import { calSans, coraMontserra } from '~/styles/fonts'
 
 export const metadata: Metadata = {
-  title: 'IndevProfile',
+  title: 'IndevPro',
   description: 'Together We Lead, Together We Achieve, Together We Innovate.'
 }
 
