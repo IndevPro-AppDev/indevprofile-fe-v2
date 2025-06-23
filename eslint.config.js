@@ -62,7 +62,8 @@ export default antfu(
       'antfu/no-top-level-await': 'off',
       'react/prefer-destructuring-assignment': 'off',
       'test/padding-around-all': 'error',
-      'test/prefer-lowercase-title': 'off'
+      'test/prefer-lowercase-title': 'off',
+      'node/prefer-global/process': 'off'
     }
   },
   prettierPlugin

@@ -9,7 +9,7 @@ import { cn } from '~/lib/utils'
 import { calSans, coraMontserra } from '~/styles/fonts'
 
 export const metadata: Metadata = {
-  title: 'IndevProfile',
+  title: 'IndevPro',
   description: 'Together We Lead, Together We Achieve, Together We Innovate.'
 }
 
@@ -23,7 +23,7 @@ export default async function RootLayout({
   }
 
   return (
-    <html lang={locale} className="dark" suppressHydrationWarning>
+    <html lang={locale} suppressHydrationWarning>
       <body
         className={cn(
           'min-h-dvh w-full overflow-x-hidden font-sans antialiased',
@@ -34,7 +34,7 @@ export default async function RootLayout({
         <NextIntlClientProvider>
           <ThemeProvider
             attribute="class"
-            defaultTheme="dark"
+            defaultTheme="system"
             enableSystem
             disableTransitionOnChange
           >
