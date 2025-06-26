@@ -1,20 +1,7 @@
-import { use } from 'react'
-
-import { useTranslations } from 'next-intl'
-import { setRequestLocale } from 'next-intl/server'
-
-import type { ParamsWithLocale } from '~/types'
-
-export default function Home({ params }: ParamsWithLocale) {
-  const { locale } = use(params)
-  // Enable static rendering
-  setRequestLocale(locale)
-
-  // Once the request locale is set, you
-  // can call hooks from `next-intl`
-  const t = useTranslations()
-
+export default function Home() {
   return (
-    <div className="flex h-dvh items-center justify-center">{t('hello')}</div>
+    <div className="relative w-full max-w-screen overflow-x-hidden">
+      <section className="flex h-[calc(100dvh-calc(var(--spacing)*14))] items-center justify-center"></section>
+    </div>
   )
 }

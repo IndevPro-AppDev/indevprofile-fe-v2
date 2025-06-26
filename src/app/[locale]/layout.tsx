@@ -3,10 +3,11 @@ import type { Metadata } from 'next'
 import { hasLocale, NextIntlClientProvider } from 'next-intl'
 import { notFound } from 'next/navigation'
 
+import Header from '~/components/header'
 import { ThemeProvider } from '~/components/theme-provider'
 import { routing } from '~/i18n/routing'
 import { cn } from '~/lib/utils'
-import { calSans, coraMontserra } from '~/styles/fonts'
+import { calSans, coraMontserra, decog } from '~/styles/fonts'
 
 export const metadata: Metadata = {
   title: 'IndevPro',
@@ -28,7 +29,8 @@ export default async function RootLayout({
         className={cn(
           'min-h-dvh w-full overflow-x-hidden font-sans antialiased',
           calSans.variable,
-          coraMontserra.variable
+          coraMontserra.variable,
+          decog.variable
         )}
       >
         <NextIntlClientProvider>
@@ -38,7 +40,8 @@ export default async function RootLayout({
             enableSystem
             disableTransitionOnChange
           >
-            {children}
+            <Header />
+            <main className="w-full pt-14">{children}</main>
           </ThemeProvider>
         </NextIntlClientProvider>
       </body>

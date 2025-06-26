@@ -17,3 +17,13 @@ export const coraMontserra = localFont({
   preload: true,
   fallback: ['sans-serif']
 })
+
+export const decog = localFont({
+  src: './decog.otf',
+  style: 'normal',
+  weight: '400',
+  variable: '--font-decog',
+  display: 'swap',
+  preload: true,
+  fallback: ['sans-serif']
+})
