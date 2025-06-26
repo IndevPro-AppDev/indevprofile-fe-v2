@@ -1,4 +1,4 @@
-import HomeLink from './HomeLink'
+import HomeLink from './home-link'
 
 export default function Header() {
   return (
