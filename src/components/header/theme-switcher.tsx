@@ -36,7 +36,7 @@ export default function ThemeSwitcher() {
       type="button"
       className={cn(
         buttonVariants({ size: 'icon' }),
-        'from-primary to-muted-foreground bg-gradient-to-br',
+        'from-primary to-muted-foreground/60 bg-gradient-to-br',
         'rounded-full border shadow-sm',
         'relative cursor-pointer overflow-hidden'
       )}
