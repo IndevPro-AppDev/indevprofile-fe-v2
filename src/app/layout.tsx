@@ -35,7 +35,11 @@ export default async function RootLayout({
 }: React.PropsWithChildren) {
   return (
     <TRPCReactProvider>
-      <html lang="en" suppressHydrationWarning>
+      <html
+        lang="en"
+        className="transition-colors duration-300 ease-out"
+        suppressHydrationWarning
+      >
         <body
           className={cn(
             calSans.variable,

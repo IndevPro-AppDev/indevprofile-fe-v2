@@ -137,8 +137,8 @@
   --color-bg-gradient-start: var(--bg-gradient-left);
   --color-bg-gradient-middle: var(--bg-gradient-middle);
   --color-bg-gradient-end: var(--bg-gradient-right);
-  --color-primary-gradient-start: var(--bg-primary-gradient-start);
-  --color-primary-gradient-end: var(--bg-primary-gradient-end);
+  --color-primary-gradient-start: var(--primary-gradient-start);
+  --color-primary-gradient-end: var(--primary-gradient-end);
 }
 
 @layer base {

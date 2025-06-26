@@ -27,7 +27,7 @@ export default function HomeLink() {
     mass: 2.5
   })
 
-  const backgroundImage = useMotionTemplate`
+  const gradient = useMotionTemplate`
   linear-gradient(
     to bottom right,
     var(--primary),
@@ -63,10 +63,10 @@ export default function HomeLink() {
           'bg-clip-text text-transparent',
           'flex'
         )}
-        style={{ backgroundImage }}
+        style={{ backgroundImage: gradient }}
       >
         {'Indevpro'.split('').map(char => (
-          <span
+          <motion.span
             className={cn(
               char === 'p' &&
                 `before:text-primary before:pointer-events-none before:absolute before:-top-2.5 before:inline-block before:size-2.5 before:opacity-90 md:before:-top-1.5 ${starB64DataUrl}`
@@ -74,7 +74,7 @@ export default function HomeLink() {
             key={`indevpro-${char}`}
           >
             {char}
-          </span>
+          </motion.span>
         ))}
       </motion.h2>
     </motion.a>
