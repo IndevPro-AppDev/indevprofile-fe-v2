@@ -1,6 +1,10 @@
+import createNextIntlPlugin from 'next-intl/plugin'
+
 import type { NextConfig } from 'next'
 
 import { initOpenNextCloudflareForDev } from '@opennextjs/cloudflare'
+
+const withNextIntl = createNextIntlPlugin()
 
 const nextConfig: NextConfig = {
   experimental: {
@@ -13,4 +17,4 @@ const nextConfig: NextConfig = {
 }
 initOpenNextCloudflareForDev()
 
-export default nextConfig
+export default withNextIntl(nextConfig)

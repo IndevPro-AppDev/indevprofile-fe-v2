@@ -35,6 +35,7 @@ export default antfu(
           groups: [
             'node',
             'react',
+            'next',
             'type',
             ['builtin', 'external'],
             'internal-type',

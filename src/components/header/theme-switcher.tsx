@@ -1,7 +1,8 @@
 'use client'
 
-import { AnimatePresence, motion } from 'motion/react'
 import { useTheme } from 'next-themes'
+
+import { AnimatePresence, motion } from 'motion/react'
 
 import { cn } from '~/lib/utils'
 
