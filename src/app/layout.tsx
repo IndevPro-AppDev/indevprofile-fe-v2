@@ -10,25 +10,25 @@ import './globals.css'
 
 import { cn } from '~/lib/utils'
 
-export const metadata: Metadata = {
-  title: 'IndevPro',
-  description: 'Together We Lead, Together We Achieve, Together We Innovate.'
-}
-
-export const calSans = localFont({
+const calSans = localFont({
   src: './fonts/CalSans-Regular.ttf',
   variable: '--font-cal-sans'
 })
 
-export const coraMontserra = localFont({
+const coraMontserra = localFont({
   src: './fonts/cora-montserra-variable.ttf',
   variable: '--font-cora-montserra'
 })
 
-export const decog = localFont({
+const decog = localFont({
   src: './fonts/decog.otf',
   variable: '--font-decog'
 })
+
+export const metadata: Metadata = {
+  title: 'IndevPro',
+  description: 'Together We Lead, Together We Achieve, Together We Innovate.'
+}
 
 export default async function RootLayout({
   children
