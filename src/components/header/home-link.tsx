@@ -18,8 +18,8 @@ export default function HomeLink() {
   const percentageMotionValue = useMotionValue(80)
   const percentageConstraints = useTransform(
     percentageMotionValue,
-    [0, 100],
-    [60, 120]
+    [0, 20, 60, 100],
+    [60, 40, 80, 120]
   )
   const percentage = useSpring(percentageConstraints, {
     damping: 18,
@@ -45,6 +45,9 @@ export default function HomeLink() {
     return () => clearInterval(interval)
   }, [percentageMotionValue])
 
+  const starB64DataUrl =
+    'before:content-[url("data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgMTMgMTMiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0iTTEyLjczNiA2LjExYy0xLjY3NSAwLTMuMTkyLjY4LTQuMjkgMS43NzdhNi4wNSA2LjA1IDAgMCAwLTEuNzc2IDQuMjljMC0xLjY3Ni0uNjgtMy4xOTMtMS43NzctNC4yOUE2LjA1IDYuMDUgMCAwIDAgLjYwMyA2LjExYTYuMDUgNi4wNSAwIDAgMCA0LjI5LTEuNzc3QTYuMDUgNi4wNSAwIDAgMCA2LjY3LjA0M2E2LjA2NiA2LjA2NiAwIDAgMCA2LjA2NiA2LjA2NyIgZmlsbD0idXJsKCNhKSIvPjxkZWZzPjxsaW5lYXJHcmFkaWVudCBpZD0iYSIgeDE9IjEiIHkxPSIwIiB4Mj0iMTIuNSIgeTI9IjEyIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+PHN0b3Agc3RvcC1jb2xvcj0iI0Y0RjRGNCIvPjxzdG9wIG9mZnNldD0iMSIgc3RvcC1jb2xvcj0iI0IwQjRCQSIgc3RvcC1vcGFjaXR5PSIuNiIvPjwvbGluZWFyR3JhZGllbnQ+PC9kZWZzPjwvc3ZnPg==")]'
+
   return (
     <motion.a
       href="/"
@@ -56,12 +59,23 @@ export default function HomeLink() {
       <IconIndevPro className="mr-1 size-6" />
       <motion.h2
         className={cn(
-          'font-brand text-xl font-medium sm:text-base',
-          'bg-clip-text text-transparent'
+          'font-brand text-xl leading-none font-medium sm:text-base',
+          'bg-clip-text text-transparent',
+          'flex'
         )}
         style={{ backgroundImage }}
       >
-        Indevpro
+        {'Indevpro'.split('').map(char => (
+          <span
+            className={cn(
+              char === 'p' &&
+                `before:text-primary before:pointer-events-none before:absolute before:-top-2.5 before:inline-block before:size-2.5 before:opacity-90 md:before:-top-1.5 ${starB64DataUrl}`
+            )}
+            key={`indevpro-${char}`}
+          >
+            {char}
+          </span>
+        ))}
       </motion.h2>
     </motion.a>
   )
