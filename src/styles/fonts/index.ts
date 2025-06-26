@@ -6,16 +6,14 @@ export const calSans = localFont({
   weight: '400',
   variable: '--font-cal-sans',
   display: 'swap',
-  preload: true,
-  fallback: ['sans-serif']
+  preload: true
 })
 
 export const coraMontserra = localFont({
   src: './cora-montserra-variable.ttf',
   variable: '--font-cora-montserra',
   display: 'swap',
-  preload: true,
-  fallback: ['sans-serif']
+  preload: true
 })
 
 export const decog = localFont({
@@ -24,6 +22,5 @@ export const decog = localFont({
   weight: '400',
   variable: '--font-decog',
   display: 'swap',
-  preload: true,
-  fallback: ['sans-serif']
+  preload: true
 })
