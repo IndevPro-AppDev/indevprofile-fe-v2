@@ -47,8 +47,8 @@ export default function ThemeSwitcher() {
           setTheme(theme === 'dark' ? 'light' : 'dark')
         })
       }}
-      initial={{ opacity: 0, scale: 0.95 }}
-      animate={{ opacity: 1, scale: 1 }}
+      initial={{ opacity: 0, scale: 0.95, filter: 'blur(4px)' }}
+      animate={{ opacity: 1, scale: 1, filter: 'blur(0px)' }}
       transition={{ stiffness: 24, damping: 6, mass: 0.2, delay: 0.15 }}
     >
       <AnimatePresence mode="wait">
