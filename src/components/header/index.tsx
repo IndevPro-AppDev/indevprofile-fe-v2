@@ -1,3 +1,11 @@
+'use client'
+
+import { useState } from 'react'
+
+import { motion, useMotionValueEvent, useScroll } from 'motion/react'
+
+import { cn } from '~/lib/utils'
+
 import type { NavItem } from './nav-item'
 
 import DesktopNavigation from './desktop-navigation'
@@ -13,9 +21,34 @@ export default function Header() {
     { text: 'Kontak', href: '/contact' }
   ]
 
+  const { scrollY } = useScroll()
+  const [scrollDirection, setScrollDirection] = useState<'up' | 'down'>('up')
+  const [scrollPosition, setScrollPosition] = useState(0)
+
+  useMotionValueEvent(scrollY, 'change', current => {
+    const diff = current - (scrollY.getPrevious() || 0)
+    setScrollDirection(diff > 0 ? 'down' : 'up')
+    setScrollPosition(current)
+  })
+
   return (
-    <header className="fixed inset-x-0 top-0 z-20 h-14 w-full">
-      <div className="flex h-full w-full items-center justify-between bg-transparent px-6">
+    <header
+      className={cn(
+        'fixed inset-x-0 top-0 z-20 h-14 w-full border-b border-transparent bg-transparent transition duration-300 ease-out',
+        scrollDirection === 'down' || scrollPosition > 0
+          ? 'border-muted-foreground/10 border-b shadow-sm backdrop-blur-md'
+          : 'border-transparent shadow-none backdrop-blur-none'
+      )}
+    >
+      <motion.div
+        className={cn(
+          'mx-auto flex h-full w-full items-center justify-between px-0 @sm:px-6',
+          scrollDirection === 'down' || scrollPosition > 0
+            ? 'max-w-[calc(var(--breakpoint-xl)-5%)]'
+            : 'max-w-screen-xl'
+        )}
+        layout
+      >
         <HomeLink />
         <div id="actions" className="flex items-center justify-end gap-6">
           <DesktopNavigation items={navItems} />
@@ -26,7 +59,7 @@ export default function Header() {
             <MobileDrawer />
           </div>
         </div>
-      </div>
+      </motion.div>
     </header>
   )
 }

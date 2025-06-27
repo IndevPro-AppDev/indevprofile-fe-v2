@@ -59,6 +59,7 @@ export default async function RootLayout({
       >
         <body
           className={cn(
+            '@container',
             calSans.variable,
             coraMontserra.variable,
             decog.variable
