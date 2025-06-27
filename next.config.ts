@@ -1,8 +1,10 @@
+import createNextIntlPlugin from 'next-intl/plugin'
+
 import type { NextConfig } from 'next'
 
-// added by create cloudflare to enable calling `getCloudflareContext()` in `next dev`
 import { initOpenNextCloudflareForDev } from '@opennextjs/cloudflare'
-import createNextIntlPlugin from 'next-intl/plugin'
+
+const withNextIntl = createNextIntlPlugin()
 
 const nextConfig: NextConfig = {
   experimental: {
@@ -13,13 +15,6 @@ const nextConfig: NextConfig = {
     ignoreDuringBuilds: true // Ignore ESLint errors during build
   }
 }
-
-const withNextIntl = createNextIntlPlugin({
-  experimental: {
-    createMessagesDeclaration: './messages/en.json'
-  }
-})
-
 initOpenNextCloudflareForDev()
 
 export default withNextIntl(nextConfig)

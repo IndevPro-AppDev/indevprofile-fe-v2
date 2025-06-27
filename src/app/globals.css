@@ -4,58 +4,6 @@
 
 @custom-variant dark (&:is(.dark *));
 
-@theme inline {
-  --font-sans:
-    var(--font-cora-montserra), -apple-system, BlinkMacSystemFont, 'Segoe UI',
-    'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans',
-    'Helvetica Neue', sans-serif;
-  --font-display:
-    var(--font-cal-sans) -apple-system, BlinkMacSystemFont, 'Segoe UI',
-    'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans',
-    'Helvetica Neue', sans-serif --font-mono: source-code-pro, Menlo, Monaco,
-    Consolas, 'Courier New', monospace;
-
-  --radius-sm: calc(var(--radius) - 4px);
-  --radius-md: calc(var(--radius) - 2px);
-  --radius-lg: var(--radius);
-  --radius-xl: calc(var(--radius) + 4px);
-
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-
-  --color-card: var(--card);
-  --color-card-foreground: var(--card-foreground);
-
-  --color-popover: var(--popover);
-  --color-popover-foreground: var(--popover-foreground);
-
-  --color-primary: var(--primary);
-  --color-primary-foreground: var(--primary-foreground);
-
-  --color-secondary: var(--secondary);
-  --color-secondary-foreground: var(--secondary-foreground);
-
-  --color-muted: var(--muted);
-  --color-muted-foreground: var(--muted-foreground);
-
-  --color-accent: var(--accent);
-  --color-accent-foreground: var(--accent-foreground);
-
-  --color-destructive: var(--destructive);
-
-  --color-border: var(--border);
-  --color-input: var(--input);
-  --color-ring: var(--ring);
-
-  --color-tertiary: var(--tertiary);
-
-  --color-bg-gradient-start: var(--bg-gradient-left);
-  --color-bg-gradient-middle: var(--bg-gradient-middle);
-  --color-bg-gradient-end: var(--bg-gradient-right);
-  --color-primary-gradient-start: var(--bg-primary-gradient-start);
-  --color-primary-gradient-end: var(--bg-primary-gradient-end);
-}
-
 :root {
   --radius: 0.625rem;
 
@@ -134,12 +82,71 @@
   --primary-gradient-end: oklch(36.22% 0.0578 259.26);
 }
 
+@theme {
+  --font-sans:
+    var(--font-cora-montserra), -apple-system, BlinkMacSystemFont, 'Segoe UI',
+    'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans',
+    'Helvetica Neue', sans-serif;
+  --font-display:
+    var(--font-cal-sans), -apple-system, BlinkMacSystemFont, 'Segoe UI',
+    'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans',
+    'Helvetica Neue', sans-serif;
+  --font-brand:
+    var(--font-decog), -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
+    'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans',
+    'Helvetica Neue', sans-serif;
+  --font-mono:
+    source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+}
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+
+  --color-destructive: var(--destructive);
+
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  --color-tertiary: var(--tertiary);
+
+  --color-bg-gradient-start: var(--bg-gradient-left);
+  --color-bg-gradient-middle: var(--bg-gradient-middle);
+  --color-bg-gradient-end: var(--bg-gradient-right);
+  --color-primary-gradient-start: var(--primary-gradient-start);
+  --color-primary-gradient-end: var(--primary-gradient-end);
+}
+
 @layer base {
   * {
     @apply border-border outline-ring/50;
   }
 
   body {
-    @apply bg-bg-gradient-start via-bg-gradient-middle to-bg-gradient-end text-foreground bg-gradient-to-br from-3% via-42% to-100%;
+    @apply bg-bg-gradient-start via-bg-gradient-middle to-bg-gradient-end text-foreground min-h-dvh w-full overflow-x-hidden bg-gradient-to-tr from-3% via-42% to-100% font-sans antialiased;
   }
 }

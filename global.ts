@@ -1,6 +1,5 @@
 import type { routing } from '~/i18n/routing'
 
-// @ts-expect-error - ...
 import type messages from './messages/en.json'
 
 declare module 'next-intl' {

@@ -1,16 +1,42 @@
+import { hasLocale } from 'next-intl'
+import { setRequestLocale } from 'next-intl/server'
+
 import type { Metadata } from 'next'
 
-import { hasLocale, NextIntlClientProvider } from 'next-intl'
+import localFont from 'next/font/local'
 import { notFound } from 'next/navigation'
 
+import Header from '~/components/header'
 import { ThemeProvider } from '~/components/theme-provider'
+
+import '../globals.css'
+
 import { routing } from '~/i18n/routing'
+import { TRPCReactProvider } from '~/lib/trpc/react'
 import { cn } from '~/lib/utils'
-import { calSans, coraMontserra } from '~/styles/fonts'
+
+const calSans = localFont({
+  src: '../fonts/CalSans-Regular.ttf',
+  variable: '--font-cal-sans'
+})
+
+const coraMontserra = localFont({
+  src: '../fonts/cora-montserra-variable.ttf',
+  variable: '--font-cora-montserra'
+})
+
+const decog = localFont({
+  src: '../fonts/decog.otf',
+  variable: '--font-decog'
+})
 
 export const metadata: Metadata = {
   title: 'IndevPro',
   description: 'Together We Lead, Together We Achieve, Together We Innovate.'
+}
+
+export function generateStaticParams() {
+  return routing.locales.map(locale => ({ locale }))
 }
 
 export default async function RootLayout({
@@ -22,26 +48,33 @@ export default async function RootLayout({
     notFound()
   }
 
+  setRequestLocale(locale)
+
   return (
-    <html lang={locale} suppressHydrationWarning>
-      <body
-        className={cn(
-          'min-h-dvh w-full overflow-x-hidden font-sans antialiased',
-          calSans.variable,
-          coraMontserra.variable
-        )}
+    <TRPCReactProvider>
+      <html
+        lang="en"
+        className="transition-colors duration-300 ease-out"
+        suppressHydrationWarning
       >
-        <NextIntlClientProvider>
+        <body
+          className={cn(
+            calSans.variable,
+            coraMontserra.variable,
+            decog.variable
+          )}
+        >
           <ThemeProvider
             attribute="class"
             defaultTheme="dark"
             enableSystem
             disableTransitionOnChange
           >
-            {children}
+            <Header />
+            <main className="w-full pt-14">{children}</main>
           </ThemeProvider>
-        </NextIntlClientProvider>
-      </body>
-    </html>
+        </body>
+      </html>
+    </TRPCReactProvider>
   )
 }
