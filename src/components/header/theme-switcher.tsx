@@ -37,13 +37,15 @@ export default function ThemeSwitcher() {
       type="button"
       className={cn(
         buttonVariants({ size: 'icon' }),
-        'from-primary to-muted-foreground/60 bg-gradient-to-br',
+        'from-primary to-primary/60 dark:to-muted-foreground/90 bg-gradient-to-br',
         'rounded-full border shadow-sm',
         'relative cursor-pointer overflow-hidden'
       )}
       onClick={e => {
         e.persist()
-        setTheme(theme === 'light' ? 'dark' : 'light')
+        document.startViewTransition(() => {
+          setTheme(theme === 'dark' ? 'light' : 'dark')
+        })
       }}
       initial={{ opacity: 0, scale: 0.95 }}
       animate={{ opacity: 1, scale: 1 }}
