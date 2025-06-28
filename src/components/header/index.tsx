@@ -2,6 +2,8 @@
 
 import { useState } from 'react'
 
+import { useTranslations } from 'next-intl'
+
 import { motion, useMotionValueEvent, useScroll } from 'motion/react'
 
 import { cn } from '~/lib/utils'
@@ -10,15 +12,18 @@ import type { NavItem } from './nav-item'
 
 import DesktopNavigation from './desktop-navigation'
 import HomeLink from './home-link'
+import LocaleSwitcher from './locale-switcher'
 import MobileDrawer from './mobile-drawer'
 import ThemeSwitcher from './theme-switcher'
 
 export default function Header() {
+  const t = useTranslations('nav')
+
   const navItems: NavItem[] = [
-    { text: 'Tentang', href: '/about' },
-    { text: 'Blog', href: '/blog' },
-    { text: 'Portofolio', href: '/portfolio' },
-    { text: 'Kontak', href: '/contact' }
+    { text: t('about'), href: '/about' },
+    { text: t('blog'), href: '/blog' },
+    { text: t('portfolio'), href: '/portfolio' },
+    { text: t('contact'), href: '/contact' }
   ]
 
   const { scrollY } = useScroll()
@@ -53,6 +58,7 @@ export default function Header() {
         <div id="actions" className="flex items-center justify-end gap-6">
           <DesktopNavigation items={navItems} />
           <div className="sr-only flex items-center justify-end gap-4 md:not-sr-only">
+            <LocaleSwitcher />
             <ThemeSwitcher />
           </div>
           <div className="not-sr-only flex items-center justify-end gap-4 md:sr-only">
