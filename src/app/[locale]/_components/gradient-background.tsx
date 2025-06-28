@@ -19,6 +19,7 @@ export default function GradientBackground() {
         fill
         className="relative object-cover opacity-30 bg-blend-overlay dark:opacity-20"
         priority
+        quality={90}
       />
     </motion.div>
   )
