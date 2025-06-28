@@ -48,7 +48,7 @@ export default function Header() {
     >
       <motion.div
         className={cn(
-          'mx-auto flex h-full w-full items-center justify-between px-0 @sm:px-6',
+          'mx-auto flex h-full w-full items-center justify-between px-6 sm:px-0',
           scrollDirection === 'down' || scrollPosition > 0
             ? 'max-w-[calc(var(--breakpoint-xl)-5%)]'
             : 'max-w-screen-xl'
