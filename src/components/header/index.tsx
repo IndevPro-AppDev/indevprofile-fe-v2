@@ -57,12 +57,12 @@ export default function Header() {
         <HomeLink />
         <div id="actions" className="flex items-center justify-end gap-6">
           <DesktopNavigation items={navItems} />
-          <div className="sr-only flex items-center justify-end gap-4 md:not-sr-only">
+          <div className="sr-only flex items-center justify-end gap-4 sm:not-sr-only">
             <LocaleSwitcher />
             <ThemeSwitcher />
           </div>
-          <div className="not-sr-only flex items-center justify-end gap-4 md:sr-only">
-            <MobileDrawer />
+          <div className="not-sr-only flex items-center justify-end gap-4 sm:sr-only">
+            <MobileDrawer navItems={navItems} />
           </div>
         </div>
       </motion.div>
