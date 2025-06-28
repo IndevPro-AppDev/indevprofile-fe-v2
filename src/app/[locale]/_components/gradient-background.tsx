@@ -17,7 +17,7 @@ export default function GradientBackground() {
         src={bgGradientImage}
         alt="Background gradient"
         fill
-        className="relative object-cover opacity-60 bg-blend-overlay dark:opacity-20"
+        className="relative object-cover opacity-20 bg-blend-overlay"
         priority
       />
     </motion.div>
