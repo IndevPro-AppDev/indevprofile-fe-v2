@@ -10,25 +10,6 @@ import IconMoon from '../icons/moon'
 import IconSun from '../icons/sun'
 import { buttonVariants } from '../ui/button'
 
-function MotionIcon({ children }: React.PropsWithChildren) {
-  return (
-    <motion.div
-      className="size-fit transform-gpu cursor-pointer [&>svg]:pointer-events-none"
-      initial={{ x: -20, opacity: 0 }}
-      animate={{ x: 0, opacity: 1 }}
-      exit={{ x: 20, opacity: 0 }}
-      transition={{
-        stiffness: 110,
-        damping: 14,
-        mass: 0.6,
-        delay: 0.05
-      }}
-    >
-      {children}
-    </motion.div>
-  )
-}
-
 export default function ThemeSwitcher() {
   const { resolvedTheme: theme, setTheme } = useTheme()
 
@@ -53,21 +34,40 @@ export default function ThemeSwitcher() {
     >
       <AnimatePresence mode="wait">
         {theme === 'light' ? (
-          <MotionIcon key="theme-switcher-button-icon-dark">
+          <MotionWrapper key="theme-switcher-button-icon-dark">
             <IconSun
               pathProps={{ className: cn('fill-secondary') }}
               className="size-4"
             />
-          </MotionIcon>
+          </MotionWrapper>
         ) : (
-          <MotionIcon key="theme-switcher-button-icon-light">
+          <MotionWrapper key="theme-switcher-button-icon-light">
             <IconMoon
               pathProps={{ className: cn('fill-secondary') }}
               className="size-4"
             />
-          </MotionIcon>
+          </MotionWrapper>
         )}
       </AnimatePresence>
     </motion.button>
+  )
+}
+
+function MotionWrapper({ children }: React.PropsWithChildren) {
+  return (
+    <motion.div
+      className="size-fit transform-gpu cursor-pointer [&>svg]:pointer-events-none"
+      initial={{ x: -20, opacity: 0 }}
+      animate={{ x: 0, opacity: 1 }}
+      exit={{ x: 20, opacity: 0 }}
+      transition={{
+        stiffness: 110,
+        damping: 14,
+        mass: 0.6,
+        delay: 0.05
+      }}
+    >
+      {children}
+    </motion.div>
   )
 }

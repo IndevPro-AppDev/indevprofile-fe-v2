@@ -20,30 +20,18 @@ import { Link } from '~/i18n/navigation'
 import type { NavItem } from './nav-item'
 
 import IconIndevPro from '../icons/indevpro'
+import MotionLink from '../motion-link'
 import { MotionButton } from '../ui/button'
 import LocaleSwitcher from './locale-switcher'
 import ThemeSwitcher from './theme-switcher'
 
-function MotionIcon({ children }: React.PropsWithChildren) {
-  return (
-    <motion.div
-      className="size-fit transform-gpu cursor-pointer [&>svg]:pointer-events-none"
-      initial={{ scale: 0, opacity: 0 }}
-      animate={{ scale: 1, opacity: 1 }}
-      exit={{ scale: 0, opacity: 0 }}
-      transition={{
-        stiffness: 154,
-        damping: 22,
-        mass: 0.3,
-        delay: 0.05
-      }}
-    >
-      {children}
-    </motion.div>
-  )
+interface MobileNavigationDrawerProps {
+  items: NavItem[]
 }
 
-export default function MobileDrawer({ navItems }: { navItems: NavItem[] }) {
+export default function MobileNavigationDrawer({
+  items
+}: MobileNavigationDrawerProps) {
   const [open, setOpen] = useState(false)
   const isSmallDevice = useMediaQuery('only screen and (max-width : 40rem)')
 
@@ -68,38 +56,40 @@ export default function MobileDrawer({ navItems }: { navItems: NavItem[] }) {
         >
           <AnimatePresence mode="wait">
             {!open ? (
-              <MotionIcon key="mobile-drawer-button-icon-open">
+              <MotionWrapper key="mobile-drawer-button-icon-open">
                 <Icon
                   icon="charm:menu-hamburger"
                   width="16"
                   height="16"
                   className="size-4"
                 />
-              </MotionIcon>
+              </MotionWrapper>
             ) : (
-              <MotionIcon key="mobile-drawer-button-icon-close">
+              <MotionWrapper key="mobile-drawer-button-icon-close">
                 <Icon
                   icon="material-symbols:close-rounded"
                   width="16"
                   height="16"
                   className="size-4"
                 />
-              </MotionIcon>
+              </MotionWrapper>
             )}
           </AnimatePresence>
         </MotionButton>
       </DrawerTrigger>
       <DrawerContent>
         <DrawerHeader>
-          <motion.div
+          <MotionLink
+            href="/"
             initial={{ opacity: 0, y: 10, scale: 0.98, filter: 'blur(4px)' }}
             animate={{ opacity: 1, y: 0, scale: 1, filter: 'blur(0px)' }}
             transition={{ stiffness: 24, damping: 6, mass: 0.2, delay: 0.15 }}
+            onClick={() => setOpen(false)}
           >
             <DrawerTitle className="font-brand mb-1 flex items-center justify-center">
               <IconIndevPro className="mr-1 size-6" /> Indevpro
             </DrawerTitle>
-          </motion.div>
+          </MotionLink>
           <motion.div
             initial={{ opacity: 0, y: 10, filter: 'blur(4px)' }}
             animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
@@ -116,7 +106,7 @@ export default function MobileDrawer({ navItems }: { navItems: NavItem[] }) {
             <ThemeSwitcher />
           </div>
           <ul className="flex flex-col items-center justify-center">
-            {navItems.map(({ href, text }, i) => (
+            {items.map(({ href, text }, i) => (
               <li key={href} className="w-full">
                 <MotionButton
                   className="w-full text-center"
@@ -154,5 +144,24 @@ export default function MobileDrawer({ navItems }: { navItems: NavItem[] }) {
         </DrawerFooter>
       </DrawerContent>
     </Drawer>
+  )
+}
+
+function MotionWrapper({ children }: React.PropsWithChildren) {
+  return (
+    <motion.div
+      className="size-fit transform-gpu cursor-pointer [&>svg]:pointer-events-none"
+      initial={{ scale: 0, opacity: 0 }}
+      animate={{ scale: 1, opacity: 1 }}
+      exit={{ scale: 0, opacity: 0 }}
+      transition={{
+        stiffness: 154,
+        damping: 22,
+        mass: 0.3,
+        delay: 0.05
+      }}
+    >
+      {children}
+    </motion.div>
   )
 }

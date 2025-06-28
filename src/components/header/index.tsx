@@ -14,7 +14,7 @@ import { ClientOnly } from '../client-only'
 import DesktopNavigation from './desktop-navigation'
 import HomeLink from './home-link'
 import LocaleSwitcher from './locale-switcher'
-import MobileDrawer from './mobile-drawer'
+import MobileNavigationDrawer from './mobile-navigation-drawer'
 import ThemeSwitcher from './theme-switcher'
 
 export default function Header() {
@@ -64,7 +64,7 @@ export default function Header() {
           </div>
           <ClientOnly>
             <div className="not-sr-only flex items-center justify-end gap-4 sm:sr-only">
-              <MobileDrawer navItems={navItems} />
+              <MobileNavigationDrawer items={navItems} />
             </div>
           </ClientOnly>
         </div>
