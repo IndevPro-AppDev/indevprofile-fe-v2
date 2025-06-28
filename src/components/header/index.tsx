@@ -10,6 +10,7 @@ import { cn } from '~/lib/utils'
 
 import type { NavItem } from './nav-item'
 
+import { ClientOnly } from '../client-only'
 import DesktopNavigation from './desktop-navigation'
 import HomeLink from './home-link'
 import LocaleSwitcher from './locale-switcher'
@@ -61,9 +62,11 @@ export default function Header() {
             <LocaleSwitcher />
             <ThemeSwitcher />
           </div>
-          <div className="not-sr-only flex items-center justify-end gap-4 sm:sr-only">
-            <MobileDrawer navItems={navItems} />
-          </div>
+          <ClientOnly>
+            <div className="not-sr-only flex items-center justify-end gap-4 sm:sr-only">
+              <MobileDrawer navItems={navItems} />
+            </div>
+          </ClientOnly>
         </div>
       </motion.div>
     </header>
