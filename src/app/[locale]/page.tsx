@@ -1,6 +1,4 @@
-import Image from 'next/image'
-
-import bgGradientImage from '~/res/drawable/landing-bg-grainny-gradient.webp'
+import GradientBackground from './_components/gradient-background'
 
 export default function Home() {
   return (
@@ -8,15 +6,7 @@ export default function Home() {
       <section className="flex h-[calc(100dvh-calc(var(--spacing)*14))] items-center justify-center"></section>
       <section className="h-dvh"></section>
       <section className="h-dvh"></section>
-      <div className="pointer-events-none absolute inset-0 -z-1 pt-16">
-        <Image
-          src={bgGradientImage}
-          alt="Background gradient"
-          fill
-          className="relative object-cover opacity-20 bg-blend-overlay"
-          priority
-        />
-      </div>
+      <GradientBackground />
     </div>
   )
 }

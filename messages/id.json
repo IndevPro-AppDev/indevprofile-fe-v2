@@ -1,1 +1,8 @@
-{}
+{
+  "nav": {
+    "about": "Tentang",
+    "blog": "Blog",
+    "portfolio": "Portofolio",
+    "contact": "Kontak"
+  }
+}

@@ -1,4 +1,4 @@
-import { hasLocale } from 'next-intl'
+import { hasLocale, NextIntlClientProvider } from 'next-intl'
 import { setRequestLocale } from 'next-intl/server'
 
 import type { Metadata } from 'next'
@@ -59,6 +59,7 @@ export default async function RootLayout({
       >
         <body
           className={cn(
+            '@container',
             calSans.variable,
             coraMontserra.variable,
             decog.variable
@@ -70,8 +71,10 @@ export default async function RootLayout({
             enableSystem
             disableTransitionOnChange
           >
-            <Header />
-            <main className="w-full pt-14">{children}</main>
+            <NextIntlClientProvider>
+              <Header />
+              <main className="w-full pt-14">{children}</main>
+            </NextIntlClientProvider>
           </ThemeProvider>
         </body>
       </html>

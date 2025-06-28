@@ -1,1 +1,8 @@
-{}
+{
+  "nav": {
+    "about": "About",
+    "blog": "Blog",
+    "portfolio": "Portfolio",
+    "contact": "Contact"
+  }
+}
