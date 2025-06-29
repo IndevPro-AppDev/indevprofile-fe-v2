@@ -19,9 +19,8 @@ import { Link } from '~/i18n/navigation'
 
 import type { NavItem } from './nav-item'
 
-import IconIndevPro from '../icons/indevpro'
-import MotionLink from '../motion-link'
 import { MotionButton } from '../ui/button'
+import HomeLink from './home-link'
 import LocaleSwitcher from './locale-switcher'
 import ThemeSwitcher from './theme-switcher'
 
@@ -43,7 +42,14 @@ export default function MobileNavigationDrawer({
   }, [isSmallDevice])
 
   return (
-    <Drawer open={isSmallDevice ? open : false} onOpenChange={setOpen}>
+    <Drawer
+      open={isSmallDevice ? open : false}
+      onOpenChange={setOpen}
+      direction="bottom"
+      handleOnly
+      scrollLockTimeout={100}
+      disablePreventScroll
+    >
       <DrawerTrigger asChild>
         <MotionButton
           type="button"
@@ -77,34 +83,50 @@ export default function MobileNavigationDrawer({
           </AnimatePresence>
         </MotionButton>
       </DrawerTrigger>
-      <DrawerContent>
+      <DrawerContent className="h-auto">
         <DrawerHeader>
-          <MotionLink
-            href="/"
+          <motion.div
             initial={{ opacity: 0, y: 10, scale: 0.98, filter: 'blur(4px)' }}
             animate={{ opacity: 1, y: 0, scale: 1, filter: 'blur(0px)' }}
             transition={{ stiffness: 24, damping: 6, mass: 0.2, delay: 0.15 }}
-            onClick={() => setOpen(false)}
           >
-            <DrawerTitle className="font-brand mb-1 flex items-center justify-center">
-              <IconIndevPro className="mr-1 size-6" /> Indevpro
+            <DrawerTitle className="mb-1 flex items-center justify-center">
+              <HomeLink
+                initial={undefined}
+                animate={undefined}
+                transition={undefined}
+                onClick={() => setOpen(false)}
+              />
             </DrawerTitle>
-          </MotionLink>
+          </motion.div>
           <motion.div
             initial={{ opacity: 0, y: 10, filter: 'blur(4px)' }}
             animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
             transition={{ stiffness: 24, damping: 6, mass: 0.2, delay: 0.2 }}
           >
             <DrawerDescription className="mx-auto max-w-[32ch] text-center">
-              Together We Lead, Together We Achieve, Together We Innovate
+              Together We Lead, Together We Achieve.
             </DrawerDescription>
           </motion.div>
         </DrawerHeader>
         <div className="py-6">
-          <div className="mb-6 flex items-center justify-center gap-4">
-            <LocaleSwitcher />
-            <ThemeSwitcher />
-          </div>
+          <motion.div
+            className="mb-6 flex items-center justify-center gap-4"
+            initial={{ opacity: 0, y: 10, filter: 'blur(4px)' }}
+            animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+            transition={{ stiffness: 24, damping: 6, mass: 0.2, delay: 0.2 }}
+          >
+            <LocaleSwitcher
+              initial={undefined}
+              animate={undefined}
+              transition={undefined}
+            />
+            <ThemeSwitcher
+              initial={undefined}
+              animate={undefined}
+              transition={undefined}
+            />
+          </motion.div>
           <ul className="flex flex-col items-center justify-center">
             {items.map(({ href, text }, i) => (
               <li key={href} className="w-full">

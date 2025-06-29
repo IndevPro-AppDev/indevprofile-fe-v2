@@ -32,7 +32,7 @@ const decog = localFont({
 
 export const metadata: Metadata = {
   title: 'IndevPro',
-  description: 'Together We Lead, Together We Achieve, Together We Innovate.'
+  description: 'Together We Lead, Together We Achieve.'
 }
 
 export function generateStaticParams() {
@@ -52,14 +52,9 @@ export default async function RootLayout({
 
   return (
     <TRPCReactProvider>
-      <html
-        lang="en"
-        className="transition-colors duration-300 ease-out"
-        suppressHydrationWarning
-      >
+      <html lang="en" suppressHydrationWarning>
         <body
           className={cn(
-            '@container',
             calSans.variable,
             coraMontserra.variable,
             decog.variable
@@ -67,7 +62,7 @@ export default async function RootLayout({
         >
           <ThemeProvider
             attribute="class"
-            defaultTheme="dark"
+            defaultTheme="system"
             enableSystem
             disableTransitionOnChange
           >

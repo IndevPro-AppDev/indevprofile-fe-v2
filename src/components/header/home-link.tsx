@@ -17,7 +17,9 @@ import { cn } from '~/lib/utils'
 import IconIndevPro from '../icons/indevpro'
 import MotionLink from '../motion-link'
 
-export default function HomeLink() {
+interface HomeLinkProps extends React.ComponentProps<typeof MotionLink> {}
+
+export default function HomeLink(props: HomeLinkProps) {
   const { resolvedTheme: theme } = useTheme()
   const percentageMotionValue = useMotionValue(80)
   const percentageConstraints = useTransform(
@@ -61,13 +63,14 @@ export default function HomeLink() {
       initial={{ opacity: 0, y: -10, scale: 0.98, filter: 'blur(4px)' }}
       animate={{ opacity: 1, y: 0, scale: 1, filter: 'blur(0px)' }}
       transition={{ stiffness: 24, damping: 6, mass: 0.2, delay: 0.15 }}
+      {...props}
     >
       <IconIndevPro className="mr-1 size-6" />
       <motion.h2
         className={cn(
           'font-brand text-xl leading-none font-medium sm:text-base',
           'bg-clip-text text-transparent',
-          'flex'
+          'relative flex'
         )}
         style={{ backgroundImage: gradient }}
       >
@@ -75,7 +78,7 @@ export default function HomeLink() {
           <motion.span
             className={cn(
               char === 'p' &&
-                `before:text-primary before:pointer-events-none before:absolute before:-top-2.5 before:inline-block before:size-2.5 before:opacity-90 md:before:-top-1.5 ${starB64DataUrl}`
+                `before:text-primary before:pointer-events-none before:absolute before:-top-2.5 before:mb-1 before:block before:size-2.5 before:opacity-90 sm:before:-top-4 md:before:-top-1.5 ${starB64DataUrl}`
             )}
             key={`indevpro-${char}`}
           >

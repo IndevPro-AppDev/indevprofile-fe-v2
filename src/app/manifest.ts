@@ -4,7 +4,7 @@ export default function manifest(): MetadataRoute.Manifest {
   return {
     name: 'IndevPro',
     short_name: 'IndevPro',
-    description: 'Together We Lead, Together We Achieve, Together We Innovate',
+    description: 'Together We Lead, Together We Achieve',
     start_url: '/',
     display: 'standalone',
     icons: [
