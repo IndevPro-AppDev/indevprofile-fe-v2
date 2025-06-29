@@ -16,7 +16,7 @@ export default defineConfig({
           plugins: [['babel-plugin-react-compiler', {}]]
         }
       },
-      target: 'netlify'
+      target: 'vercel'
     }),
     tailwindcss()
   ],
