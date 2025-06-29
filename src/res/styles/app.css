@@ -1,8 +1,49 @@
-@import 'tailwindcss';
+@import 'tailwindcss' source('../../../');
 
 @import 'tw-animate-css';
 
 @custom-variant dark (&:where(.dark, .dark *));
+
+/* cal-sans-latin-400-normal */
+@font-face {
+  font-family: 'Cal Sans';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 400;
+  src:
+    url(@fontsource/cal-sans/files/cal-sans-latin-400-normal.woff2)
+      format('woff2'),
+    url(@fontsource/cal-sans/files/cal-sans-latin-400-normal.woff)
+      format('woff');
+  unicode-range:
+    U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC,
+    U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212,
+    U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: 'Cora Montserra Variable';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 200 800;
+  src: url(~/res/fonts/cora-montserra-variable.ttf) format('ttf');
+  unicode-range:
+    U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC,
+    U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212,
+    U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: 'Decog';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 400;
+  src: url(~/res/fonts/decog.otf) format('otf');
+  unicode-range:
+    U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC,
+    U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212,
+    U+2215, U+FEFF, U+FFFD;
+}
 
 :root {
   --radius: 0.625rem;
@@ -84,19 +125,17 @@
 
 @theme {
   --font-sans:
-    var(--font-cora-montserra), -apple-system, BlinkMacSystemFont, 'Segoe UI',
+    'Cora Montserra Variable', -apple-system, BlinkMacSystemFont, 'Segoe UI',
     'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans',
     'Helvetica Neue', sans-serif;
   --font-display:
-    var(--font-cal-sans), -apple-system, BlinkMacSystemFont, 'Segoe UI',
-    'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans',
-    'Helvetica Neue', sans-serif;
-  --font-brand:
-    var(--font-decog), -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
+    'Cal Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
     'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans',
     'Helvetica Neue', sans-serif;
-  --font-mono:
-    source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+  --font-brand:
+    'Decog', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
 }
 
 @theme inline {
@@ -157,5 +196,16 @@
 
   body {
     @apply bg-bg-gradient-start via-bg-gradient-middle to-bg-gradient-end text-foreground min-h-dvh w-full overflow-x-hidden bg-gradient-to-tr from-3% via-42% to-100% font-sans antialiased;
+  }
+}
+
+@layer utilities {
+  .no-scrollbar {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
   }
 }

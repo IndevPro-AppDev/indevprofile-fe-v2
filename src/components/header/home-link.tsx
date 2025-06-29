@@ -1,8 +1,4 @@
-'use client'
-
 import { useEffect } from 'react'
-
-import { useTheme } from 'next-themes'
 
 import {
   motion,
@@ -12,6 +8,7 @@ import {
   useTransform
 } from 'motion/react'
 
+import { useTheme } from '~/hooks/use-theme'
 import { cn } from '~/lib/utils'
 
 import IconIndevPro from '../icons/indevpro'
@@ -20,7 +17,8 @@ import MotionLink from '../motion-link'
 interface HomeLinkProps extends React.ComponentProps<typeof MotionLink> {}
 
 export default function HomeLink(props: HomeLinkProps) {
-  const { resolvedTheme: theme } = useTheme()
+  const { theme } = useTheme()
+
   const percentageMotionValue = useMotionValue(80)
   const percentageConstraints = useTransform(
     percentageMotionValue,
@@ -37,7 +35,7 @@ export default function HomeLink(props: HomeLinkProps) {
   linear-gradient(
     to bottom right,
     var(--primary),
-    color-mix(in oklab, var(${theme === 'light' ? '--primary' : '--muted-foreground'}) 60%, transparent) ${percentage}%
+    color-mix(in oklab, var(--muted-foreground) 60%, transparent) ${percentage}%
   )`
 
   useEffect(() => {
@@ -70,7 +68,7 @@ export default function HomeLink(props: HomeLinkProps) {
         className={cn(
           'font-brand text-xl leading-none font-medium sm:text-base',
           'bg-clip-text text-transparent',
-          'relative flex'
+          'flex'
         )}
         style={{ backgroundImage: gradient }}
       >

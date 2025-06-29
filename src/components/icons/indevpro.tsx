@@ -1,4 +1,3 @@
-import * as React from 'react'
 import type { SVGProps } from 'react'
 
 import { motion } from 'motion/react'
@@ -66,5 +65,5 @@ function IconIndevPro(props: IconIndevProProps) {
 
 const MotionIconIndevPro = motion.create(IconIndevPro)
 
-export type { IconIndevProProps }
 export { IconIndevPro as default, MotionIconIndevPro }
+export type { IconIndevProProps }

@@ -1,33 +1,30 @@
-'use client'
-
-import { useTheme } from 'next-themes'
-
 import { AnimatePresence, motion } from 'motion/react'
 
+import { useTheme } from '~/hooks/use-theme'
 import { cn } from '~/lib/utils'
 
 import IconMoon from '../icons/moon'
 import IconSun from '../icons/sun'
-import { buttonVariants, MotionButton } from '../ui/button'
+import { MotionButton } from '../ui/button'
 
 interface ThemeSwitcherProps
   extends React.ComponentProps<typeof motion.button> {}
 
 export default function ThemeSwitcher(props: ThemeSwitcherProps) {
-  const { resolvedTheme: theme, setTheme } = useTheme()
+  const { theme, setTheme } = useTheme()
 
   return (
     <MotionButton
       type="button"
       className={cn(
-        buttonVariants({ size: 'icon' }),
         'from-primary to-primary/80 dark:to-muted-foreground/90 bg-gradient-to-br',
         'rounded-full border shadow-sm',
         'pointer-events-auto relative cursor-pointer overflow-hidden'
       )}
       onClick={() => {
-        setTheme(theme === 'dark' ? 'light' : 'dark')
+        setTheme(theme === 'light' ? 'dark' : 'light')
       }}
+      size="icon"
       initial={{ opacity: 0, scale: 0.95, filter: 'blur(4px)' }}
       animate={{ opacity: 1, scale: 1, filter: 'blur(0px)' }}
       transition={{ stiffness: 24, damping: 6, mass: 0.2, delay: 0.15 }}
@@ -48,7 +45,7 @@ export default function ThemeSwitcher(props: ThemeSwitcherProps) {
               className="size-4"
             />
           </MotionWrapper>
-        )}
+        )}{' '}
       </AnimatePresence>
     </MotionButton>
   )
