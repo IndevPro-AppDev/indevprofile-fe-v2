@@ -10,7 +10,10 @@ import { usePathname, useRouter } from '~/i18n/navigation'
 
 import { MotionButton } from '../ui/button'
 
-function LocaleSwitcher() {
+interface LocaleSwitcherProps
+  extends React.ComponentProps<typeof MotionButton> {}
+
+function LocaleSwitcher(props: LocaleSwitcherProps) {
   const router = useRouter()
   const pathname = usePathname()
   const params = useParams()
@@ -43,6 +46,7 @@ function LocaleSwitcher() {
       initial={{ opacity: 0, scale: 0.95, filter: 'blur(4px)' }}
       animate={{ opacity: 1, scale: 1, filter: 'blur(0px)' }}
       transition={{ stiffness: 24, damping: 6, mass: 0.2, delay: 0.15 }}
+      {...props}
     >
       {locale === 'en' ? 'EN' : 'ID'}
     </MotionButton>
