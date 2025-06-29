@@ -52,7 +52,7 @@ export default async function RootLayout({
 
   return (
     <TRPCReactProvider>
-      <html lang="en" suppressHydrationWarning>
+      <html lang={locale} suppressHydrationWarning>
         <body
           className={cn(
             calSans.variable,
