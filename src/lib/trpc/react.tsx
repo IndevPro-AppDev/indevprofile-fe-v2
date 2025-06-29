@@ -1,67 +1,96 @@
-'use client'
-
-import { useState } from 'react'
+import { cache, useState } from 'react'
 
 import type { QueryClient } from '@tanstack/react-query'
+import type { TRPCQueryOptions } from '@trpc/tanstack-react-query'
 
-import { QueryClientProvider } from '@tanstack/react-query'
-import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
-import { createTRPCClient, httpBatchStreamLink, loggerLink } from '@trpc/client'
-import { createTRPCContext } from '@trpc/tanstack-react-query'
-import SuperJSON from 'superjson'
+import {
+  dehydrate,
+  HydrationBoundary,
+  QueryClientProvider
+} from '@tanstack/react-query'
+import { createTRPCClient } from '@trpc/client'
+import {
+  createTRPCContext,
+  createTRPCOptionsProxy
+} from '@trpc/tanstack-react-query'
 
 import type { AppRouter } from '~/trpc'
 
-import { createQueryClient } from './query-client'
+import { appRouter, createTRPCContext as createTRPCServerContext } from '~/trpc'
+import { localLink } from '~/trpc/utils'
 
-let clientQueryClientSingleton: QueryClient | undefined
-const getQueryClient = () => {
-  if (typeof window === 'undefined') {
-    // Server: always make a new query client
-    return createQueryClient()
-  } else {
-    // Browser: use singleton pattern to keep the same query client
-    return (clientQueryClientSingleton ??= createQueryClient())
+import { getQueryClient } from './query-client'
+
+const { TRPCProvider, useTRPC, useTRPCClient } = createTRPCContext<AppRouter>()
+
+const queryClient = getQueryClient()
+
+function getTrpcTSRouterContext() {
+  return {
+    queryClient
   }
 }
 
-export const { useTRPC, TRPCProvider } = createTRPCContext<AppRouter>()
+function makeTRPCClient() {
+  const ctx = createTRPCServerContext()
+  return createTRPCClient<AppRouter>({
+    links: [
+      localLink({
+        router: appRouter,
+        ctx
+      })
+    ]
+  })
+}
 
-export function TRPCReactProvider(props: { children: React.ReactNode }) {
-  const queryClient = getQueryClient()
+const getTRPCClient = cache(makeTRPCClient)
 
-  const [trpcClient] = useState(() =>
-    createTRPCClient<AppRouter>({
-      links: [
-        loggerLink({
-          enabled: op =>
-            process.env.NODE_ENV === 'development' ||
-            (op.direction === 'down' && op.result instanceof Error)
-        }),
-        httpBatchStreamLink({
-          transformer: SuperJSON,
-          url: `${getBaseUrl()}/api/trpc`,
-          headers() {
-            const headers = new Headers()
-            headers.set('x-trpc-source', 'nextjs-react')
-            return headers
-          }
-        })
-      ]
-    })
-  )
+function createTRPCProxy() {
+  const trpcClient = getTRPCClient()
+  return createTRPCOptionsProxy<AppRouter>({
+    client: trpcClient,
+    queryClient
+  })
+}
+
+function TRPCReactProvider({ children }: { children: React.ReactNode }) {
+  const [trpcClient] = useState(() => getTRPCClient())
 
   return (
     <QueryClientProvider client={queryClient}>
       <TRPCProvider trpcClient={trpcClient} queryClient={queryClient}>
-        {props.children}
+        {children}
       </TRPCProvider>
-      <ReactQueryDevtools initialIsOpen={false} />
     </QueryClientProvider>
   )
 }
 
-function getBaseUrl() {
-  if (typeof window !== 'undefined') return window.location.origin
-  return 'http://localhost:3000'
+function HydrateClient(props: { children: React.ReactNode }) {
+  return (
+    <HydrationBoundary state={dehydrate(queryClient)}>
+      {props.children}
+    </HydrationBoundary>
+  )
+}
+
+function prefetch<T extends ReturnType<TRPCQueryOptions<any>>>(
+  queryOptions: T,
+  queryClient?: QueryClient
+) {
+  const isomorphicQueryClient = queryClient ?? getQueryClient()
+  if (queryOptions.queryKey[1]?.type === 'infinite') {
+    void isomorphicQueryClient.prefetchInfiniteQuery(queryOptions as any)
+  } else {
+    void isomorphicQueryClient.prefetchQuery(queryOptions)
+  }
+}
+
+export {
+  createTRPCProxy,
+  getTrpcTSRouterContext,
+  HydrateClient,
+  prefetch,
+  TRPCReactProvider,
+  useTRPC,
+  useTRPCClient
 }

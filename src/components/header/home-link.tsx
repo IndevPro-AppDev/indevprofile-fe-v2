@@ -1,8 +1,4 @@
-'use client'
-
 import { useEffect } from 'react'
-
-import { useTheme } from 'next-themes'
 
 import {
   motion,
@@ -20,7 +16,6 @@ import MotionLink from '../motion-link'
 interface HomeLinkProps extends React.ComponentProps<typeof MotionLink> {}
 
 export default function HomeLink(props: HomeLinkProps) {
-  const { resolvedTheme: theme } = useTheme()
   const percentageMotionValue = useMotionValue(80)
   const percentageConstraints = useTransform(
     percentageMotionValue,
@@ -37,7 +32,7 @@ export default function HomeLink(props: HomeLinkProps) {
   linear-gradient(
     to bottom right,
     var(--primary),
-    color-mix(in oklab, var(${theme === 'light' ? '--primary' : '--muted-foreground'}) 60%, transparent) ${percentage}%
+    color-mix(in oklab, var(--muted-foreground) 60%, transparent) ${percentage}%
   )`
 
   useEffect(() => {
@@ -52,9 +47,9 @@ export default function HomeLink(props: HomeLinkProps) {
   }, [percentageMotionValue])
 
   const starB64DataUrl =
-    theme === 'light'
-      ? 'before:content-[url("data:image/svg+xml;base64,PHN2ZyAgdmlld0JveD0iMCAwIDEzIDEzIiBmaWxsPSJub25lIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxwYXRoIGQ9Ik0xMi43MzYgNi4xMWMtMS42NzUgMC0zLjE5Mi42OC00LjI5IDEuNzc3YTYuMDUgNi4wNSAwIDAgMC0xLjc3NiA0LjI5YzAtMS42NzYtLjY4LTMuMTkzLTEuNzc3LTQuMjlBNi4wNSA2LjA1IDAgMCAwIC42MDMgNi4xMWE2LjA1IDYuMDUgMCAwIDAgNC4yOS0xLjc3N0E2LjA1IDYuMDUgMCAwIDAgNi42Ny4wNDNhNi4wNjYgNi4wNjYgMCAwIDAgNi4wNjYgNi4wNjciIGZpbGw9InVybCgjYSkiLz48ZGVmcz48bGluZWFyR3JhZGllbnQgaWQ9ImEiIHgxPSIxIiB5MT0iMCIgeDI9IjEyLjUiIHkyPSIxMiIgZ3JhZGllbnRVbml0cz0idXNlclNwYWNlT25Vc2UiPjxzdG9wIHN0b3AtY29sb3I9IiMyRjJEMkQiLz48c3RvcCBvZmZzZXQ9IjEiIHN0b3AtY29sb3I9IiMyRjJEMkQiIHN0b3Atb3BhY2l0eT0iLjYiLz48L2xpbmVhckdyYWRpZW50PjwvZGVmcz48L3N2Zz4=")]'
-      : 'before:content-[url("data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgMTMgMTMiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0iTTEyLjczNiA2LjExYy0xLjY3NSAwLTMuMTkyLjY4LTQuMjkgMS43NzdhNi4wNSA2LjA1IDAgMCAwLTEuNzc2IDQuMjljMC0xLjY3Ni0uNjgtMy4xOTMtMS43NzctNC4yOUE2LjA1IDYuMDUgMCAwIDAgLjYwMyA2LjExYTYuMDUgNi4wNSAwIDAgMCA0LjI5LTEuNzc3QTYuMDUgNi4wNSAwIDAgMCA2LjY3LjA0M2E2LjA2NiA2LjA2NiAwIDAgMCA2LjA2NiA2LjA2NyIgZmlsbD0idXJsKCNhKSIvPjxkZWZzPjxsaW5lYXJHcmFkaWVudCBpZD0iYSIgeDE9IjEiIHkxPSIwIiB4Mj0iMTIuNSIgeTI9IjEyIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+PHN0b3Agc3RvcC1jb2xvcj0iI0Y0RjRGNCIvPjxzdG9wIG9mZnNldD0iMSIgc3RvcC1jb2xvcj0iI0IwQjRCQSIgc3RvcC1vcGFjaXR5PSIuNiIvPjwvbGluZWFyR3JhZGllbnQ+PC9kZWZzPjwvc3ZnPg==")]'
+    // theme === 'light'
+    //   ? 'before:content-[url("data:image/svg+xml;base64,PHN2ZyAgdmlld0JveD0iMCAwIDEzIDEzIiBmaWxsPSJub25lIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxwYXRoIGQ9Ik0xMi43MzYgNi4xMWMtMS42NzUgMC0zLjE5Mi42OC00LjI5IDEuNzc3YTYuMDUgNi4wNSAwIDAgMC0xLjc3NiA0LjI5YzAtMS42NzYtLjY4LTMuMTkzLTEuNzc3LTQuMjlBNi4wNSA2LjA1IDAgMCAwIC42MDMgNi4xMWE2LjA1IDYuMDUgMCAwIDAgNC4yOS0xLjc3N0E2LjA1IDYuMDUgMCAwIDAgNi42Ny4wNDNhNi4wNjYgNi4wNjYgMCAwIDAgNi4wNjYgNi4wNjciIGZpbGw9InVybCgjYSkiLz48ZGVmcz48bGluZWFyR3JhZGllbnQgaWQ9ImEiIHgxPSIxIiB5MT0iMCIgeDI9IjEyLjUiIHkyPSIxMiIgZ3JhZGllbnRVbml0cz0idXNlclNwYWNlT25Vc2UiPjxzdG9wIHN0b3AtY29sb3I9IiMyRjJEMkQiLz48c3RvcCBvZmZzZXQ9IjEiIHN0b3AtY29sb3I9IiMyRjJEMkQiIHN0b3Atb3BhY2l0eT0iLjYiLz48L2xpbmVhckdyYWRpZW50PjwvZGVmcz48L3N2Zz4=")]'
+    'before:content-[url("data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgMTMgMTMiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0iTTEyLjczNiA2LjExYy0xLjY3NSAwLTMuMTkyLjY4LTQuMjkgMS43NzdhNi4wNSA2LjA1IDAgMCAwLTEuNzc2IDQuMjljMC0xLjY3Ni0uNjgtMy4xOTMtMS43NzctNC4yOUE2LjA1IDYuMDUgMCAwIDAgLjYwMyA2LjExYTYuMDUgNi4wNSAwIDAgMCA0LjI5LTEuNzc3QTYuMDUgNi4wNSAwIDAgMCA2LjY3LjA0M2E2LjA2NiA2LjA2NiAwIDAgMCA2LjA2NiA2LjA2NyIgZmlsbD0idXJsKCNhKSIvPjxkZWZzPjxsaW5lYXJHcmFkaWVudCBpZD0iYSIgeDE9IjEiIHkxPSIwIiB4Mj0iMTIuNSIgeTI9IjEyIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+PHN0b3Agc3RvcC1jb2xvcj0iI0Y0RjRGNCIvPjxzdG9wIG9mZnNldD0iMSIgc3RvcC1jb2xvcj0iI0IwQjRCQSIgc3RvcC1vcGFjaXR5PSIuNiIvPjwvbGluZWFyR3JhZGllbnQ+PC9kZWZzPjwvc3ZnPg==")]'
 
   return (
     <MotionLink

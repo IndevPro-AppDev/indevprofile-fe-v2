@@ -1,8 +1,4 @@
-'use client'
-
 import { useState } from 'react'
-
-import { useTranslations } from 'next-intl'
 
 import { motion, useMotionValueEvent, useScroll } from 'motion/react'
 
@@ -10,7 +6,6 @@ import { cn } from '~/lib/utils'
 
 import type { NavItem } from './nav-item'
 
-import { ClientOnly } from '../client-only'
 import DesktopNavigation from './desktop-navigation'
 import HomeLink from './home-link'
 import LocaleSwitcher from './locale-switcher'
@@ -18,13 +13,11 @@ import MobileNavigationDrawer from './mobile-navigation-drawer'
 import ThemeSwitcher from './theme-switcher'
 
 export default function Header() {
-  const t = useTranslations('nav')
-
   const navItems: NavItem[] = [
-    { text: t('about'), href: '/about' },
-    { text: t('blog'), href: '/blog' },
-    { text: t('portfolio'), href: '/portfolio' },
-    { text: t('contact'), href: '/contact' }
+    { text: 'About', href: '/about' },
+    { text: 'Blog', href: '/blog' },
+    { text: 'Portfolio', href: '/portfolio' },
+    { text: 'Contact', href: '/contact' }
   ]
 
   const { scrollY } = useScroll()
@@ -62,11 +55,9 @@ export default function Header() {
             <LocaleSwitcher />
             <ThemeSwitcher />
           </div>
-          <ClientOnly>
-            <div className="not-sr-only flex items-center justify-end gap-4 sm:sr-only">
-              <MobileNavigationDrawer items={navItems} />
-            </div>
-          </ClientOnly>
+          <div className="not-sr-only flex items-center justify-end gap-4 sm:sr-only">
+            <MobileNavigationDrawer items={navItems} />
+          </div>
         </div>
       </motion.div>
     </header>

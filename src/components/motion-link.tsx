@@ -1,8 +1,7 @@
 'use client'
 
+import { Link } from '@tanstack/react-router'
 import { motion } from 'motion/react'
-
-import { Link } from '~/i18n/navigation'
 
 const MotionLink = motion.create(Link)
 

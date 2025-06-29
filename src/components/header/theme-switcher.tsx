@@ -1,21 +1,14 @@
-'use client'
-
-import { useTheme } from 'next-themes'
-
 import { AnimatePresence, motion } from 'motion/react'
 
 import { cn } from '~/lib/utils'
 
 import IconMoon from '../icons/moon'
-import IconSun from '../icons/sun'
 import { buttonVariants, MotionButton } from '../ui/button'
 
 interface ThemeSwitcherProps
   extends React.ComponentProps<typeof motion.button> {}
 
 export default function ThemeSwitcher(props: ThemeSwitcherProps) {
-  const { resolvedTheme: theme, setTheme } = useTheme()
-
   return (
     <MotionButton
       type="button"
@@ -25,30 +18,28 @@ export default function ThemeSwitcher(props: ThemeSwitcherProps) {
         'rounded-full border shadow-sm',
         'pointer-events-auto relative cursor-pointer overflow-hidden'
       )}
-      onClick={() => {
-        setTheme(theme === 'dark' ? 'light' : 'dark')
-      }}
+      onClick={() => {}}
       initial={{ opacity: 0, scale: 0.95, filter: 'blur(4px)' }}
       animate={{ opacity: 1, scale: 1, filter: 'blur(0px)' }}
       transition={{ stiffness: 24, damping: 6, mass: 0.2, delay: 0.15 }}
       {...props}
     >
       <AnimatePresence mode="wait">
-        {theme === 'light' ? (
+        {/* {theme === 'light' ? (
           <MotionWrapper key="theme-switcher-button-icon-dark">
             <IconSun
               pathProps={{ className: cn('fill-secondary') }}
               className="size-4"
             />
           </MotionWrapper>
-        ) : (
-          <MotionWrapper key="theme-switcher-button-icon-light">
-            <IconMoon
-              pathProps={{ className: cn('fill-secondary') }}
-              className="size-4"
-            />
-          </MotionWrapper>
-        )}
+        ) : ( */}
+        <MotionWrapper key="theme-switcher-button-icon-light">
+          <IconMoon
+            pathProps={{ className: cn('fill-secondary') }}
+            className="size-4"
+          />
+        </MotionWrapper>
+        {/* )} */}
       </AnimatePresence>
     </MotionButton>
   )

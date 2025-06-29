@@ -1,8 +1,7 @@
-'use client'
-
 import { useEffect, useState } from 'react'
 
 import { Icon } from '@iconify/react'
+import { Link } from '@tanstack/react-router'
 import { useMediaQuery } from '@uidotdev/usehooks'
 import { AnimatePresence, motion } from 'motion/react'
 
@@ -15,7 +14,6 @@ import {
   DrawerTitle,
   DrawerTrigger
 } from '~/components/ui/drawer'
-import { Link } from '~/i18n/navigation'
 
 import type { NavItem } from './nav-item'
 
@@ -150,7 +148,7 @@ export default function MobileNavigationDrawer({
                   asChild
                 >
                   <Link
-                    href={href ?? '#'}
+                    to={href ?? '#'}
                     className="hover:bg-muted/50 focus-visible:ring-ring flex w-full items-center justify-center gap-2 rounded-md px-4 py-2 text-sm font-medium transition-colors focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none"
                     onClick={() => setOpen(false)}
                   >
