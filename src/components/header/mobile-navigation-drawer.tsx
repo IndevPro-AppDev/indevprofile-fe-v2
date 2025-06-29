@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react'
 
 import { Icon } from '@iconify/react'
 import { Link } from '@tanstack/react-router'
-import { useMediaQuery } from '@uidotdev/usehooks'
 import { AnimatePresence, motion } from 'motion/react'
 
 import {
@@ -14,6 +13,7 @@ import {
   DrawerTitle,
   DrawerTrigger
 } from '~/components/ui/drawer'
+import { useMediaQuery } from '~/hooks/use-media-query'
 
 import type { NavItem } from './nav-item'
 

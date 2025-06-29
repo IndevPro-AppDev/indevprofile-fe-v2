@@ -9,6 +9,7 @@ import {
 } from '@tanstack/react-router'
 import { TanStackRouterDevtools } from '@tanstack/react-router-devtools'
 
+import Header from '~/components/header'
 import { useTheme } from '~/hooks/use-theme'
 import { createTRPCProxy } from '~/lib/trpc/react'
 import fontCoraMontserra from '~/res/fonts/cora-montserra-variable.ttf?url'
@@ -93,7 +94,8 @@ function RootDocument({ children }: { children: React.ReactNode }) {
         <HeadContent />
       </head>
       <body className="transition duration-300 ease-in-out">
-        {children}
+        <Header />
+        <main className="w-full pt-14">{children}</main>
         <Scripts />
       </body>
     </html>
