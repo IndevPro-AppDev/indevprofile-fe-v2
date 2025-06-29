@@ -11,5 +11,9 @@ function RouteComponent() {
   const trpc = useTRPC()
   const { data } = useQuery({ ...trpc.ping.queryOptions() })
 
-  return <pre>{JSON.stringify(data, null, 2)}</pre>
+  return (
+    <>
+      <pre>{JSON.stringify(data, null, 2)}</pre>
+    </>
+  )
 }

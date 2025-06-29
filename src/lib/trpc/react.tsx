@@ -33,6 +33,7 @@ function getTrpcTSRouterContext() {
 
 function makeTRPCClient() {
   const ctx = createTRPCServerContext()
+
   return createTRPCClient<AppRouter>({
     links: [
       localLink({

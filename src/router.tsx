@@ -1,6 +1,6 @@
 import { createRouter as createTanstackRouter } from '@tanstack/react-router'
 
-import { getTrpcTSRouterContext, TRPCReactProvider } from './lib/trpc/react'
+import { getTrpcTSRouterContext } from './lib/trpc/react'
 import './res/styles/app.css'
 // Import the generated route tree
 import { routeTree } from './routeTree.gen'
@@ -14,9 +14,6 @@ export function createRouter() {
     defaultPreloadStaleTime: 0,
     context: {
       ...getTrpcTSRouterContext()
-    },
-    Wrap: ({ children }) => {
-      return <TRPCReactProvider>{children}</TRPCReactProvider>
     }
   })
 

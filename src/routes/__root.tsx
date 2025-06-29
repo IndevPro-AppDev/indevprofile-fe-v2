@@ -4,10 +4,15 @@ import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 import {
   createRootRouteWithContext,
   HeadContent,
+  Outlet,
   Scripts
 } from '@tanstack/react-router'
 import { TanStackRouterDevtools } from '@tanstack/react-router-devtools'
 
+import { createTRPCProxy, TRPCReactProvider } from '~/lib/trpc/react'
+import fontCoraMontserra from '~/res/fonts/cora-montserra-variable.ttf?url'
+import fontDecog from '~/res/fonts/decog.otf?url'
+import appCss from '~/res/styles/app.css?url'
 export interface RouterAppContext {
   queryClient: QueryClient
 }
@@ -27,12 +32,51 @@ export const Route = createRootRouteWithContext<RouterAppContext>()({
       },
       {
         name: 'description',
-        content: 'Together We Lead, Together We Achieve'
+        content: 'Together We Lead, Together We Achieve.'
       }
+    ],
+    links: [
+      {
+        rel: 'preload',
+        as: 'font',
+        href: fontDecog,
+        type: 'font/otf',
+        crossOrigin: 'anonymous'
+      },
+      {
+        rel: 'preload',
+        as: 'font',
+        href: fontCoraMontserra,
+        type: 'font/ttf',
+        crossOrigin: 'anonymous'
+      },
+      { rel: 'stylesheet', href: appCss },
+      { rel: 'icon', href: '/favicon.ico' },
+      {
+        rel: 'apple-touch-icon',
+        sizes: '180x180',
+        href: '/apple-touch-icon.png'
+      },
+      { rel: 'manifest', href: '/manifest.json' }
     ]
   }),
-  shellComponent: RootDocument
+  beforeLoad: () => {
+    return {
+      trpc: createTRPCProxy()
+    }
+  },
+  shellComponent: RootComponent
 })
+
+function RootComponent() {
+  return (
+    <RootDocument>
+      <Outlet />
+      <TanStackRouterDevtools position="bottom-right" />
+      <ReactQueryDevtools buttonPosition="bottom-left" />
+    </RootDocument>
+  )
+}
 
 function RootDocument({ children }: { children: React.ReactNode }) {
   return (
@@ -41,12 +85,7 @@ function RootDocument({ children }: { children: React.ReactNode }) {
         <HeadContent />
       </head>
       <body>
-        {children}
-        <TanStackRouterDevtools position="bottom-right" initialIsOpen={false} />
-        <ReactQueryDevtools
-          buttonPosition="bottom-left"
-          initialIsOpen={false}
-        />
+        <TRPCReactProvider>{children}</TRPCReactProvider>
         <Scripts />
       </body>
     </html>
