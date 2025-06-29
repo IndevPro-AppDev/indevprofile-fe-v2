@@ -9,6 +9,7 @@ import {
 } from '@tanstack/react-router'
 import { TanStackRouterDevtools } from '@tanstack/react-router-devtools'
 
+import GradientBackground from '~/components/gradient-background'
 import Header from '~/components/header'
 import { useTheme } from '~/hooks/use-theme'
 import { createTRPCProxy } from '~/lib/trpc/react'
@@ -93,9 +94,10 @@ function RootDocument({ children }: { children: React.ReactNode }) {
       <head>
         <HeadContent />
       </head>
-      <body className="transition duration-300 ease-in-out">
+      <body className="relative transition duration-300 ease-in-out">
         <Header />
         <main className="w-full pt-14">{children}</main>
+        <GradientBackground />
         <Scripts />
       </body>
     </html>

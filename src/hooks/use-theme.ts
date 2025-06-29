@@ -1,3 +1,5 @@
+import { useEffect } from 'react'
+
 import {
   useMutation,
   useQueryClient,
@@ -38,6 +40,10 @@ export function useTheme() {
       queryClient.invalidateQueries({ queryKey: ['theme'] })
     }
   })
+
+  useEffect(() => {
+    document.documentElement.style.colorScheme = theme
+  }, [theme])
 
   return {
     theme,
