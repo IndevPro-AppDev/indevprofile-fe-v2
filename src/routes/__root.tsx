@@ -13,6 +13,7 @@ import GradientBackground from '~/components/gradient-background'
 import Header from '~/components/header'
 import { useTheme } from '~/hooks/use-theme'
 import { createTRPCProxy } from '~/lib/trpc/react'
+import { seo } from '~/lib/utils'
 import fontCoraMontserra from '~/res/fonts/cora-montserra-variable.ttf?url'
 import fontDecog from '~/res/fonts/decog.otf?url'
 import appCss from '~/res/styles/app.css?url'
@@ -30,10 +31,6 @@ export const Route = createRootRouteWithContext<RouterAppContext>()({
         content: 'width=device-width, initial-scale=1'
       },
       { title: 'Indevpro' },
-      {
-        name: 'description',
-        content: 'Together We Lead, Together We Achieve.'
-      },
       { name: 'color-scheme', content: 'dark light' },
       { name: 'mobile-web-app-capable', content: 'yes' },
       {
@@ -41,7 +38,11 @@ export const Route = createRootRouteWithContext<RouterAppContext>()({
         content: 'black-translucent'
       },
       { name: 'robots', content: 'index, follow' },
-      { name: 'googlebot', content: 'index, follow' }
+      { name: 'googlebot', content: 'index, follow' },
+      ...seo({
+        title: 'Indevpro',
+        description: 'Together We Lead, Together We Achieve.'
+      })
     ],
     links: [
       { rel: 'stylesheet', href: appCss },
@@ -80,8 +81,8 @@ function RootComponent() {
   return (
     <RootDocument>
       <Outlet />
-      <TanStackRouterDevtools position="bottom-right" />
       <ReactQueryDevtools buttonPosition="bottom-left" />
+      <TanStackRouterDevtools position="bottom-right" />
     </RootDocument>
   )
 }

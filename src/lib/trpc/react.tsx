@@ -3,7 +3,11 @@ import { cache, useState } from 'react'
 import type { QueryClient } from '@tanstack/react-query'
 import type { TRPCQueryOptions } from '@trpc/tanstack-react-query'
 
-import { dehydrate, HydrationBoundary } from '@tanstack/react-query'
+import {
+  dehydrate,
+  HydrationBoundary,
+  QueryClientProvider
+} from '@tanstack/react-query'
 import { createTRPCClient } from '@trpc/client'
 import {
   createTRPCContext,
@@ -54,9 +58,11 @@ function TRPCReactProvider({ children }: { children: React.ReactNode }) {
   const [trpcClient] = useState(() => getTRPCClient())
 
   return (
-    <TRPCProvider trpcClient={trpcClient} queryClient={queryClient}>
-      {children}
-    </TRPCProvider>
+    <QueryClientProvider client={queryClient}>
+      <TRPCProvider trpcClient={trpcClient} queryClient={queryClient}>
+        {children}
+      </TRPCProvider>
+    </QueryClientProvider>
   )
 }
 

@@ -1,5 +1,4 @@
 import { createRouter as createTanstackRouter } from '@tanstack/react-router'
-import { routerWithQueryClient } from '@tanstack/react-router-with-query'
 
 import { getTrpcTSRouterContext, TRPCReactProvider } from './lib/trpc/react'
 // Import the generated route tree
@@ -20,7 +19,7 @@ export function createRouter() {
     }
   })
 
-  return routerWithQueryClient(router, context.queryClient)
+  return router
 }
 
 // Register the router instance for type safety
