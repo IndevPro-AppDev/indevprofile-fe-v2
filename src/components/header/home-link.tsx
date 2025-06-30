@@ -68,7 +68,7 @@ export default function HomeLink(props: HomeLinkProps) {
         className={cn(
           'font-brand text-xl leading-none font-medium sm:text-base',
           'bg-clip-text text-transparent',
-          'flex'
+          'relative flex items-center'
         )}
         style={{ backgroundImage: gradient }}
       >
@@ -76,7 +76,7 @@ export default function HomeLink(props: HomeLinkProps) {
           <motion.span
             className={cn(
               char === 'p' &&
-                `before:text-primary before:pointer-events-none before:absolute before:-top-2.5 before:mb-1 before:block before:size-2.5 before:opacity-90 sm:before:-top-4 md:before:-top-1.5 ${starB64DataUrl}`
+                `before:text-primary before:pointer-events-none before:absolute before:-top-[13px] before:mb-1 before:block before:size-2.5 before:opacity-90 sm:before:-top-4 ${starB64DataUrl} md:before:-top-[10px]`
             )}
             key={`indevpro-${char}`}
           >
