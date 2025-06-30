@@ -3,14 +3,13 @@
 import React, { useLayoutEffect, useRef, useState } from 'react'
 
 import {
-  motion,
-  useAnimationFrame,
   useMotionValue,
   useScroll,
   useSpring,
   useTransform,
   useVelocity
 } from 'framer-motion'
+import { motion, useAnimationFrame } from 'motion/react'
 import Image from 'next/image'
 
 interface VelocityMapping {
