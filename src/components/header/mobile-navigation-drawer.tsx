@@ -108,11 +108,11 @@ export default function MobileNavigationDrawer({
           </motion.div>
         </DrawerHeader>
         <div className="py-6">
-          <motion.div
+          <div
             className="mb-6 flex items-center justify-center gap-4"
-            initial={{ opacity: 0, y: 10, filter: 'blur(4px)' }}
-            animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
-            transition={{ stiffness: 24, damping: 6, mass: 0.2, delay: 0.2 }}
+            // initial={{ opacity: 0, y: 10, filter: 'blur(4px)' }}
+            // animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+            // transition={{ ease: 'easeOut', duration: 0.3, delay: 0.2 }}
           >
             <LocaleSwitcher
               initial={undefined}
@@ -124,7 +124,7 @@ export default function MobileNavigationDrawer({
               animate={undefined}
               transition={undefined}
             />
-          </motion.div>
+          </div>
           <ul className="flex flex-col items-center justify-center">
             {items.map(({ href, text }, i) => (
               <li key={href} className="w-full">
