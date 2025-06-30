@@ -1,16 +1,14 @@
-'use client'
-
 import React, { useLayoutEffect, useRef, useState } from 'react'
 
 import {
+  motion,
+  useAnimationFrame,
   useMotionValue,
   useScroll,
   useSpring,
   useTransform,
   useVelocity
-} from 'framer-motion'
-import { motion, useAnimationFrame } from 'motion/react'
-import Image from 'next/image'
+} from 'motion/react'
 
 interface VelocityMapping {
   input: [number, number]
@@ -187,7 +185,7 @@ export const LogoMarquee: React.FC<ScrollVelocityProps> = ({
         >
           <div className="flex items-center gap-x-8">
             {logos.map((logoUrl, index) => (
-              <Image
+              <img
                 // eslint-disable-next-line react/no-array-index-key
                 key={index}
                 src={logoUrl}
