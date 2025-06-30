@@ -20,11 +20,6 @@ export default defineConfig({
     }),
     tailwindcss()
   ],
-  build: {
-    rollupOptions: {
-      external: ['@tanstack/react-start/server']
-    }
-  },
   resolve: {
     alias: {
       '~': resolve(__dirname, './src')

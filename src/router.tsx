@@ -2,7 +2,6 @@ import { createRouter as createTanstackRouter } from '@tanstack/react-router'
 import { routerWithQueryClient } from '@tanstack/react-router-with-query'
 
 import { getTrpcTSRouterContext, TRPCReactProvider } from './lib/trpc/react'
-import './res/styles/app.css'
 // Import the generated route tree
 import { routeTree } from './routeTree.gen'
 

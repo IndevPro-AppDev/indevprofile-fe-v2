@@ -12,10 +12,15 @@ const setThemeServerFn = createServerFn({ method: 'POST' })
     if (typeof data != 'string' || (data !== 'dark' && data !== 'light')) {
       throw new Error('Invalid theme provided')
     }
+
     return data as Theme
   })
   .handler(async ({ data }) => {
     setCookie(THEME_STORAGE_KEY, data)
+
+    return {
+      message: `Theme set to ${data}`
+    }
   })
 
 type Theme = 'light' | 'dark'
