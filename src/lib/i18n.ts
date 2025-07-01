@@ -3,7 +3,7 @@ import { AsyncLocalStorage } from 'node:async_hooks'
 import { createIsomorphicFn, createMiddleware } from '@tanstack/react-start'
 import { getWebRequest } from '@tanstack/react-start/server'
 
-import type { Locale } from '~/lib/paraglide/runtime'
+import type { Locale } from '~/paraglide/runtime'
 
 import {
   baseLocale,
@@ -11,8 +11,8 @@ import {
   isLocale,
   overwriteGetLocale,
   strategy
-} from '~/lib/paraglide/runtime'
-import { paraglideMiddleware } from '~/lib/paraglide/server'
+} from '~/paraglide/runtime'
+import { paraglideMiddleware } from '~/paraglide/server'
 
 export const resolveLocale = createIsomorphicFn()
   .client(getLocale)

@@ -12,6 +12,7 @@
     "types": ["vite/client", "node", "vite-plugin-font/src/font"],
     "allowImportingTsExtensions": true,
     "allowJs": true,
+    "checkJs": true,
     "strict": true,
     "noFallthroughCasesInSwitch": true,
     "noUnusedLocals": true,
@@ -21,12 +22,5 @@
     "skipLibCheck": true,
     "noUncheckedSideEffectImports": true
   },
-  "include": [
-    "**/*.ts",
-    "**/*.tsx",
-    "**/paraglide/**/*.js",
-    "eslint.config.js",
-    "prettier.config.js",
-    "vite.config.js"
-  ]
+  "include": ["src", "eslint.config.js", "prettier.config.js", "vite.config.ts"]
 }

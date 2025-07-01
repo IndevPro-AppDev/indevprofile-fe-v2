@@ -2,8 +2,8 @@ import { useState } from 'react'
 
 import { motion, useMotionValueEvent, useScroll } from 'motion/react'
 
-import { m } from '~/lib/paraglide/messages'
 import { cn } from '~/lib/utils'
+import { m } from '~/paraglide/messages'
 
 import type { NavItem } from './nav-item'
 
