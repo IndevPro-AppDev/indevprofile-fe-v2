@@ -1,0 +1,9 @@
+{
+  "$schema": "https://inlang.com/schema/inlang-message-format",
+  "nav": {
+    "about": "Tentang",
+    "blog": "Blog",
+    "portfolio": "Portofolio",
+    "contact": "Kontak"
+  }
+}

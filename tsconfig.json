@@ -11,6 +11,7 @@
     },
     "types": ["vite/client", "node", "vite-plugin-font/src/font"],
     "allowImportingTsExtensions": true,
+    "allowJs": true,
     "strict": true,
     "noFallthroughCasesInSwitch": true,
     "noUnusedLocals": true,

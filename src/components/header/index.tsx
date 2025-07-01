@@ -2,6 +2,7 @@ import { useState } from 'react'
 
 import { motion, useMotionValueEvent, useScroll } from 'motion/react'
 
+import { m } from '~/lib/paraglide/messages'
 import { cn } from '~/lib/utils'
 
 import type { NavItem } from './nav-item'
@@ -14,10 +15,10 @@ import ThemeSwitcher from './theme-switcher'
 
 export default function Header() {
   const navItems: NavItem[] = [
-    { text: 'About', href: '/about' },
-    { text: 'Blog', href: '/blog' },
-    { text: 'Portfolio', href: '/portfolio' },
-    { text: 'Contact', href: '/contact' }
+    { text: m['nav.about'](), href: '/about' },
+    { text: m['nav.blog'](), href: '/blog' },
+    { text: m['nav.portfolio'](), href: '/portfolio' },
+    { text: m['nav.contact'](), href: '/contact' }
   ]
 
   const { scrollY } = useScroll()
