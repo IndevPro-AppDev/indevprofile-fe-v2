@@ -1,5 +1,7 @@
 'use client'
 
+import { getLocale, setLocale } from '~/lib/paraglide/runtime'
+
 import { MotionButton } from '../ui/button'
 
 interface LocaleSwitcherProps
@@ -10,18 +12,19 @@ function LocaleSwitcher(props: LocaleSwitcherProps) {
     <MotionButton
       type="button"
       variant="outline"
-      className="bg-secondary dark:border-primary/60 border-primary/60 cursor-pointer rounded-full text-xs disabled:cursor-not-allowed"
+      className="bg-secondary dark:border-primary/60 border-primary/60 cursor-pointer rounded-full text-xs uppercase disabled:cursor-not-allowed"
       size="icon"
       onClick={e => {
         e.preventDefault()
         e.stopPropagation()
+        setLocale(getLocale() === 'en' ? 'id' : 'en')
       }}
       initial={{ opacity: 0, scale: 0.95, filter: 'blur(4px)' }}
       animate={{ opacity: 1, scale: 1, filter: 'blur(0px)' }}
       transition={{ stiffness: 24, damping: 6, mass: 0.2, delay: 0.15 }}
       {...props}
     >
-      EN
+      {getLocale()}
     </MotionButton>
   )
 }

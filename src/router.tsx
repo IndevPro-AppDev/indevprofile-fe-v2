@@ -1,11 +1,12 @@
 import { createRouter as createTanstackRouter } from '@tanstack/react-router'
 
+import { getRouterBasepath } from './lib/i18n'
 import { getTrpcTSRouterContext, TRPCReactProvider } from './lib/trpc/react'
 // Import the generated route tree
 import { routeTree } from './routeTree.gen'
 
 // Create a new router instance
-export function createRouter() {
+export function createRouter(pathname?: string) {
   const context = getTrpcTSRouterContext()
 
   const router = createTanstackRouter({
@@ -16,7 +17,8 @@ export function createRouter() {
     context,
     Wrap: ({ children }) => {
       return <TRPCReactProvider>{children}</TRPCReactProvider>
-    }
+    },
+    basepath: getRouterBasepath(pathname)
   })
 
   return router

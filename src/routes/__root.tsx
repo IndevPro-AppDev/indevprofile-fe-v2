@@ -12,6 +12,7 @@ import { TanStackRouterDevtools } from '@tanstack/react-router-devtools'
 import GradientBackground from '~/components/gradient-background'
 import Header from '~/components/header'
 import { useTheme } from '~/hooks/use-theme'
+import { getLocale } from '~/lib/paraglide/runtime'
 import { createTRPCProxy } from '~/lib/trpc/react'
 import { seo } from '~/lib/utils'
 import fontCoraMontserra from '~/res/fonts/cora-montserra-variable.ttf?url'
@@ -82,7 +83,6 @@ function RootComponent() {
     <RootDocument>
       <Outlet />
       <ReactQueryDevtools buttonPosition="bottom-left" />
-      <TanStackRouterDevtools position="bottom-right" />
     </RootDocument>
   )
 }
@@ -91,7 +91,7 @@ function RootDocument({ children }: { children: React.ReactNode }) {
   const { theme } = useTheme()
 
   return (
-    <html lang="en" className={theme} suppressHydrationWarning>
+    <html lang={getLocale()} className={theme} suppressHydrationWarning>
       <head>
         <HeadContent />
       </head>
@@ -99,6 +99,7 @@ function RootDocument({ children }: { children: React.ReactNode }) {
         <Header />
         <main className="w-full pt-14">{children}</main>
         <GradientBackground />
+        <TanStackRouterDevtools position="bottom-right" />
         <Scripts />
       </body>
     </html>
