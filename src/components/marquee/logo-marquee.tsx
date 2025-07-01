@@ -1,14 +1,16 @@
+'use client'
+
 import React, { useLayoutEffect, useRef, useState } from 'react'
 
 import {
-  motion,
-  useAnimationFrame,
   useMotionValue,
   useScroll,
   useSpring,
   useTransform,
   useVelocity
-} from 'motion/react'
+} from 'framer-motion'
+import { motion, useAnimationFrame } from 'motion/react'
+import Image from 'next/image'
 
 interface VelocityMapping {
   input: [number, number]
@@ -49,7 +51,6 @@ function useElementWidth<T extends HTMLElement>(
   ref: React.RefObject<T | null>
 ): number {
   const [width, setWidth] = useState(0)
-
   useLayoutEffect(() => {
     function updateWidth() {
       if (ref.current) {
@@ -60,7 +61,6 @@ function useElementWidth<T extends HTMLElement>(
     window.addEventListener('resize', updateWidth)
     return () => window.removeEventListener('resize', updateWidth)
   }, [ref])
-
   return width
 }
 
@@ -127,13 +127,8 @@ export const LogoMarquee: React.FC<ScrollVelocityProps> = ({
     const directionFactor = useRef<number>(1)
     useAnimationFrame((_t, delta) => {
       let moveBy = directionFactor.current * baseVelocity * (delta / 1000)
-
-      if (velocityFactor.get() < 0) {
-        directionFactor.current = -1
-      } else if (velocityFactor.get() > 0) {
-        directionFactor.current = 1
-      }
-
+      if (velocityFactor.get() < 0) directionFactor.current = -1
+      else if (velocityFactor.get() > 0) directionFactor.current = 1
       moveBy += directionFactor.current * moveBy * velocityFactor.get()
       baseX.set(baseX.get() + moveBy)
     })
@@ -167,37 +162,33 @@ export const LogoMarquee: React.FC<ScrollVelocityProps> = ({
   }
 
   return (
-    <section className="space-y-4 py-8">
-      {[1, 2].map((_, rowIndex) => (
-        <VelocityText
-          // eslint-disable-next-line react/no-array-index-key
-          key={rowIndex}
-          baseVelocity={rowIndex % 2 === 0 ? velocity : -velocity}
-          scrollContainerRef={scrollContainerRef}
-          damping={damping}
-          stiffness={stiffness}
-          numCopies={numCopies}
-          velocityMapping={velocityMapping}
-          parallaxClassName={parallaxClassName}
-          scrollerClassName="gap-x-8 items-center"
-          parallaxStyle={parallaxStyle}
-          scrollerStyle={scrollerStyle}
-        >
-          <div className="flex items-center gap-x-8">
-            {logos.map((logoUrl, index) => (
-              <img
-                // eslint-disable-next-line react/no-array-index-key
-                key={index}
-                src={logoUrl}
-                alt={`Logo ${index}`}
-                width={120}
-                height={48}
-                className="object-contain"
-              />
-            ))}
-          </div>
-        </VelocityText>
-      ))}
+    <section className="py-8">
+      <VelocityText
+        baseVelocity={velocity}
+        scrollContainerRef={scrollContainerRef}
+        damping={damping}
+        stiffness={stiffness}
+        numCopies={numCopies}
+        velocityMapping={velocityMapping}
+        parallaxClassName={parallaxClassName}
+        scrollerClassName="gap-x-8 items-center"
+        parallaxStyle={parallaxStyle}
+        scrollerStyle={scrollerStyle}
+      >
+        <div className="flex items-center gap-x-8">
+          {logos.map((logoUrl, index) => (
+            <Image
+              // eslint-disable-next-line react/no-array-index-key
+              key={index}
+              src={logoUrl}
+              alt={`Logo ${index}`}
+              width={120}
+              height={48}
+              className="object-contain"
+            />
+          ))}
+        </div>
+      </VelocityText>
     </section>
   )
 }
