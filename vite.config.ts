@@ -8,15 +8,15 @@ import tsConfigPaths from 'vite-tsconfig-paths'
 
 export default defineConfig({
   plugins: [
-    tsConfigPaths({
-      projects: ['./tsconfig.json']
-    }),
     paraglide({
       project: './project.inlang',
       outdir: './src/lib/paraglide',
       outputStructure: 'message-modules',
       cookieName: '__app-i18n',
       strategy: ['cookie', 'url', 'preferredLanguage', 'baseLocale']
+    }),
+    tsConfigPaths({
+      projects: ['./tsconfig.json']
     }),
     tanstackStart({
       react: {

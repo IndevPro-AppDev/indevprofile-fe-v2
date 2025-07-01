@@ -1,6 +1,6 @@
 'use client'
 
-import { getLocale, setLocale } from '~/lib/paraglide/runtime.js'
+import { getLocale, setLocale } from '~/lib/paraglide/runtime'
 
 import { MotionButton } from '../ui/button'
 
