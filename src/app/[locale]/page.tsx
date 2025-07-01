@@ -5,6 +5,8 @@ import { setRequestLocale } from 'next-intl/server'
 
 import type { ParamsWithLocale } from '~/types'
 
+import Footer from '~/components/footer'
+
 export default function Home({ params }: ParamsWithLocale) {
   const { locale } = use(params)
   // Enable static rendering
@@ -14,7 +16,5 @@ export default function Home({ params }: ParamsWithLocale) {
   // can call hooks from `next-intl`
   const t = useTranslations()
 
-  return (
-    <div className="flex h-dvh items-center justify-center">{t('hello')}</div>
-  )
+  return <Footer />
 }
