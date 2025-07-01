@@ -82,7 +82,6 @@ function RootComponent() {
   return (
     <RootDocument>
       <Outlet />
-      <ReactQueryDevtools buttonPosition="bottom-left" />
     </RootDocument>
   )
 }
@@ -91,7 +90,14 @@ function RootDocument({ children }: { children: React.ReactNode }) {
   const { theme } = useTheme()
 
   return (
-    <html lang={getLocale()} className={theme} suppressHydrationWarning>
+    <html
+      lang={getLocale()}
+      className={theme}
+      style={{
+        colorScheme: theme
+      }}
+      suppressHydrationWarning
+    >
       <head>
         <HeadContent />
       </head>
@@ -99,6 +105,7 @@ function RootDocument({ children }: { children: React.ReactNode }) {
         <Header />
         <main className="w-full pt-14">{children}</main>
         <GradientBackground />
+        <ReactQueryDevtools buttonPosition="bottom-left" />
         <TanStackRouterDevtools position="bottom-right" />
         <Scripts />
       </body>
