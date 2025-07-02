@@ -8,7 +8,7 @@ import { m } from '~/paraglide/messages'
 import type { NavItem } from './nav-item'
 
 import DesktopNavigation from './desktop-navigation'
-import HomeLink from './home-link'
+import HomeLink from '../home-link'
 import LocaleSwitcher from './locale-switcher'
 import MobileNavigationDrawer from './mobile-navigation-drawer'
 import ThemeSwitcher from './theme-switcher'

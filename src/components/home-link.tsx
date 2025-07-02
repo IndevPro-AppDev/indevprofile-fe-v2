@@ -11,8 +11,8 @@ import {
 import { useTheme } from '~/hooks/use-theme'
 import { cn } from '~/lib/utils'
 
-import IconIndevPro from '../icons/indevpro'
-import MotionLink from '../motion-link'
+import IconIndevPro from './icons/indevpro'
+import MotionLink from './motion-link'
 
 interface HomeLinkProps extends React.ComponentProps<typeof MotionLink> {}
 

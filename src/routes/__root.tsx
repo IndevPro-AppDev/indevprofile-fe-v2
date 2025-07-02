@@ -9,6 +9,7 @@ import {
 } from '@tanstack/react-router'
 import { TanStackRouterDevtools } from '@tanstack/react-router-devtools'
 
+import Footer from '~/components/footer'
 import GradientBackground from '~/components/gradient-background'
 import Header from '~/components/header'
 import { useTheme } from '~/hooks/use-theme'
@@ -104,6 +105,7 @@ function RootDocument({ children }: { children: React.ReactNode }) {
       <body className="relative transition duration-300 ease-in-out">
         <Header />
         <main className="w-full pt-14">{children}</main>
+        <Footer />
         <GradientBackground />
         <ReactQueryDevtools buttonPosition="bottom-left" />
         <TanStackRouterDevtools position="bottom-right" />

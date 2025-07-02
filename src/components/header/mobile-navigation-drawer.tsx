@@ -18,7 +18,7 @@ import { useMediaQuery } from '~/hooks/use-media-query'
 import type { NavItem } from './nav-item'
 
 import { MotionButton } from '../ui/button'
-import HomeLink from './home-link'
+import HomeLink from '../home-link'
 import LocaleSwitcher from './locale-switcher'
 import ThemeSwitcher from './theme-switcher'
 
