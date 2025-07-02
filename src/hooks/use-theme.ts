@@ -1,5 +1,3 @@
-import { useEffect } from 'react'
-
 import {
   useMutation,
   useQueryClient,
@@ -19,7 +17,8 @@ export function useTheme() {
   const getTheme = useServerFn(getThemeServerFn)
   const { data: theme } = useSuspenseQuery({
     queryKey,
-    queryFn: () => getTheme()
+    queryFn: getTheme,
+    gcTime: 0
   })
 
   const setTheme = useServerFn(setThemeServerFn)
@@ -28,22 +27,20 @@ export function useTheme() {
     onMutate: async (newTheme: Theme) => {
       await queryClient.cancelQueries({ queryKey })
       const previousTheme = queryClient.getQueryData<Theme>(queryKey)
+
       queryClient.setQueryData(queryKey, newTheme)
 
       return { previousTheme, newTheme }
     },
     onError: (err, _newTheme, context) => {
       queryClient.setQueryData(queryKey, context?.previousTheme)
+
       throw err
     },
     onSettled: () => {
       queryClient.invalidateQueries({ queryKey: ['theme'] })
     }
   })
-
-  useEffect(() => {
-    document.documentElement.style.colorScheme = theme
-  }, [theme])
 
   return {
     theme,

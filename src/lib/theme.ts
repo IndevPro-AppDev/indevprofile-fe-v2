@@ -1,7 +1,7 @@
 import { createServerFn } from '@tanstack/react-start'
 import { getCookie, setCookie } from '@tanstack/react-start/server'
 
-const THEME_STORAGE_KEY = '__app-ui-theme'
+const THEME_STORAGE_KEY = '__app-theme'
 
 const getThemeServerFn = createServerFn().handler(async () => {
   return (getCookie(THEME_STORAGE_KEY) || 'dark') as Theme

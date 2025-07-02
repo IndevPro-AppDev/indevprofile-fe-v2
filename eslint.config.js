@@ -18,7 +18,8 @@ export default antfu(
       '.output',
       '.vinxi',
       '**/routeTree.gen.ts',
-      'public'
+      'public',
+      '**/paraglide'
     ]
   },
   {

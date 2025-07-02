@@ -14,6 +14,7 @@ import Header from '~/components/header'
 import { useTheme } from '~/hooks/use-theme'
 import { createTRPCProxy } from '~/lib/trpc/react'
 import { seo } from '~/lib/utils'
+import { getLocale } from '~/paraglide/runtime'
 import fontCoraMontserra from '~/res/fonts/cora-montserra-variable.ttf?url'
 import fontDecog from '~/res/fonts/decog.otf?url'
 import appCss from '~/res/styles/app.css?url'
@@ -81,8 +82,6 @@ function RootComponent() {
   return (
     <RootDocument>
       <Outlet />
-      <ReactQueryDevtools buttonPosition="bottom-left" />
-      <TanStackRouterDevtools position="bottom-right" />
     </RootDocument>
   )
 }
@@ -91,7 +90,14 @@ function RootDocument({ children }: { children: React.ReactNode }) {
   const { theme } = useTheme()
 
   return (
-    <html lang="en" className={theme} suppressHydrationWarning>
+    <html
+      lang={getLocale()}
+      className={theme}
+      style={{
+        colorScheme: theme
+      }}
+      suppressHydrationWarning
+    >
       <head>
         <HeadContent />
       </head>
@@ -99,6 +105,8 @@ function RootDocument({ children }: { children: React.ReactNode }) {
         <Header />
         <main className="w-full pt-14">{children}</main>
         <GradientBackground />
+        <ReactQueryDevtools buttonPosition="bottom-left" />
+        <TanStackRouterDevtools position="bottom-right" />
         <Scripts />
       </body>
     </html>

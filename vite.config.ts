@@ -1,13 +1,24 @@
-import { resolve } from 'node:path'
+import path from 'node:path'
+import { fileURLToPath } from 'node:url'
 
+import { paraglideVitePlugin as paraglide } from '@inlang/paraglide-js'
 import tailwindcss from '@tailwindcss/vite'
 import { tanstackStart } from '@tanstack/react-start/plugin/vite'
 import { defineConfig } from 'vite'
-import viteTsConfigPaths from 'vite-tsconfig-paths'
+import tsConfigPaths from 'vite-tsconfig-paths'
+
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = path.dirname(__filename)
 
 export default defineConfig({
   plugins: [
-    viteTsConfigPaths({
+    paraglide({
+      project: './project.inlang',
+      outdir: './src/paraglide',
+      cookieName: '__app-i18n',
+      strategy: ['cookie', 'url', 'preferredLanguage', 'baseLocale']
+    }),
+    tsConfigPaths({
       projects: ['./tsconfig.json']
     }),
     tanstackStart({
@@ -22,7 +33,7 @@ export default defineConfig({
   ],
   resolve: {
     alias: {
-      '~': resolve(__dirname, './src')
+      '~': path.resolve(__dirname, './src')
     }
   },
   server: {
