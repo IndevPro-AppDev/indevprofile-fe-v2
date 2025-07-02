@@ -1,5 +1,5 @@
 /* eslint-disable react/no-unstable-default-props */
-import React, { useLayoutEffect, useRef, useState } from 'react'
+import React, { useRef } from 'react'
 
 import {
   motion,
@@ -11,27 +11,9 @@ import {
   useVelocity
 } from 'motion/react'
 
-interface VelocityMapping {
-  input: [number, number]
-  output: [number, number]
-}
+import { useElementWidth } from '~/hooks/use-element-width'
 
-interface VelocityTextProps {
-  children: React.ReactNode
-  baseVelocity: number
-  scrollContainerRef?: React.RefObject<HTMLElement>
-  className?: string
-  damping?: number
-  stiffness?: number
-  numCopies?: number
-  velocityMapping?: VelocityMapping
-  parallaxClassName?: string
-  scrollerClassName?: string
-  parallaxStyle?: React.CSSProperties
-  scrollerStyle?: React.CSSProperties
-}
-
-interface ScrollVelocityProps {
+interface LogoMarqueeProps {
   scrollContainerRef?: React.RefObject<HTMLElement>
   logos: string[]
   velocity?: number
@@ -46,35 +28,21 @@ interface ScrollVelocityProps {
   scrollerStyle?: React.CSSProperties
 }
 
-function useElementWidth<T extends HTMLElement>(
-  ref: React.RefObject<T | null>
-): number {
-  const [width, setWidth] = useState(0)
-  useLayoutEffect(() => {
-    function updateWidth() {
-      if (ref.current) {
-        setWidth(ref.current.offsetWidth)
-      }
-    }
-    updateWidth()
-    window.addEventListener('resize', updateWidth)
-    return () => window.removeEventListener('resize', updateWidth)
-  }, [ref])
-  return width
-}
-
-export const LogoMarquee: React.FC<ScrollVelocityProps> = ({
+function LogoMarquee({
   scrollContainerRef,
   logos = [],
   velocity = 100,
   damping = 50,
   stiffness = 400,
   numCopies = 6,
-  velocityMapping = { input: [0, 1000], output: [0, 5] },
+  velocityMapping = {
+    input: [0, 1000],
+    output: [0, 5]
+  },
   parallaxClassName,
   parallaxStyle,
   scrollerStyle
-}) => {
+}: LogoMarqueeProps) {
   return (
     <section className="space-y-4 py-8">
       <VelocityText
@@ -104,6 +72,26 @@ export const LogoMarquee: React.FC<ScrollVelocityProps> = ({
       </VelocityText>
     </section>
   )
+}
+
+interface VelocityMapping {
+  input: [number, number]
+  output: [number, number]
+}
+
+interface VelocityTextProps {
+  children: React.ReactNode
+  baseVelocity: number
+  scrollContainerRef?: React.RefObject<HTMLElement>
+  className?: string
+  damping?: number
+  stiffness?: number
+  numCopies?: number
+  velocityMapping?: VelocityMapping
+  parallaxClassName?: string
+  scrollerClassName?: string
+  parallaxStyle?: React.CSSProperties
+  scrollerStyle?: React.CSSProperties
 }
 
 function VelocityText({

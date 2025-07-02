@@ -21,7 +21,6 @@ function RouteComponent() {
           '/logo/unmer-logo.svg',
           '/logo/Universitas-Merdeka-1.svg'
         ]}
-        velocity={50}
       />
     </div>
   )
