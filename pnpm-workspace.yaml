@@ -1,0 +1,10 @@
+onlyBuiltDependencies:
+  - '@parcel/watcher'
+  - '@tailwindcss/oxide'
+  - cn-font-split
+  - esbuild
+  - koffi
+  - protobufjs
+  - sharp
+  - unrs-resolver
+  - workerd

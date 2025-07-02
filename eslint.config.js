@@ -1,5 +1,4 @@
 import antfu from '@antfu/eslint-config'
-import nextPlugin from '@next/eslint-plugin-next'
 import prettierPlugin from 'eslint-plugin-prettier/recommended'
 
 import prettierOptions from './prettier.config.js'
@@ -13,16 +12,15 @@ export default antfu(
     },
     stylistic: false,
     react: true,
-    ignores: ['node_modules', 'pnpm-lock.yaml', '.next', '.vercel', '.output']
-  },
-  {
-    plugins: {
-      '@next/next': nextPlugin
-    },
-    rules: {
-      ...nextPlugin.configs.recommended.rules,
-      ...nextPlugin.configs['core-web-vitals'].rules
-    }
+    ignores: [
+      'node_modules',
+      'pnpm-lock.yaml',
+      '.output',
+      '.vinxi',
+      '**/routeTree.gen.ts',
+      'public',
+      '**/paraglide'
+    ]
   },
   {
     files: ['**/*.ts', '**/*.tsx'],
@@ -47,8 +45,7 @@ export default antfu(
           customGroups: {
             value: {
               node: ['^node:.+'],
-              react: ['^react$', '^react-.+'],
-              next: ['^next$', '^next-.+']
+              react: ['^react$', '^react-.+']
             },
             type: {
               node: ['^node:.+'],
@@ -66,5 +63,10 @@ export default antfu(
       'node/prefer-global/process': 'off'
     }
   },
-  prettierPlugin
+  prettierPlugin,
+  {
+    rules: {
+      'prettier/prettier': 'warn'
+    }
+  }
 )

@@ -31,7 +31,9 @@ yarn-error.log*
 .pnpm-debug.log*
 
 # env files (can opt-in for committing if needed)
-.env*
+.env
+.env.*
+!.env.example
 
 # vercel
 .vercel
@@ -46,3 +48,12 @@ next-env.d.ts
 # wrangler files
 .wrangler
 .dev.vars*
+
+# Netlify
+.netlify
+
+# Nitro
+.nitro
+.output
+.tanstack
+dist
