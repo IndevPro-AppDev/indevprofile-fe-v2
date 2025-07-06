@@ -9,8 +9,14 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as BlogDetailRouteImport } from './routes/blog-detail'
 import { Route as IndexRouteImport } from './routes/index'
 
+const BlogDetailRoute = BlogDetailRouteImport.update({
+  id: '/blog-detail',
+  path: '/blog-detail',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
@@ -19,28 +25,39 @@ const IndexRoute = IndexRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/blog-detail': typeof BlogDetailRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/blog-detail': typeof BlogDetailRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/blog-detail': typeof BlogDetailRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths: '/' | '/blog-detail'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to: '/' | '/blog-detail'
+  id: '__root__' | '/' | '/blog-detail'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  BlogDetailRoute: typeof BlogDetailRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/blog-detail': {
+      id: '/blog-detail'
+      path: '/blog-detail'
+      fullPath: '/blog-detail'
+      preLoaderRoute: typeof BlogDetailRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -53,6 +70,7 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  BlogDetailRoute: BlogDetailRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
