@@ -7,6 +7,8 @@ import {
   Twitter
 } from 'lucide-react'
 
+import GlareHover from '~/components/ui/GlareHover/GlareHover'
+
 export const Route = createFileRoute('/blog-detail')({
   component: RouteComponent
 })
@@ -55,11 +57,19 @@ function RouteComponent() {
           </div>
 
           <div className="relative grid w-full place-items-center overflow-hidden rounded-xl">
-            <img
-              src="/blank.png"
-              alt="Gambar blog"
-              className="h-full w-full rounded-lg object-cover"
-            />
+            <GlareHover
+              glareColor="#ffffff"
+              glareOpacity={0.3}
+              glareAngle={-30}
+              glareSize={300}
+              transitionDuration={1000}
+            >
+              <img
+                src="/blank.png"
+                alt="Gambar blog"
+                className="h-full w-full rounded-lg object-cover"
+              />
+            </GlareHover>
           </div>
 
           <div className="relative grid w-full place-items-center space-y-6 text-justify">
@@ -128,11 +138,19 @@ function RouteComponent() {
               {[1, 2].map((_, index) => (
                 <div key={index} className="col-span-4 space-y-2">
                   <div className="relative h-40 w-full overflow-hidden rounded-lg">
-                    <img
-                      src="/blank.png"
-                      alt={`Gambar blog ${index + 1}`}
-                      className="h-full w-full rounded-lg object-cover"
-                    />
+                    <GlareHover
+                      glareColor="#ffffff"
+                      glareOpacity={0.3}
+                      glareAngle={-30}
+                      glareSize={300}
+                      transitionDuration={1000}
+                    >
+                      <img
+                        src="/blank.png"
+                        alt={`Gambar blog ${index + 1}`}
+                        className="h-full w-full rounded-lg object-cover"
+                      />
+                    </GlareHover>
                   </div>
                   <h3 className="text-base font-medium">
                     Judul Postingan {index + 1}
