@@ -2,7 +2,7 @@ import { createFileRoute } from '@tanstack/react-router'
 import { motion } from 'motion/react'
 
 import IndevproScene from '~/components/indevpro-scene'
-import LogoMarquee from '~/components/marquee/logo-marquee'
+// import LogoMarquee from '~/components/marquee/logo-marquee'
 
 export const Route = createFileRoute('/')({
   component: RouteComponent
@@ -19,7 +19,6 @@ function RouteComponent() {
             whileInView={{ opacity: 1, filter: 'blur(0)' }}
             exit={{ opacity: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 1, ease: [0.16, 1, 0.3, 1], delay: 0.15 }}
           >
             <IndevproScene />
           </motion.div>
@@ -28,7 +27,7 @@ function RouteComponent() {
 
       <section className="h-dvh"></section>
       <section className="h-dvh"></section>
-
+      {/* 
       <LogoMarquee
         logos={[
           '/logo/indevpro-logo.svg',
@@ -37,7 +36,7 @@ function RouteComponent() {
           '/logo/unmer-logo.svg',
           '/logo/Universitas-Merdeka-1.svg'
         ]}
-      />
+      /> */}
     </div>
   )
 }
