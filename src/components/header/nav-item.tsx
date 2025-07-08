@@ -13,6 +13,12 @@ interface NavItem {
   text: string
 }
 
+const navItemStyle = cn(
+  'bg-clip-text text-sm text-transparent',
+  'from-secondary-foreground to-secondary-foreground/80 dark:to-muted-foreground bg-gradient-to-br',
+  'transition-opacity duration-150 ease-out group-hover:opacity-80 hover:opacity-80 active:opacity-60'
+)
+
 function DesktopNavItem({
   linkProps,
   text,
@@ -22,15 +28,7 @@ function DesktopNavItem({
 }: DesktopNavItemProps) {
   return (
     <MotionLink {...linkProps} href={href} className="group relative">
-      <li
-        className={cn(
-          'bg-clip-text text-sm text-transparent',
-          'from-secondary-foreground to-secondary-foreground/80 dark:to-muted-foreground bg-gradient-to-br',
-          'transition-opacity duration-150 ease-out group-hover:opacity-80',
-          className
-        )}
-        {...props}
-      >
+      <li className={cn(navItemStyle, className)} {...props}>
         {text}
       </li>
     </MotionLink>
@@ -38,4 +36,4 @@ function DesktopNavItem({
 }
 
 export type { DesktopNavItemProps, NavItem }
-export { DesktopNavItem }
+export { DesktopNavItem, navItemStyle }
