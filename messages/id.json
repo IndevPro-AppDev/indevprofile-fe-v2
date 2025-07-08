@@ -5,5 +5,11 @@
     "blog": "Blog",
     "portfolio": "Portofolio",
     "contact": "Kontak"
+  },
+  "footer": {
+    "description": "Rumah bagi mahasiswa FTI Universitas Merdeka Malang untuk tumbuh, berinovasi, dan berkembang di dunia teknologi.",
+    "address": {
+      "title": "Alamat"
+    }
   }
 }

@@ -2,13 +2,15 @@ import { Icon } from '@iconify/react'
 import { Link } from '@tanstack/react-router'
 import { motion } from 'motion/react'
 
+import { m } from '~/paraglide/messages'
+
 import HomeLink from './home-link'
 
 export default function Footer() {
   const navItems = [
-    { group: 'About', items: [{ name: 'Our Teams', href: '/' }] },
+    { group: m['nav.about'](), items: [{ name: 'Our Teams', href: '/' }] },
     {
-      group: 'Blog',
+      group: m['nav.blog'](),
       items: [
         { name: 'Blog 1', href: '/' },
         { name: 'Blog 2', href: '/' },
@@ -16,7 +18,7 @@ export default function Footer() {
       ]
     },
     {
-      group: 'Portfolio',
+      group: m['nav.portfolio'](),
       items: [
         { name: 'Portfolio 1', href: '/' },
         { name: 'Portfolio 2', href: '/' },
@@ -24,7 +26,7 @@ export default function Footer() {
       ]
     },
     {
-      group: 'Contact',
+      group: m['nav.contact'](),
       items: [
         { name: 'Email', href: '/' },
         { name: 'FAQ', href: '/' }
@@ -50,8 +52,7 @@ export default function Footer() {
               delay: 0.15
             }}
           >
-            Rumah bagi mahasiswa FTI Universitas Merdeka Malang untuk tumbuh,
-            berinovasi, dan berkembang di dunia teknologi.
+            {m['footer.description']()}
           </motion.p>
           <ul className="flex items-center space-x-2">
             {[
@@ -156,7 +157,7 @@ export default function Footer() {
               delay: 0.15
             }}
           >
-            Address
+            {m['footer.address.title']()}
           </motion.h3>
           <motion.p
             className="text-muted-foreground max-w-[32ch] text-sm"
