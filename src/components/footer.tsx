@@ -4,6 +4,7 @@ import { motion } from 'motion/react'
 
 import { m } from '~/paraglide/messages'
 
+import { navItemStyle } from './header/nav-item'
 import HomeLink from './home-link'
 
 export default function Footer() {
@@ -131,10 +132,7 @@ export default function Footer() {
                     delay: 0.15 + index * 0.05 + itemIndex * 0.02
                   }}
                 >
-                  <Link
-                    to={item.href}
-                    className="text-muted-foreground hover:text-foreground/80 active:text-foreground/60 max-w-[32ch] text-sm ease-in-out hover:underline"
-                  >
+                  <Link to={item.href} className={navItemStyle}>
                     {item.name}
                   </Link>
                 </motion.li>
