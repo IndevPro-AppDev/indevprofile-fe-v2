@@ -17,7 +17,7 @@ const titleStyle = cn(
 
 export default function Footer() {
   const navItems = [
-    { group: m['nav.about'](), items: [{ name: 'Our Teams', href: '/' }] },
+    { group: m['nav.about'](), items: [{ name: 'Our Teams', href: '/about' }] },
     {
       group: m['nav.blog'](),
       items: [
