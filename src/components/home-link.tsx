@@ -57,16 +57,18 @@ export default function HomeLink(props: HomeLinkProps) {
   return (
     <MotionLink
       href="/"
-      className="flex items-center"
+      className="flex w-fit items-center"
       initial={{ opacity: 0, y: -10, scale: 0.98, filter: 'blur(4px)' }}
-      animate={{ opacity: 1, y: 0, scale: 1, filter: 'blur(0px)' }}
+      whileInView={{ opacity: 1, y: 0, scale: 1, filter: 'blur(0px)' }}
+      exit={{ opacity: 0, y: -10, scale: 0.98, filter: 'blur(4px)' }}
+      viewport={{ once: true }}
       transition={{ stiffness: 24, damping: 6, mass: 0.2, delay: 0.15 }}
       {...props}
     >
       <IconIndevPro className="mr-1 size-6" />
       <motion.h2
         className={cn(
-          'font-brand text-xl leading-none font-medium sm:text-base',
+          'font-brand text-2xl leading-none font-medium sm:text-base',
           'bg-clip-text text-transparent',
           'relative flex items-center'
         )}

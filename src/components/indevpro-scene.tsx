@@ -35,23 +35,22 @@ export default function IndevproScene() {
       >
         <Suspense fallback={null}>
           <IndevproModel />
-          {/* Softer ambient */}
-          <ambientLight intensity={0.35} />
-
-          {/* Directional light: slightly diagonal, mimics sun */}
+          <ambientLight intensity={0.6} />
           <directionalLight
-            position={[2, 4, 2]}
-            intensity={1}
+            position={[0, 2, 3]} // Front-top
+            intensity={0.4}
             castShadow
-            shadow-mapSize-width={2048}
-            shadow-mapSize-height={2048}
+            shadow-mapSize-width={1024}
+            shadow-mapSize-height={1024}
             shadow-bias={-0.001}
+            color="#FCFCFD"
           />
-
-          {/* Environment reflections */}
-          <Environment preset="sunset" />
-
-          {/* Softer, larger contact shadow */}
+          <directionalLight
+            position={[0, 2, -3]}
+            intensity={0.3}
+            color="#FCFCFD"
+          />
+          <Environment preset="city" />
           <ContactShadows
             position={[0, -1.2, 0]}
             opacity={0.35}
@@ -59,7 +58,6 @@ export default function IndevproScene() {
             blur={3.5}
             far={2.5}
           />
-
           <OrbitControls
             enableZoom={false}
             enablePan={false}
