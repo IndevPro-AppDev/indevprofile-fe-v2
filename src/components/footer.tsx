@@ -2,10 +2,18 @@ import { Icon } from '@iconify/react'
 import { Link } from '@tanstack/react-router'
 import { motion } from 'motion/react'
 
+import { cn } from '~/lib/utils'
 import { m } from '~/paraglide/messages'
 
 import { navItemStyle } from './header/nav-item'
 import HomeLink from './home-link'
+
+const titleStyle = cn(
+  'font-brand text-2xl font-medium sm:text-base',
+  'bg-clip-text text-transparent',
+  'relative flex items-center',
+  'from-primary to-muted-foreground/60 bg-gradient-to-br'
+)
 
 export default function Footer() {
   const navItems = [
@@ -103,7 +111,7 @@ export default function Footer() {
             <ul key={navItem.group} className="space-y-2">
               <li>
                 <motion.h3
-                  className="font-display text-lg"
+                  className={titleStyle}
                   initial={{ opacity: 0, filter: 'blur(4px)', y: -6 }}
                   whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
                   exit={{ opacity: 0, y: -6 }}
@@ -143,7 +151,7 @@ export default function Footer() {
 
         <div className="flex flex-col space-y-2">
           <motion.h3
-            className="font-display text-lg"
+            className={titleStyle}
             initial={{ opacity: 0, filter: 'blur(4px)', y: -6 }}
             whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
             exit={{ opacity: 0, y: -6 }}
