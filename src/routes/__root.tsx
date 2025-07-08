@@ -9,6 +9,7 @@ import {
 } from '@tanstack/react-router'
 import { TanStackRouterDevtools } from '@tanstack/react-router-devtools'
 
+import ErrorComponent from '~/components/error-component'
 import Footer from '~/components/footer'
 import GradientBackground from '~/components/gradient-background'
 import Header from '~/components/header'
@@ -76,7 +77,9 @@ export const Route = createRootRouteWithContext<RouterAppContext>()({
       trpc: createTRPCProxy()
     }
   },
-  shellComponent: RootComponent
+  shellComponent: RootComponent,
+  errorComponent: props => <ErrorComponent {...props} />,
+  notFoundComponent: () => <ErrorComponent type="not-found" />
 })
 
 function RootComponent() {
