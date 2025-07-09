@@ -27,11 +27,11 @@ type GLTFResult = GLTF & {
 
 export default function IndevproScene() {
   return (
-    <div className="relative h-full overflow-visible">
+    <div className="relative h-full bg-transparent">
       <Canvas
         shadows
-        camera={{ position: [0, 0.65, 3.5], fov: 60, near: 0.15, far: 180 }}
-        className="h-full transform-gpu overflow-visible bg-transparent"
+        camera={{ position: [0, 0.15, 3.5], fov: 58, near: 0.15, far: 180 }}
+        className="h-full transform-gpu bg-transparent"
       >
         <Suspense fallback={null}>
           <IndevproModel />

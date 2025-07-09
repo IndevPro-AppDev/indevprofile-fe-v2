@@ -11,5 +11,10 @@
     "address": {
       "title": "Address"
     }
+  },
+  "home": {
+    "hero": {
+      "subtitle": "Together with us, building innovation in the world of technology."
+    }
   }
 }

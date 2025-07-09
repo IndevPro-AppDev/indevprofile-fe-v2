@@ -11,5 +11,10 @@
     "address": {
       "title": "Alamat"
     }
+  },
+  "home": {
+    "hero": {
+      "subtitle": "Bersama kami, membangun inovasi dalam dunia teknologi."
+    }
   }
 }
