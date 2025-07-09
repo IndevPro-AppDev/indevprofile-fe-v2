@@ -45,7 +45,7 @@ export default function Footer() {
 
   return (
     <footer className="mx-auto w-full max-w-screen-xl space-y-6 px-6 pb-6">
-      <div className="border-foreground/60 grid w-full grid-cols-1 gap-6 border-b py-6 md:grid-cols-2 lg:grid-cols-3">
+      <div className="border-foreground/60 grid w-full grid-cols-1 gap-10 border-b py-6 md:grid-cols-2 lg:grid-cols-3">
         <div className="flex flex-col space-y-4">
           <HomeLink />
           <motion.p
@@ -166,7 +166,7 @@ export default function Footer() {
             {m['footer.address.title']()}
           </motion.h3>
           <motion.p
-            className="text-muted-foreground max-w-[32ch] text-sm"
+            className="text-muted-foreground text-sm"
             initial={{ opacity: 0, y: -6 }}
             whileInView={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -6 }}
