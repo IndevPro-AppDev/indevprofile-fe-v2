@@ -12,9 +12,12 @@ function RouteComponent() {
   return (
     <div className="relative w-full max-w-screen overflow-x-hidden">
       <section className="flex h-[calc(100dvh-calc(var(--spacing)*14))] items-center justify-center">
-        <div id="3d-scene" className="relative mx-auto h-64 w-64">
+        <div
+          id="3d-scene"
+          className="relative mx-auto h-72 w-72 overflow-visible"
+        >
           <motion.div
-            className="absolute top-0 left-0 h-full w-full"
+            className="absolute top-0 left-0 h-full w-full overflow-visible"
             initial={{ opacity: 0, filter: 'blur(6px)' }}
             whileInView={{ opacity: 1, filter: 'blur(0)' }}
             exit={{ opacity: 0 }}

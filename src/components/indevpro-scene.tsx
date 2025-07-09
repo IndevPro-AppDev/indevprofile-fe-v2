@@ -27,36 +27,31 @@ type GLTFResult = GLTF & {
 
 export default function IndevproScene() {
   return (
-    <div className="relative h-full">
+    <div className="relative h-full overflow-visible">
       <Canvas
         shadows
-        camera={{ position: [0, 0.3, 3], fov: 61 }}
-        className="h-full transform-gpu bg-transparent"
+        camera={{ position: [0, 0.65, 3.5], fov: 60, near: 0.15, far: 180 }}
+        className="h-full transform-gpu overflow-visible bg-transparent"
       >
         <Suspense fallback={null}>
           <IndevproModel />
           <ambientLight intensity={0.6} />
           <directionalLight
-            position={[0, 2, 3]} // Front-top
-            intensity={0.4}
+            position={[0, 2, 3]}
+            intensity={0.6}
             castShadow
             shadow-mapSize-width={1024}
             shadow-mapSize-height={1024}
-            shadow-bias={-0.001}
-            color="#FCFCFD"
-          />
-          <directionalLight
-            position={[0, 2, -3]}
-            intensity={0.3}
-            color="#FCFCFD"
+            shadow-bias={-0.0025}
+            color="#E8E8EC"
           />
           <Environment preset="city" />
           <ContactShadows
             position={[0, -1.2, 0]}
-            opacity={0.35}
+            opacity={0.25}
             scale={12}
-            blur={3.5}
-            far={2.5}
+            blur={4}
+            far={5}
           />
           <OrbitControls
             enableZoom={false}
