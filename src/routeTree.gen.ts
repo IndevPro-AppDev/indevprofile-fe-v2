@@ -9,8 +9,14 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as TentangKamiRouteImport } from './routes/tentang-kami'
 import { Route as IndexRouteImport } from './routes/index'
 
+const TentangKamiRoute = TentangKamiRouteImport.update({
+  id: '/tentang-kami',
+  path: '/tentang-kami',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
@@ -19,28 +25,39 @@ const IndexRoute = IndexRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/tentang-kami': typeof TentangKamiRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/tentang-kami': typeof TentangKamiRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/tentang-kami': typeof TentangKamiRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths: '/' | '/tentang-kami'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to: '/' | '/tentang-kami'
+  id: '__root__' | '/' | '/tentang-kami'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  TentangKamiRoute: typeof TentangKamiRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/tentang-kami': {
+      id: '/tentang-kami'
+      path: '/tentang-kami'
+      fullPath: '/tentang-kami'
+      preLoaderRoute: typeof TentangKamiRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -53,6 +70,7 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  TentangKamiRoute: TentangKamiRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
