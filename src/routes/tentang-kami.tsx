@@ -3,6 +3,7 @@ import { motion } from 'motion/react'
 
 import IndevproScene from '~/components/indevpro-scene'
 import GradientDropdown from '~/components/tentang-kami/button-tentang'
+import CardAnggota from '~/components/tentang-kami/card-tentang'
 // import LogoMarquee from '~/components/marquee/logo-marquee'
 
 export const Route = createFileRoute('/tentang-kami')({
@@ -25,10 +26,19 @@ function RouteComponent() {
             </div>
 
             <section>
-                <div className="flex justify-between">
+                <div className="container flex justify-between px-8">
                     <span className="font-display text-[1.5rem] bg-gradient-to-r from-[#5A7EB9] to-[#2B3E5C] bg-clip-text text-transparent">Tim Kami</span>
                     <div><GradientDropdown /></div>
                 </div>
+
+            <div className="container flex justify-center">
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-6">
+                <CardAnggota />
+                <CardAnggota />
+                <CardAnggota />
+                <CardAnggota />
+              </div>
+            </div>
             </section>
     </div>
 
