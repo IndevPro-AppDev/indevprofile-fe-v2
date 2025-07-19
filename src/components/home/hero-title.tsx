@@ -45,17 +45,10 @@ export default function HeroTitle() {
     return () => clearInterval(interval)
   }, [percentageMotionValue])
 
-  const animatedText = useMemo(() => ['Lead', 'Innovate'][tick % 2], [tick])
+  const animatedText = useMemo(() => ['Lead', 'Achieve'][tick % 2], [tick])
 
   return (
-    <motion.div
-      className="relative w-full overflow-y-hidden"
-      initial={{ opacity: 0, y: -10, scale: 0.98, filter: 'blur(8px)' }}
-      whileInView={{ opacity: 1, y: 0, scale: 1, filter: 'blur(0px)' }}
-      exit={{ opacity: 0, y: -10, scale: 0.98, filter: 'blur(8px)' }}
-      viewport={{ once: true }}
-      transition={{ stiffness: 24, damping: 6, mass: 0.2, delay: 0.75 }}
-    >
+    <div className="relative w-full overflow-y-hidden">
       <motion.h1
         className={cn(
           'font-display text-center text-4xl md:text-left md:leading-relaxed lg:text-5xl',
@@ -83,6 +76,6 @@ export default function HeroTitle() {
           </motion.span>
         </AnimatePresence>
       </motion.h1>
-    </motion.div>
+    </div>
   )
 }

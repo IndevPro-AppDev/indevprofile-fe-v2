@@ -1,6 +1,5 @@
 import { Icon } from '@iconify/react'
 import { Link } from '@tanstack/react-router'
-import { motion } from 'motion/react'
 
 import { cn } from '~/lib/utils'
 import { m } from '~/paraglide/messages'
@@ -9,7 +8,7 @@ import { navItemStyle } from './header/nav-item'
 import HomeLink from './home-link'
 
 const titleStyle = cn(
-  'font-brand text-2xl font-medium sm:text-base',
+  'font-brand text-base font-medium md:text-lg',
   'bg-clip-text text-transparent',
   'relative flex items-center',
   'from-primary to-muted-foreground/60 bg-gradient-to-br'
@@ -48,52 +47,22 @@ export default function Footer() {
       <div className="border-foreground/60 grid w-full grid-cols-1 gap-10 border-b py-6 md:grid-cols-2 lg:grid-cols-3">
         <div className="flex flex-col space-y-4">
           <HomeLink />
-          <motion.p
-            className="text-muted-foreground text-sm"
-            initial={{ opacity: 0, y: -6 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -6 }}
-            viewport={{ once: true }}
-            transition={{
-              stiffness: 569,
-              damping: 61,
-              mass: 4,
-              delay: 0.15
-            }}
-          >
+          <p className="text-muted-foreground text-sm">
             {m['footer.description']()}
-          </motion.p>
+          </p>
           <ul className="flex items-center space-x-2">
             {[
               { href: '#', icon: 'ph:instagram-logo-fill' },
               { href: '#', icon: 'mage:linkedin' },
               { href: '#', icon: 'ant-design:github-filled' }
             ].map(({ href, icon }) => (
-              <motion.a
+              <a
                 key={icon}
                 href={href}
                 onClick={e => e.preventDefault()}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="group"
-                initial={{
-                  opacity: 0,
-                  y: -10,
-                  scale: 0.98
-                }}
-                whileInView={{
-                  opacity: 1,
-                  y: 0,
-                  scale: 1
-                }}
-                exit={{ opacity: 0, y: -10, scale: 0.98 }}
-                viewport={{ once: true }}
-                transition={{
-                  stiffness: 24,
-                  damping: 6,
-                  mass: 0.2,
-                  delay: 0.15
-                }}
               >
                 <li>
                   <Icon
@@ -101,104 +70,43 @@ export default function Footer() {
                     icon={icon}
                   />
                 </li>
-              </motion.a>
+              </a>
             ))}
           </ul>
         </div>
 
         <div className="grid grid-cols-2 gap-2 lg:grid-cols-3 xl:grid-cols-4">
-          {navItems.map((navItem, index) => (
+          {navItems.map(navItem => (
             <ul key={navItem.group} className="space-y-2">
               <li>
-                <motion.h3
-                  className={titleStyle}
-                  initial={{ opacity: 0, filter: 'blur(4px)', y: -6 }}
-                  whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
-                  exit={{ opacity: 0, y: -6 }}
-                  viewport={{ once: true }}
-                  transition={{
-                    stiffness: 569,
-                    damping: 61,
-                    mass: 4,
-                    delay: 0.15 + index * 0.05
-                  }}
-                >
-                  {navItem.group}
-                </motion.h3>
+                <h3 className={titleStyle}>{navItem.group}</h3>
               </li>
-              {navItem.items.map((item, itemIndex) => (
-                <motion.li
+              {navItem.items.map(item => (
+                <li
                   key={item.name}
-                  initial={{ opacity: 0, y: -6 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -6 }}
-                  viewport={{ once: true }}
-                  transition={{
-                    stiffness: 569,
-                    damping: 61,
-                    mass: 4,
-                    delay: 0.15 + index * 0.05 + itemIndex * 0.02
-                  }}
+                  className="opacity-60 transition hover:opacity-100"
                 >
                   <Link to={item.href} className={navItemStyle}>
                     {item.name}
                   </Link>
-                </motion.li>
+                </li>
               ))}
             </ul>
           ))}
         </div>
 
         <div className="flex flex-col space-y-2">
-          <motion.h3
-            className={titleStyle}
-            initial={{ opacity: 0, filter: 'blur(4px)', y: -6 }}
-            whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
-            exit={{ opacity: 0, y: -6 }}
-            viewport={{ once: true }}
-            transition={{
-              stiffness: 569,
-              damping: 61,
-              mass: 4,
-              delay: 0.15
-            }}
-          >
-            {m['footer.address.title']()}
-          </motion.h3>
-          <motion.p
-            className="text-muted-foreground text-sm"
-            initial={{ opacity: 0, y: -6 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -6 }}
-            viewport={{ once: true }}
-            transition={{
-              stiffness: 569,
-              damping: 61,
-              mass: 4,
-              delay: 0.15
-            }}
-          >
+          <h3 className={titleStyle}>{m['footer.address.title']()}</h3>
+          <p className="text-muted-foreground text-sm">
             Jl. Terusan Dieng No.57-59, Pisang Candi, Kec. Sukun, Kota Malang,
             Jawa Timur 65146.
-          </motion.p>
+          </p>
         </div>
       </div>
       <div className="flex w-full items-center justify-end">
-        <motion.p
-          className="text-muted-foreground text-xs"
-          initial={{ opacity: 0, filter: 'blur(4px)', y: -6 }}
-          whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
-          exit={{ opacity: 0, y: -6 }}
-          viewport={{ once: true }}
-          transition={{
-            stiffness: 569,
-            damping: 61,
-            mass: 4,
-            delay: 0.15
-          }}
-        >
+        <p className="text-muted-foreground text-xs">
           &copy; {new Date().getFullYear()} Indevpro. All rights reserved.
-        </motion.p>
+        </p>
       </div>
     </footer>
   )

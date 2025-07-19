@@ -31,16 +31,9 @@ function RouteComponent() {
           </div>
           <div className="flex flex-col justify-center space-y-2 px-6 md:col-span-2">
             <HeroTitle />
-            <motion.p
-              className="text-muted-foreground text-center md:text-left"
-              initial={{ opacity: 0, y: -10, scale: 0.98, filter: 'blur(4px)' }}
-              whileInView={{ opacity: 1, y: 0, scale: 1, filter: 'blur(0px)' }}
-              exit={{ opacity: 0, y: -10, scale: 0.98, filter: 'blur(4px)' }}
-              viewport={{ once: true }}
-              transition={{ stiffness: 24, damping: 6, mass: 0.2, delay: 0.8 }}
-            >
+            <p className="text-muted-foreground text-center md:text-left">
               {m['home.hero.subtitle']()}
-            </motion.p>
+            </p>
           </div>
         </div>
       </section>
