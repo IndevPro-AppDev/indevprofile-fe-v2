@@ -5,12 +5,19 @@ import EventAlert from '~/components/home/event-alert'
 import HeroTitle from '~/components/home/hero-title'
 import IndevproScene from '~/components/indevpro-scene'
 import GradientCard from '~/components/ui/gradient-card'
+import { cn } from '~/lib/utils'
 import { m } from '~/paraglide/messages'
 // import LogoMarquee from '~/components/marquee/logo-marquee'
 
 export const Route = createFileRoute('/')({
   component: RouteComponent
 })
+
+const cardTitleStyle = cn(
+  'font-display text-left text-2xl',
+  'bg-clip-text text-transparent',
+  'from-primary-gradient-start to-primary-gradient-end bg-gradient-to-br'
+)
 
 function RouteComponent() {
   return (
@@ -41,15 +48,42 @@ function RouteComponent() {
         </div>
       </section>
 
-      <section className="mx-auto h-dvh w-full max-w-screen-xl">
-        <div className="grid min-h-56 w-full grid-cols-2 grid-rows-3 gap-6 px-6">
+      <section className="mx-auto w-full max-w-screen-xl">
+        <div className="grid w-full grid-cols-1 gap-6 px-6 md:min-h-56 md:grid-cols-2 md:grid-rows-3">
           <div className="space-y-6">
-            <GradientCard />
-            <GradientCard />
-            <GradientCard />
+            <GradientCard>
+              <h2 className={cn(cardTitleStyle, 'px-6')}>Tentang Indevpro</h2>
+              <p className="text-muted-foreground px-6">
+                INDEVPRO adalah organisasi yang berada di bawah naungan Fakultas
+                Teknologi Informasi, Universitas Merdeka Malang sebagai wadah
+                bagi mahasiswa untuk mengembangkan minat, kreativitas, dan
+                kemampuan di bidang teknologi.
+              </p>
+            </GradientCard>
+            <GradientCard>
+              <h2 className={cn(cardTitleStyle, 'px-6')}>Tim Kami</h2>
+              <p className="text-muted-foreground px-6">
+                Dari ide sederhana menuju karya luar biasa
+              </p>
+            </GradientCard>
+            <GradientCard>
+              <h2 className={cn(cardTitleStyle, 'px-6')}>Kontak Kami</h2>
+              <p className="text-muted-foreground px-6">
+                Kami selalu terbuka untuk menerima pertanyaan, masukan, atau
+                saran dari kamu. tim kami akan segera merespons dengan senang
+                hati.
+              </p>
+            </GradientCard>
           </div>
           <div className="space-y-6">
-            <GradientCard className="h-full" />
+            <GradientCard className="h-full">
+              <h2 className={cn(cardTitleStyle, 'px-6')}>Kontak Kami</h2>
+              <p className="text-muted-foreground px-6">
+                Kami selalu terbuka untuk menerima pertanyaan, masukan, atau
+                saran dari kamu. tim kami akan segera merespons dengan senang
+                hati.
+              </p>
+            </GradientCard>
           </div>
         </div>
       </section>

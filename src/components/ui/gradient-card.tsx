@@ -12,6 +12,7 @@ export interface GradientCardProps extends React.ComponentProps<'div'> {}
 
 export default function GradientCard({
   className,
+  children,
   ...props
 }: GradientCardProps) {
   const { theme } = useTheme()
@@ -58,7 +59,9 @@ export default function GradientCard({
           background
         }}
       />
-      <div className="relative h-full rounded-xl py-6 backdrop-blur-lg"></div>
+      <div className="relative h-full space-y-6 rounded-xl py-6 backdrop-blur-lg">
+        {children}
+      </div>
     </div>
   )
 }
