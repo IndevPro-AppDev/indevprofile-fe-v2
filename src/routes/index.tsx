@@ -4,6 +4,7 @@ import { motion } from 'motion/react'
 import EventAlert from '~/components/home/event-alert'
 import HeroTitle from '~/components/home/hero-title'
 import IndevproScene from '~/components/indevpro-scene'
+import GradientCard from '~/components/ui/gradient-card'
 import { m } from '~/paraglide/messages'
 // import LogoMarquee from '~/components/marquee/logo-marquee'
 
@@ -40,7 +41,19 @@ function RouteComponent() {
         </div>
       </section>
 
-      <section className="h-dvh"></section>
+      <section className="mx-auto h-dvh w-full max-w-screen-xl">
+        <div className="grid min-h-56 w-full grid-cols-2 grid-rows-3 gap-6 px-6">
+          <div className="space-y-6">
+            <GradientCard />
+            <GradientCard />
+            <GradientCard />
+          </div>
+          <div className="space-y-6">
+            <GradientCard className="h-full" />
+          </div>
+        </div>
+      </section>
+
       <section className="h-dvh"></section>
       {/* 
       <LogoMarquee
