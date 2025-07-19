@@ -1,6 +1,7 @@
 import { createFileRoute } from '@tanstack/react-router'
 import { motion } from 'motion/react'
 
+import EventAlert from '~/components/home/event-alert'
 import HeroTitle from '~/components/home/hero-title'
 import IndevproScene from '~/components/indevpro-scene'
 import { m } from '~/paraglide/messages'
@@ -30,6 +31,7 @@ function RouteComponent() {
             </motion.div>
           </div>
           <div className="flex flex-col justify-center space-y-2 px-6 md:col-span-2">
+            <EventAlert />
             <HeroTitle />
             <p className="text-muted-foreground text-center md:text-left">
               {m['home.hero.subtitle']()}

@@ -34,8 +34,8 @@ export default function HomeLink(props: HomeLinkProps) {
   const gradient = useMotionTemplate`
   linear-gradient(
     to bottom right,
-    var(--primary),
-    color-mix(in oklab, var(--muted-foreground) 60%, transparent) ${percentage}%
+    var(--color-primary),
+    color-mix(in oklab, var(--color-muted-foreground) 60%, transparent) ${percentage}%
   )`
 
   useEffect(() => {

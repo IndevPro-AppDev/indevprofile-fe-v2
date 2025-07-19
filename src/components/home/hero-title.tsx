@@ -48,7 +48,7 @@ export default function HeroTitle() {
   const animatedText = useMemo(() => ['Lead', 'Achieve'][tick % 2], [tick])
 
   return (
-    <div className="relative w-full overflow-y-hidden">
+    <div className="relative w-full overflow-hidden">
       <motion.h1
         className={cn(
           'font-display text-center text-4xl md:text-left md:leading-relaxed lg:text-5xl',
