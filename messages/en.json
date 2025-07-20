@@ -15,6 +15,24 @@
   "home": {
     "hero": {
       "subtitle": "Together with us, building innovation in the world of technology."
+    },
+    "cards": {
+      "about": {
+        "title": "About Indevpro",
+        "description": "INDEVPRO is an organization under the auspices of the Faculty of Information Technology, Merdeka University of Malang as a forum for students to develop their interests, creativity, and abilities in the field of technology."
+      },
+      "teams": {
+        "title": "Our Teams",
+        "description": "From a simple idea to an extraordinary creation."
+      },
+      "contact": {
+        "title": "Contact Us",
+        "description": "We are always open to receive your questions, feedback, or suggestions, and our team will be happy to respond promptly."
+      },
+      "activities": {
+        "title": "Latest Activities",
+        "description": "Through INDEVPRO, we carry out various productive activities such as competitions, collaborative learning sessions, and other creative programs to support the potential and innovation of the younger generation."
+      }
     }
   }
 }

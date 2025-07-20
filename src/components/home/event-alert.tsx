@@ -5,7 +5,11 @@ import { Button } from '../ui/button'
 
 export default function EventAlert() {
   return (
-    <Button variant="brand" className="mx-auto w-fit md:mx-0" size="sm">
+    <Button
+      variant="brand"
+      className="mx-auto w-fit cursor-pointer md:mx-0"
+      size="sm"
+    >
       <StarIcon className="size-5" />
       <span
         className={cn(

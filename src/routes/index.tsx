@@ -52,36 +52,37 @@ function RouteComponent() {
         <div className="grid w-full grid-cols-1 gap-6 px-6 md:min-h-56 md:grid-cols-2 md:grid-rows-3">
           <div className="space-y-6">
             <GradientCard>
-              <h2 className={cn(cardTitleStyle, 'px-6')}>Tentang Indevpro</h2>
-              <p className="text-muted-foreground px-6">
-                INDEVPRO adalah organisasi yang berada di bawah naungan Fakultas
-                Teknologi Informasi, Universitas Merdeka Malang sebagai wadah
-                bagi mahasiswa untuk mengembangkan minat, kreativitas, dan
-                kemampuan di bidang teknologi.
+              <h2 className={cn(cardTitleStyle, 'px-6')}>
+                {m['home.cards.about.title']()}
+              </h2>
+              <p className="text-muted-foreground px-6 text-sm">
+                {m['home.cards.about.description']()}
               </p>
             </GradientCard>
             <GradientCard>
-              <h2 className={cn(cardTitleStyle, 'px-6')}>Tim Kami</h2>
-              <p className="text-muted-foreground px-6">
-                Dari ide sederhana menuju karya luar biasa
+              <h2 className={cn(cardTitleStyle, 'px-6')}>
+                {m['home.cards.teams.title']()}
+              </h2>
+              <p className="text-muted-foreground px-6 text-sm">
+                {m['home.cards.teams.description']()}
               </p>
             </GradientCard>
             <GradientCard>
-              <h2 className={cn(cardTitleStyle, 'px-6')}>Kontak Kami</h2>
-              <p className="text-muted-foreground px-6">
-                Kami selalu terbuka untuk menerima pertanyaan, masukan, atau
-                saran dari kamu. tim kami akan segera merespons dengan senang
-                hati.
+              <h2 className={cn(cardTitleStyle, 'px-6')}>
+                {m['home.cards.contact.title']()}
+              </h2>
+              <p className="text-muted-foreground px-6 text-sm">
+                {m['home.cards.contact.description']()}
               </p>
             </GradientCard>
           </div>
           <div className="space-y-6">
             <GradientCard className="h-full">
-              <h2 className={cn(cardTitleStyle, 'px-6')}>Kontak Kami</h2>
-              <p className="text-muted-foreground px-6">
-                Kami selalu terbuka untuk menerima pertanyaan, masukan, atau
-                saran dari kamu. tim kami akan segera merespons dengan senang
-                hati.
+              <h2 className={cn(cardTitleStyle, 'px-6')}>
+                {m['home.cards.activities.title']()}
+              </h2>
+              <p className="text-muted-foreground px-6 text-sm">
+                {m['home.cards.activities.description']()}
               </p>
             </GradientCard>
           </div>

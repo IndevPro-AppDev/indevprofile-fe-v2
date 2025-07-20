@@ -48,7 +48,7 @@ export default function GradientCard({
     <div
       className={cn(
         className,
-        'dark:border-primary/20 border-background/30 group from-background/60 dark:from-primary/5 to-background/30 relative rounded-xl border bg-gradient-to-br backdrop-blur-md dark:to-transparent'
+        'dark:border-primary/20 border-background/30 group from-background/60 dark:from-primary/5 to-background/30 dark:to-primary/8 relative rounded-xl border bg-gradient-to-br backdrop-blur-md'
       )}
       onMouseMove={handleMouseMove}
       {...props}
