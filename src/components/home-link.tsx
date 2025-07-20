@@ -34,8 +34,8 @@ export default function HomeLink(props: HomeLinkProps) {
   const gradient = useMotionTemplate`
   linear-gradient(
     to bottom right,
-    var(--primary),
-    color-mix(in oklab, var(--muted-foreground) 60%, transparent) ${percentage}%
+    var(--color-primary),
+    color-mix(in oklab, var(--color-muted-foreground) 60%, transparent) ${percentage}%
   )`
 
   useEffect(() => {
@@ -68,7 +68,7 @@ export default function HomeLink(props: HomeLinkProps) {
       <IconIndevPro className="mr-1 size-6" />
       <motion.h2
         className={cn(
-          'font-brand text-2xl leading-none font-medium sm:text-base',
+          'font-brand text-base leading-none font-medium md:text-lg',
           'bg-clip-text text-transparent',
           'relative flex items-center'
         )}

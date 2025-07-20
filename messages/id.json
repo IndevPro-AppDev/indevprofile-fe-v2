@@ -15,6 +15,24 @@
   "home": {
     "hero": {
       "subtitle": "Bersama kami, membangun inovasi dalam dunia teknologi."
+    },
+    "cards": {
+      "about": {
+        "title": "Tentang Indevpro",
+        "description": "INDEVPRO adalah organisasi yang berada di bawah naungan Fakultas Teknologi Informasi, Universitas Merdeka Malang sebagai wadah bagi mahasiswa untuk mengembangkan minat, kreativitas, dan kemampuan di bidang teknologi."
+      },
+      "teams": {
+        "title": "Tim Kami",
+        "description": "Dari ide sederhana menuju karya luar biasa."
+      },
+      "contact": {
+        "title": "Kontak Kami",
+        "description": "Kami selalu terbuka untuk menerima pertanyaan, masukan, atau saran dari kamu.  tim kami akan segera merespons dengan senang hati."
+      },
+      "activities": {
+        "title": "Kegiatan Terbaru",
+        "description": "Melalui INDEVPRO, kami menjalankan berbagai kegiatan produktif kompetisi, sesi belajar bersama, serta program kreatif dan kolaboratif lainnya untuk mendukung potensi dan inovasi generasi muda."
+      }
     }
   }
 }
