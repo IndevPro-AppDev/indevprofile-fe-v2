@@ -65,7 +65,7 @@ export default function HeroTitle() {
               'font-display text-center text-4xl md:text-left md:leading-relaxed lg:text-5xl',
               'w-fit bg-clip-text text-transparent',
               'relative mx-auto flex items-center justify-center md:ml-2',
-              'from-primary to-muted-foreground/60 bg-gradient-to-br'
+              'from-primary to-muted-foreground/80 bg-gradient-to-br'
             )}
             initial={{ opacity: 0, y: 10, filter: 'blur(8px)' }}
             animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
