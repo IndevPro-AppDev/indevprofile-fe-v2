@@ -1,23 +1,25 @@
+import { useEffect, useRef, useState } from 'react'
+
 import { createFileRoute } from '@tanstack/react-router'
-import { motion } from 'motion/react'
+import { motion, useAnimationFrame, useMotionValue } from 'motion/react'
 
 import EventAlert from '~/components/home/event-alert'
 import HeroTitle from '~/components/home/hero-title'
 import IndevproScene from '~/components/indevpro-scene'
-import GradientCard from '~/components/ui/gradient-card'
-import { cn } from '~/lib/utils'
+import {
+  GradientCard,
+  GradientCardContent,
+  GradientCardDescription,
+  GradientCardHeader,
+  GradientCardTitle
+} from '~/components/ui/gradient-card'
+import { useIsMobile } from '~/hooks/use-mobile'
 import { m } from '~/paraglide/messages'
 // import LogoMarquee from '~/components/marquee/logo-marquee'
 
 export const Route = createFileRoute('/')({
   component: RouteComponent
 })
-
-const cardTitleStyle = cn(
-  'font-display text-left text-2xl',
-  'bg-clip-text text-transparent',
-  'from-primary-gradient-start to-primary-gradient-end bg-gradient-to-br'
-)
 
 function RouteComponent() {
   return (
@@ -48,48 +50,46 @@ function RouteComponent() {
         </div>
       </section>
 
-      <section className="mx-auto w-full max-w-screen-xl">
-        <div className="grid w-full grid-cols-1 gap-6 px-6 md:min-h-56 md:grid-cols-2 md:grid-rows-3">
-          <div className="space-y-6">
+      <section className="mx-auto flex min-h-dvh w-full max-w-screen-xl items-center justify-center py-6">
+        <div className="grid w-full grid-cols-1 gap-6 px-6 md:min-h-56 md:grid-cols-2">
+          <div className="grid gap-6 md:grid-rows-3">
             <GradientCard>
-              <h2 className={cn(cardTitleStyle, 'px-6')}>
-                {m['home.cards.about.title']()}
-              </h2>
-              <p className="text-muted-foreground px-6 text-sm">
-                {m['home.cards.about.description']()}
-              </p>
+              <GradientCardHeader>
+                <GradientCardTitle>
+                  {m['home.cards.about.title']()}
+                </GradientCardTitle>
+                <GradientCardDescription>
+                  {m['home.cards.about.description']()}
+                </GradientCardDescription>
+              </GradientCardHeader>
             </GradientCard>
             <GradientCard>
-              <h2 className={cn(cardTitleStyle, 'px-6')}>
-                {m['home.cards.teams.title']()}
-              </h2>
-              <p className="text-muted-foreground px-6 text-sm">
-                {m['home.cards.teams.description']()}
-              </p>
+              <GradientCardHeader>
+                <GradientCardTitle>
+                  {m['home.cards.teams.title']()}
+                </GradientCardTitle>
+                <GradientCardDescription>
+                  {m['home.cards.teams.description']()}
+                </GradientCardDescription>
+              </GradientCardHeader>
             </GradientCard>
             <GradientCard>
-              <h2 className={cn(cardTitleStyle, 'px-6')}>
-                {m['home.cards.contact.title']()}
-              </h2>
-              <p className="text-muted-foreground px-6 text-sm">
-                {m['home.cards.contact.description']()}
-              </p>
+              <GradientCardHeader>
+                <GradientCardTitle>
+                  {m['home.cards.contact.title']()}
+                </GradientCardTitle>
+                <GradientCardDescription>
+                  {m['home.cards.contact.description']()}
+                </GradientCardDescription>
+              </GradientCardHeader>
             </GradientCard>
           </div>
           <div className="space-y-6">
-            <GradientCard className="h-full">
-              <h2 className={cn(cardTitleStyle, 'px-6')}>
-                {m['home.cards.activities.title']()}
-              </h2>
-              <p className="text-muted-foreground px-6 text-sm">
-                {m['home.cards.activities.description']()}
-              </p>
-            </GradientCard>
+            <ActivitiesMasonryGrid />
           </div>
         </div>
       </section>
 
-      <section className="h-dvh"></section>
       {/* 
       <LogoMarquee
         logos={[
@@ -101,5 +101,95 @@ function RouteComponent() {
         ]}
       /> */}
     </div>
+  )
+}
+
+function ActivitiesMasonryGrid() {
+  const isMobile = useIsMobile()
+
+  const items = Array.from({ length: 20 })
+
+  const contentRef = useRef<HTMLDivElement>(null)
+  const marqueeY = useMotionValue(0)
+  const scrollTimeoutRef = useRef<NodeJS.Timeout | null>(null)
+  const lastScrollTop = useRef(0)
+  const [scrollDirection, setScrollDirection] = useState<'up' | 'down'>('up')
+  const [isScrolling, setIsScrolling] = useState(false)
+  const [isHovered, setIsHovered] = useState(false)
+
+  useAnimationFrame((_t, delta) => {
+    if (isScrolling || isHovered) return
+
+    const speed = 20
+    const pxPerMs = speed / 1000
+    const directionMultiplier = scrollDirection === 'up' ? -1 : 1
+    marqueeY.set(marqueeY.get() + delta * pxPerMs * directionMultiplier)
+
+    const height = contentRef.current?.scrollHeight ?? 0
+    if (Math.abs(marqueeY.get()) >= height / 2) {
+      marqueeY.set(0)
+    }
+  })
+
+  useEffect(() => {
+    const el = contentRef.current
+    if (!el) return
+
+    const handleScroll = () => {
+      const currentTop = el.scrollTop
+      const direction = currentTop > lastScrollTop.current ? 'down' : 'up'
+      lastScrollTop.current = currentTop
+
+      setScrollDirection(direction)
+      setIsScrolling(true)
+
+      if (scrollTimeoutRef.current) clearTimeout(scrollTimeoutRef.current)
+      scrollTimeoutRef.current = setTimeout(() => {
+        setIsScrolling(false)
+      }, 500)
+    }
+
+    el.addEventListener('scroll', handleScroll)
+    return () => {
+      el.removeEventListener('scroll', handleScroll)
+      if (scrollTimeoutRef.current) clearTimeout(scrollTimeoutRef.current)
+    }
+  }, [])
+
+  return (
+    <GradientCard className="h-full space-y-0 overflow-hidden py-0">
+      <GradientCardHeader className="z-10 pt-6">
+        <GradientCardTitle>
+          {m['home.cards.activities.title']()}
+        </GradientCardTitle>
+        <GradientCardDescription>
+          {m['home.cards.activities.description']()}
+        </GradientCardDescription>
+      </GradientCardHeader>
+      <GradientCardContent
+        ref={contentRef}
+        className="z-0 h-64 overflow-y-auto md:h-full"
+      >
+        <motion.div
+          style={{ y: marqueeY }}
+          className="absolute inset-0 grid h-auto max-h-none w-full grid-cols-2 gap-2 px-6"
+        >
+          {[...items, ...items].map((_, i) => (
+            <div
+              // eslint-disable-next-line react/no-array-index-key
+              key={`activity-${i}`}
+              className="bg-primary/10 w-full rounded-sm p-4 transition delay-75 duration-300 ease-out"
+              onMouseEnter={() => {
+                if (isMobile) return
+                setIsHovered(true)
+              }}
+              onMouseLeave={() => setIsHovered(false)}
+            >
+              test
+            </div>
+          ))}
+        </motion.div>
+      </GradientCardContent>
+    </GradientCard>
   )
 }
