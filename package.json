@@ -10,7 +10,8 @@
   },
   "scripts": {
     "dev": "vite",
-    "build": "tsc -b && vite build",
+    "build": "tsc --noEmit && vite build",
+    "build:netlify": "tsc --noEmit && vite build --config vite.netlify.config.ts",
     "start": "node .output/server/index.mjs",
     "lint": "eslint . --ext .ts,.tsx,.js,.jsx",
     "lint:fix": "eslint . --ext .ts,.tsx,.js,.jsx --fix",
@@ -39,6 +40,7 @@
     "motion": "^12.23.6",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
+    "react-masonry-css": "^1.0.16",
     "superjson": "^2.2.2",
     "tailwind-merge": "^3.3.1",
     "three": "^0.178.0",

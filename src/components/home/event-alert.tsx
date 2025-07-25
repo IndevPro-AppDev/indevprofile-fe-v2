@@ -1,3 +1,5 @@
+import { Link } from '@tanstack/react-router'
+
 import { cn } from '~/lib/utils'
 
 import StarIcon from '../star-icon'
@@ -9,16 +11,19 @@ export default function EventAlert() {
       variant="brand"
       className="mx-auto w-fit cursor-pointer md:mx-0"
       size="sm"
+      asChild
     >
-      <StarIcon className="size-5" />
-      <span
-        className={cn(
-          'bg-clip-text text-transparent',
-          'from-primary to-muted-foreground/60 bg-gradient-to-b'
-        )}
-      >
-        Indevpro {new Date().getFullYear()}
-      </span>
+      <Link to="/">
+        <StarIcon className="size-5" />
+        <span
+          className={cn(
+            'bg-clip-text text-transparent',
+            'from-primary to-muted-foreground/60 bg-gradient-to-b'
+          )}
+        >
+          Indevpro {new Date().getFullYear()}
+        </span>
+      </Link>
     </Button>
   )
 }

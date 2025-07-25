@@ -1,23 +1,23 @@
 import { createFileRoute } from '@tanstack/react-router'
 import { motion } from 'motion/react'
 
+import ActivitiesMasonryGrid from '~/components/home/bento/activities'
 import EventAlert from '~/components/home/event-alert'
 import HeroTitle from '~/components/home/hero-title'
 import IndevproScene from '~/components/indevpro-scene'
-import GradientCard from '~/components/ui/gradient-card'
-import { cn } from '~/lib/utils'
+import {
+  GradientCard,
+  GradientCardDescription,
+  GradientCardHeader,
+  GradientCardTitle
+} from '~/components/ui/gradient-card'
 import { m } from '~/paraglide/messages'
+
 // import LogoMarquee from '~/components/marquee/logo-marquee'
 
 export const Route = createFileRoute('/')({
   component: RouteComponent
 })
-
-const cardTitleStyle = cn(
-  'font-display text-left text-2xl',
-  'bg-clip-text text-transparent',
-  'from-primary-gradient-start to-primary-gradient-end bg-gradient-to-br'
-)
 
 function RouteComponent() {
   return (
@@ -48,48 +48,46 @@ function RouteComponent() {
         </div>
       </section>
 
-      <section className="mx-auto w-full max-w-screen-xl">
-        <div className="grid w-full grid-cols-1 gap-6 px-6 md:min-h-56 md:grid-cols-2 md:grid-rows-3">
-          <div className="space-y-6">
+      <section className="mx-auto flex min-h-dvh w-full max-w-screen-xl items-center justify-center py-6">
+        <div className="grid w-full grid-cols-1 gap-6 px-6 md:min-h-56 md:grid-cols-2">
+          <div className="grid gap-6 md:grid-rows-3">
             <GradientCard>
-              <h2 className={cn(cardTitleStyle, 'px-6')}>
-                {m['home.cards.about.title']()}
-              </h2>
-              <p className="text-muted-foreground px-6 text-sm">
-                {m['home.cards.about.description']()}
-              </p>
+              <GradientCardHeader>
+                <GradientCardTitle>
+                  {m['home.cards.about.title']()}
+                </GradientCardTitle>
+                <GradientCardDescription>
+                  {m['home.cards.about.description']()}
+                </GradientCardDescription>
+              </GradientCardHeader>
             </GradientCard>
             <GradientCard>
-              <h2 className={cn(cardTitleStyle, 'px-6')}>
-                {m['home.cards.teams.title']()}
-              </h2>
-              <p className="text-muted-foreground px-6 text-sm">
-                {m['home.cards.teams.description']()}
-              </p>
+              <GradientCardHeader>
+                <GradientCardTitle>
+                  {m['home.cards.teams.title']()}
+                </GradientCardTitle>
+                <GradientCardDescription>
+                  {m['home.cards.teams.description']()}
+                </GradientCardDescription>
+              </GradientCardHeader>
             </GradientCard>
             <GradientCard>
-              <h2 className={cn(cardTitleStyle, 'px-6')}>
-                {m['home.cards.contact.title']()}
-              </h2>
-              <p className="text-muted-foreground px-6 text-sm">
-                {m['home.cards.contact.description']()}
-              </p>
+              <GradientCardHeader>
+                <GradientCardTitle>
+                  {m['home.cards.contact.title']()}
+                </GradientCardTitle>
+                <GradientCardDescription>
+                  {m['home.cards.contact.description']()}
+                </GradientCardDescription>
+              </GradientCardHeader>
             </GradientCard>
           </div>
           <div className="space-y-6">
-            <GradientCard className="h-full">
-              <h2 className={cn(cardTitleStyle, 'px-6')}>
-                {m['home.cards.activities.title']()}
-              </h2>
-              <p className="text-muted-foreground px-6 text-sm">
-                {m['home.cards.activities.description']()}
-              </p>
-            </GradientCard>
+            <ActivitiesMasonryGrid />
           </div>
         </div>
       </section>
 
-      <section className="h-dvh"></section>
       {/* 
       <LogoMarquee
         logos={[
