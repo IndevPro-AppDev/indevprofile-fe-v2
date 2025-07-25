@@ -14,6 +14,7 @@ export default function ContactForm() {
     e.preventDefault()
     setIsLoading(true)
     setTimeout(() => {
+      window.open('mailto:indevappfti@gmail.com', '_blank')
       setIsLoading(false)
     }, 2000)
   }
