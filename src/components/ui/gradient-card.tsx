@@ -45,7 +45,7 @@ export function GradientCard({
   return (
     <div
       className={cn(
-        'dark:border-primary/20 border-background/30 group bg-background/30 dark:bg-primary/8 relative flex h-auto flex-col gap-6 rounded-3xl border py-6 backdrop-blur-md',
+        'dark:border-primary/20 border-background/30 group bg-background/30 dark:bg-primary/8 relative flex h-auto flex-col gap-6 rounded-3xl border py-6 overflow-hidden backdrop-blur-md',
         className
       )}
       onMouseMove={handleMouseMove}
@@ -137,5 +137,23 @@ export function GradientCardDescription({
     >
       {children}
     </p>
+  )
+}
+
+interface GradientCardFooterProps extends React.ComponentProps<'div'> {}
+
+export function GradientCardFooter({
+  className,
+  children,
+  ...props
+}: GradientCardFooterProps) {
+  return (
+    <div
+      className={cn('flex items-center justify-between', className)}
+      {...props}
+      data-card="footer"
+    >
+      {children}
+    </div>
   )
 }

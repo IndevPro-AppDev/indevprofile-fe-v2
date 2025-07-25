@@ -6,7 +6,10 @@ import { cn } from '~/lib/utils'
 
 interface StarIconProps extends React.ComponentProps<'svg'> {}
 
-export default function StarIcon({ className, ...props }: StarIconProps) {
+export default function AnimatedStarIcon({
+  className,
+  ...props
+}: StarIconProps) {
   const gradientStartControl = useAnimationControls()
   const gradientEndControl = useAnimationControls()
 

@@ -2,7 +2,7 @@ import { Link } from '@tanstack/react-router'
 
 import { cn } from '~/lib/utils'
 
-import StarIcon from '../star-icon'
+import AnimatedStarIcon from '../icons/animated-star'
 import { Button } from '../ui/button'
 
 export default function EventAlert() {
@@ -14,7 +14,7 @@ export default function EventAlert() {
       asChild
     >
       <Link to="/">
-        <StarIcon className="size-5" />
+        <AnimatedStarIcon className="size-5" />
         <span
           className={cn(
             'bg-clip-text text-transparent',

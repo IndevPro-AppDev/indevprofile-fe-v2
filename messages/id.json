@@ -1,5 +1,9 @@
 {
   "$schema": "https://inlang.com/schema/inlang-message-format",
+  "common": {
+    "loading": "Memuat",
+    "learn_more": "Selengkapnya"
+  },
   "nav": {
     "about": "Tentang",
     "blog": "Blog",
@@ -27,7 +31,10 @@
       },
       "contact": {
         "title": "Kontak Kami",
-        "description": "Kami selalu terbuka untuk menerima pertanyaan, masukan, atau saran dari kamu.  tim kami akan segera merespons dengan senang hati."
+        "description": "Kami selalu terbuka untuk menerima pertanyaan, masukan, atau saran dari kamu.  tim kami akan segera merespons dengan senang hati.",
+        "input": {
+          "placeholder": "Tinggalkan pesan..."
+        }
       },
       "activities": {
         "title": "Kegiatan Terbaru",
