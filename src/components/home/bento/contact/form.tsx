@@ -40,7 +40,7 @@ export default function ContactForm() {
               <Icon
                 width={20}
                 height={20}
-                className="size-5"
+                className="size-5 lg:size-6"
                 icon="line-md:loading-loop"
               />
             </MotionWrapper>
@@ -49,7 +49,7 @@ export default function ContactForm() {
               <Icon
                 width={20}
                 height={20}
-                className="size-5"
+                className="size-5 lg:size-6"
                 icon="ph:paper-plane-tilt-fill"
               />
             </MotionWrapper>
