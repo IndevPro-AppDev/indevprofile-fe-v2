@@ -139,3 +139,21 @@ export function GradientCardDescription({
     </p>
   )
 }
+
+interface GradientCardFooterProps extends React.ComponentProps<'div'> {}
+
+export function GradientCardFooter({
+  className,
+  children,
+  ...props
+}: GradientCardFooterProps) {
+  return (
+    <div
+      className={cn('flex items-center justify-between', className)}
+      {...props}
+      data-card="footer"
+    >
+      {children}
+    </div>
+  )
+}

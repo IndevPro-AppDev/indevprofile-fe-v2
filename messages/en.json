@@ -1,5 +1,9 @@
 {
   "$schema": "https://inlang.com/schema/inlang-message-format",
+  "common": {
+    "loading": "Loading",
+    "learn_more": "Learn More"
+  },
   "nav": {
     "about": "About",
     "blog": "Blog",
@@ -27,7 +31,10 @@
       },
       "contact": {
         "title": "Contact Us",
-        "description": "We are always open to receive your questions, feedback, or suggestions, and our team will be happy to respond promptly."
+        "description": "We are always open to receive your questions, feedback, or suggestions, and our team will be happy to respond promptly.",
+        "input": {
+          "placeholder": "Leave a message..."
+        }
       },
       "activities": {
         "title": "Latest Activities",

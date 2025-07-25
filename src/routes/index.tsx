@@ -1,13 +1,17 @@
 import { createFileRoute } from '@tanstack/react-router'
 import { motion } from 'motion/react'
 
+import LearnMoreButton from '~/components/home/bento/about/learn-more-button'
 import ActivitiesMasonryGrid from '~/components/home/bento/activities'
+import ContactForm from '~/components/home/bento/contact/form'
 import EventAlert from '~/components/home/event-alert'
 import HeroTitle from '~/components/home/hero-title'
 import IndevproScene from '~/components/indevpro-scene'
 import {
   GradientCard,
+  GradientCardContent,
   GradientCardDescription,
+  GradientCardFooter,
   GradientCardHeader,
   GradientCardTitle
 } from '~/components/ui/gradient-card'
@@ -60,6 +64,11 @@ function RouteComponent() {
                   {m['home.cards.about.description']()}
                 </GradientCardDescription>
               </GradientCardHeader>
+              <GradientCardContent>
+                <GradientCardFooter>
+                  <LearnMoreButton />
+                </GradientCardFooter>
+              </GradientCardContent>
             </GradientCard>
             <GradientCard>
               <GradientCardHeader>
@@ -80,6 +89,9 @@ function RouteComponent() {
                   {m['home.cards.contact.description']()}
                 </GradientCardDescription>
               </GradientCardHeader>
+              <GradientCardContent>
+                <ContactForm />
+              </GradientCardContent>
             </GradientCard>
           </div>
           <div className="space-y-6">

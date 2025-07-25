@@ -1,7 +1,9 @@
 @import 'tailwindcss' source('../../../');
 
 @import 'tw-animate-css';
-@plugin "@iconify/tailwind4";
+@plugin "@iconify/tailwind4" {
+  prefixes: ph, ant-design, mage, line-md;
+}
 
 @custom-variant dark (&:where(.dark, .dark *));
 
@@ -65,7 +67,7 @@
   --secondary-foreground: oklch(24.11% 0.0097 248.23);
 
   --muted: oklch(93.21% 0.0054 286.3);
-  --muted-foreground: oklch(57.021% 0.01252 274.746);
+  --muted-foreground: oklch(46.826% 0.01159 273.18);
 
   --accent: oklch(93.21% 0.0054 286.3);
   --accent-foreground: oklch(24.11% 0.0097 248.23);
@@ -112,7 +114,7 @@
 
   --border: oklch(28.16% 0.0047 174.1);
   --input: oklch(34.66% 0.0103 253.97);
-  --ring: oklch(36.22% 0.0578 259.26);
+  --ring: oklch(47.443% 0.11885 260.726);
 
   --bg-gradient-start: oklch(13.7% 0.024 251.41);
   --bg-gradient-middle: oklch(21.03% 0.0257 253.87);
