@@ -1,9 +1,18 @@
 import { createFileRoute } from '@tanstack/react-router'
 import { motion } from 'motion/react'
 
+import ActivitiesMasonryGrid from '~/components/home/bento/activities'
+import EventAlert from '~/components/home/event-alert'
 import HeroTitle from '~/components/home/hero-title'
 import IndevproScene from '~/components/indevpro-scene'
+import {
+  GradientCard,
+  GradientCardDescription,
+  GradientCardHeader,
+  GradientCardTitle
+} from '~/components/ui/gradient-card'
 import { m } from '~/paraglide/messages'
+
 // import LogoMarquee from '~/components/marquee/logo-marquee'
 
 export const Route = createFileRoute('/')({
@@ -30,23 +39,55 @@ function RouteComponent() {
             </motion.div>
           </div>
           <div className="flex flex-col justify-center space-y-2 px-6 md:col-span-2">
+            <EventAlert />
             <HeroTitle />
-            <motion.p
-              className="text-muted-foreground text-center md:text-left"
-              initial={{ opacity: 0, y: -10, scale: 0.98, filter: 'blur(4px)' }}
-              whileInView={{ opacity: 1, y: 0, scale: 1, filter: 'blur(0px)' }}
-              exit={{ opacity: 0, y: -10, scale: 0.98, filter: 'blur(4px)' }}
-              viewport={{ once: true }}
-              transition={{ stiffness: 24, damping: 6, mass: 0.2, delay: 0.8 }}
-            >
+            <p className="text-muted-foreground text-center md:text-left">
               {m['home.hero.subtitle']()}
-            </motion.p>
+            </p>
           </div>
         </div>
       </section>
 
-      <section className="h-dvh"></section>
-      <section className="h-dvh"></section>
+      <section className="mx-auto flex min-h-dvh w-full max-w-screen-xl items-center justify-center py-6">
+        <div className="grid w-full grid-cols-1 gap-6 px-6 md:min-h-56 md:grid-cols-2">
+          <div className="grid gap-6 md:grid-rows-3">
+            <GradientCard>
+              <GradientCardHeader>
+                <GradientCardTitle>
+                  {m['home.cards.about.title']()}
+                </GradientCardTitle>
+                <GradientCardDescription>
+                  {m['home.cards.about.description']()}
+                </GradientCardDescription>
+              </GradientCardHeader>
+            </GradientCard>
+            <GradientCard>
+              <GradientCardHeader>
+                <GradientCardTitle>
+                  {m['home.cards.teams.title']()}
+                </GradientCardTitle>
+                <GradientCardDescription>
+                  {m['home.cards.teams.description']()}
+                </GradientCardDescription>
+              </GradientCardHeader>
+            </GradientCard>
+            <GradientCard>
+              <GradientCardHeader>
+                <GradientCardTitle>
+                  {m['home.cards.contact.title']()}
+                </GradientCardTitle>
+                <GradientCardDescription>
+                  {m['home.cards.contact.description']()}
+                </GradientCardDescription>
+              </GradientCardHeader>
+            </GradientCard>
+          </div>
+          <div className="space-y-6">
+            <ActivitiesMasonryGrid />
+          </div>
+        </div>
+      </section>
+
       {/* 
       <LogoMarquee
         logos={[

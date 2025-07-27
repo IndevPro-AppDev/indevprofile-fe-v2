@@ -13,6 +13,10 @@ export default createStartHandler({
 })(event =>
   paraglideMiddleware(getWebRequest(), ({ locale }) => {
     overwriteGetLocale(() => locale)
-    return defaultStreamHandler(event)
+    return defaultStreamHandler({
+      request: event.request,
+      responseHeaders: event.responseHeaders,
+      router: event.router as any
+    })
   })
 )
