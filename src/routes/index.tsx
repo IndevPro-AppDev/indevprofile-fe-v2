@@ -4,6 +4,7 @@ import { motion } from 'motion/react'
 import LearnMoreButton from '~/components/home/bento/about/learn-more-button'
 import ActivitiesMasonryGrid from '~/components/home/bento/activities'
 import ContactForm from '~/components/home/bento/contact/form'
+import TeamPictures from '~/components/home/bento/team/pictures'
 import EventAlert from '~/components/home/event-alert'
 import HeroTitle from '~/components/home/hero-title'
 import IndevproScene from '~/components/indevpro-scene'
@@ -78,6 +79,18 @@ function RouteComponent() {
                 <GradientCardDescription>
                   {m['home.cards.teams.description']()}
                 </GradientCardDescription>
+                <GradientCardContent className="px-0">
+                  <GradientCardFooter>
+                    <TeamPictures
+                      members={Array.from({ length: 8 }).map((_, index) => ({
+                        id: index + 1,
+                        name: `Team Member ${index + 1}`,
+                        department: `Department ${index + 1}`
+                      }))}
+                      membersTotal={30}
+                    />
+                  </GradientCardFooter>
+                </GradientCardContent>
               </GradientCardHeader>
             </GradientCard>
             <GradientCard>
@@ -90,7 +103,9 @@ function RouteComponent() {
                 </GradientCardDescription>
               </GradientCardHeader>
               <GradientCardContent>
-                <ContactForm />
+                <GradientCardFooter>
+                  <ContactForm />
+                </GradientCardFooter>
               </GradientCardContent>
             </GradientCard>
           </div>
