@@ -17,8 +17,7 @@ export default function Header() {
   const navItems: NavItem[] = [
     { text: m['nav.about'](), href: '/about' },
     { text: m['nav.blog'](), href: '/blog' },
-    { text: m['nav.portfolio'](), href: '/portfolio' },
-    { text: m['nav.contact'](), href: '/contact' }
+    { text: m['nav.portfolio'](), href: '/portfolio' }
   ]
 
   const { scrollY } = useScroll()
