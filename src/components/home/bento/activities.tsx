@@ -1,7 +1,10 @@
 import { useMemo, useRef, useState } from 'react'
 import Masonry from 'react-masonry-css'
 
+import { useQuery } from '@tanstack/react-query'
 import { motion, useAnimationFrame, useMotionValue } from 'motion/react'
+
+import type { Activity } from '~/trpc/router/activities/types'
 
 import {
   GradientCard,
@@ -10,18 +13,24 @@ import {
   GradientCardHeader,
   GradientCardTitle
 } from '~/components/ui/gradient-card'
+import { Skeleton } from '~/components/ui/skeleton'
+import { useTRPC } from '~/lib/trpc/react'
 import { cn } from '~/lib/utils'
 import { m } from '~/paraglide/messages'
 
 export default function ActivitiesMasonryGrid() {
-  const ITEM_COUNT = 3
-  const items = useMemo(() => {
+  const trpc = useTRPC()
+  const { data: activities, isFetching } = useQuery(
+    trpc.activities.all.queryOptions(undefined, { refetchOnWindowFocus: false })
+  )
+
+  const items: Activity[] = useMemo(() => {
     const baseItems = Array.from(
-      { length: ITEM_COUNT * 5 },
-      (_, i) => i % ITEM_COUNT
+      { length: (activities ?? []).length * 1 },
+      (_, i) => (activities ?? [])[i % (activities?.length ?? 0)]
     )
     return [...baseItems, ...baseItems]
-  }, [])
+  }, [activities])
 
   const contentRef = useRef<HTMLDivElement>(null)
 
@@ -44,7 +53,7 @@ export default function ActivitiesMasonryGrid() {
     }
   })
 
-    const [hoveredCards, setHoveredCards] = useState<Set<number>>(() => new Set())
+  const [hoveredCards, setHoveredCards] = useState<Set<number>>(() => new Set())
 
   const handleCardMouseEnter = (index: number) => {
     setIsHovered(true)
@@ -84,44 +93,80 @@ export default function ActivitiesMasonryGrid() {
             columnClassName="pl-4"
             style={{ backgroundClip: 'padding-box' }}
           >
-            {items.map((_, i) => (
-              <div
+            {items.map((activity, i) => (
+              <ActivityCard
                 // eslint-disable-next-line react/no-array-index-key
-                key={`activity-${i}`}
-                className={cn(
-                  'bg-primary/10 relative mb-4 w-full overflow-hidden rounded-sm transition delay-75 duration-300 ease-out',
-                  i % 2 === 0 ? 'aspect-square' : 'aspect-[9/16]'
-                )}
-                onMouseEnter={() => handleCardMouseEnter(i)}
-                onMouseLeave={() => handleCardMouseLeave(i)}
-              >
-                <img
-                  src={`https://placehold.co/${i % 2 === 0 ? '400' : '400x600'}`}
-                  className="z-0 h-full w-full object-cover"
-                />
-                <div
-                  className={cn(
-                    'absolute inset-0 z-10 flex flex-col items-start justify-end p-4 transition duration-300 ease-in-out',
-                    'from-primary-gradient-end/50 to-primary-gradient-end/80 dark:text-foreground text-background rounded-sm bg-gradient-to-b',
-                    hoveredCards.has(i) 
-                      ? 'opacity-100 backdrop-blur-[2px]' 
-                      : 'opacity-0 backdrop-blur-none'
-                  )}
-                >
-                  <h3 className="font-display text-base font-bold md:text-lg">
-                    3CC 2025
-                  </h3>
-                  <p className="line-clamp-4 text-xs opacity-80">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Consequatur neque perferendis praesentium totam quas
-                    necessitatibus quos blanditiis magni aspernatur ab!
-                  </p>
-                </div>
-              </div>
+                key={`bento-card-activity-${i}`}
+                index={i}
+                isHovered={hoveredCards.has(i)}
+                onMouseEnter={handleCardMouseEnter}
+                onMouseLeave={handleCardMouseLeave}
+                activity={activity}
+                isLoading={isFetching}
+              />
             ))}
           </Masonry>
         </motion.div>
       </GradientCardContent>
     </GradientCard>
+  )
+}
+
+function ActivityCard({
+  index,
+  activity,
+  onMouseEnter,
+  onMouseLeave,
+  isLoading = false,
+  isHovered
+}: {
+  index: number
+  isHovered: boolean
+  onMouseEnter: (i: number) => void
+  onMouseLeave: (i: number) => void
+  isLoading?: boolean
+  activity: Activity
+}) {
+  if (isLoading) {
+    return (
+      <Skeleton
+        className={cn(
+          'w-full',
+          index % 2 === 0 ? 'aspect-square' : 'aspect-[9/16]'
+        )}
+      />
+    )
+  }
+
+  return (
+    <div
+      className={cn(
+        'bg-primary/10 relative mb-4 w-full overflow-hidden rounded-sm transition delay-75 duration-300 ease-out',
+        index % 2 === 0 ? 'aspect-square' : 'aspect-[9/16]'
+      )}
+      onMouseEnter={() => onMouseEnter(index)}
+      onMouseLeave={() => onMouseLeave(index)}
+    >
+      <img
+        src={activity.image.replaceAll('.jpg', '.JPG')}
+        className="z-0 h-full w-full object-cover"
+      />
+      <div
+        className={cn(
+          'absolute inset-0 z-10 flex flex-col items-start justify-end p-4 transition duration-300 ease-in-out',
+          'from-primary-gradient-end/50 to-primary-gradient-end/80 dark:text-foreground text-background rounded-sm bg-gradient-to-b',
+          isHovered
+            ? 'opacity-100 backdrop-blur-[2px]'
+            : 'opacity-0 backdrop-blur-none'
+        )}
+      >
+        <h3 className="font-display text-base font-bold md:text-lg">
+          {activity.title}
+        </h3>
+        <p className="line-clamp-4 text-xs opacity-80">
+          {activity.description}
+        </p>
+      </div>
+    </div>
   )
 }
