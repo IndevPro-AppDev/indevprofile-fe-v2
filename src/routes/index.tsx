@@ -4,7 +4,7 @@ import { motion } from 'motion/react'
 import LearnMoreButton from '~/components/home/bento/about/learn-more-button'
 import ActivitiesMasonryGrid from '~/components/home/bento/activities'
 import ContactForm from '~/components/home/bento/contact/form'
-import TeamPictures from '~/components/home/bento/team/pictures'
+import { TeamPictures } from '~/components/home/bento/team/pictures'
 import EventAlert from '~/components/home/event-alert'
 import HeroTitle from '~/components/home/hero-title'
 import IndevproScene from '~/components/indevpro-scene'
@@ -16,15 +16,27 @@ import {
   GradientCardHeader,
   GradientCardTitle
 } from '~/components/ui/gradient-card'
+import { HydrateClient, prefetch } from '~/lib/trpc/react'
 import { m } from '~/paraglide/messages'
 
 // import LogoMarquee from '~/components/marquee/logo-marquee'
 
 export const Route = createFileRoute('/')({
+  loader: ({ context: { trpc } }) => {
+    prefetch(trpc.members.structural.queryOptions())
+  },
   component: RouteComponent
 })
 
 function RouteComponent() {
+  return (
+    <HydrateClient>
+      <HomePage />
+    </HydrateClient>
+  )
+}
+
+function HomePage() {
   return (
     <div className="relative w-full max-w-screen overflow-x-hidden">
       <section className="flex h-[calc(100dvh-calc(var(--spacing)*14))] items-center justify-center">

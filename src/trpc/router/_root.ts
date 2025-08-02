@@ -1,7 +1,8 @@
-import { createTRPCRouter, publicProcedure } from '../trpc'
+import { createTRPCRouter } from '../trpc'
+import { membersRouter } from './members'
 
 export const appRouter = createTRPCRouter({
-  ping: publicProcedure.query(() => 'PONG!!!')
+  members: membersRouter
 })
 
 // export type definition of API

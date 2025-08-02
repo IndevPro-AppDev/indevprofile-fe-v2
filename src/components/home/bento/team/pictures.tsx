@@ -1,3 +1,4 @@
+import { useQuery } from '@tanstack/react-query'
 import { Link } from '@tanstack/react-router'
 
 import { Avatar, AvatarFallback, AvatarImage } from '~/components/ui/avatar'
@@ -8,6 +9,7 @@ import {
   TooltipTrigger
 } from '~/components/ui/tooltip'
 import { useIsMobile } from '~/hooks/use-mobile'
+import { useTRPC } from '~/lib/trpc/react'
 
 interface Member {
   id: number
@@ -21,11 +23,13 @@ interface TeamPicturesProps {
   membersTotal: number
 }
 
-export default function TeamPictures({
-  members,
-  membersTotal
-}: TeamPicturesProps) {
+export function TeamPictures({ members, membersTotal }: TeamPicturesProps) {
   const isMobile = useIsMobile()
+
+  const trpc = useTRPC()
+  const { data } = useQuery(trpc.members.structural.queryOptions())
+
+  console.log('TeamPictures data:', data)
 
   return (
     <div className="py-6">
