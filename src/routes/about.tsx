@@ -2,12 +2,24 @@ import { createFileRoute } from '@tanstack/react-router'
 
 import CardMember from '~/components/about/card-member'
 import YearsFilter from '~/components/about/years-filter'
+import { HydrateClient, prefetch } from '~/lib/trpc/react'
 
 export const Route = createFileRoute('/about')({
+  beforeLoad: ({ context: { trpc } }) => {
+    prefetch(trpc.members.structural.queryOptions())
+  },
   component: RouteComponent
 })
 
 function RouteComponent() {
+  return (
+    <HydrateClient>
+      <AboutPage />
+    </HydrateClient>
+  )
+}
+
+function AboutPage() {
   return (
     <div className="container mx-auto px-4">
       <div className="relative w-full max-w-screen overflow-x-hidden">

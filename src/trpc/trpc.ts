@@ -2,11 +2,11 @@ import { initTRPC } from '@trpc/server'
 import superjson from 'superjson'
 import { ZodError } from 'zod'
 
-// import { api } from '../axios'
+import { api } from '~/lib/axios'
 
 export function createTRPCContext() {
   return {
-    // api
+    api
   }
 }
 
