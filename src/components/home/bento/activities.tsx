@@ -1,3 +1,4 @@
+/* eslint-disable react/no-array-index-key */
 import { useMemo, useRef, useState } from 'react'
 import Masonry from 'react-masonry-css'
 
@@ -93,16 +94,25 @@ export default function ActivitiesMasonryGrid() {
             columnClassName="pl-4"
             style={{ backgroundClip: 'padding-box' }}
           >
+            {isFetching &&
+              Array.from({ length: 10 }).map((_, i) => (
+                <Skeleton
+                  key={`bento-card-activity-skeleton-${i}`}
+                  className={cn(
+                    'mb-4 w-full rounded-sm',
+                    i % 2 === 0 ? 'aspect-square' : 'aspect-[3/4]'
+                  )}
+                />
+              ))}
+
             {items.map((activity, i) => (
               <ActivityCard
-                // eslint-disable-next-line react/no-array-index-key
                 key={`bento-card-activity-${i}`}
                 index={i}
                 isHovered={hoveredCards.has(i)}
                 onMouseEnter={handleCardMouseEnter}
                 onMouseLeave={handleCardMouseLeave}
                 activity={activity}
-                isLoading={isFetching}
               />
             ))}
           </Masonry>
@@ -117,27 +127,14 @@ function ActivityCard({
   activity,
   onMouseEnter,
   onMouseLeave,
-  isLoading = false,
   isHovered
 }: {
   index: number
   isHovered: boolean
   onMouseEnter: (i: number) => void
   onMouseLeave: (i: number) => void
-  isLoading?: boolean
   activity: Activity
 }) {
-  if (isLoading) {
-    return (
-      <Skeleton
-        className={cn(
-          'w-full',
-          index % 2 === 0 ? 'aspect-square' : 'aspect-[9/16]'
-        )}
-      />
-    )
-  }
-
   return (
     <div
       className={cn(
@@ -147,10 +144,7 @@ function ActivityCard({
       onMouseEnter={() => onMouseEnter(index)}
       onMouseLeave={() => onMouseLeave(index)}
     >
-      <img
-        src={activity.image.replaceAll('.jpg', '.JPG')}
-        className="z-0 h-full w-full object-cover"
-      />
+      <img src={activity.image} className="z-0 h-full w-full object-cover" />
       <div
         className={cn(
           'absolute inset-0 z-10 flex flex-col items-start justify-end p-4 transition duration-300 ease-in-out',
