@@ -17,27 +17,27 @@ const titleStyle = cn(
 export default function Footer() {
   const navItems = [
     { group: m['nav.about'](), items: [{ name: 'Our Teams', href: '/about' }] },
-    {
-      group: m['nav.blog'](),
-      items: [
-        { name: 'Blog 1', href: '/' },
-        { name: 'Blog 2', href: '/' },
-        { name: 'Blog 3', href: '/' }
-      ]
-    },
-    {
-      group: m['nav.portfolio'](),
-      items: [
-        { name: 'Portfolio 1', href: '/' },
-        { name: 'Portfolio 2', href: '/' },
-        { name: 'Portfolio 3', href: '/' }
-      ]
-    },
+    // {
+    //   group: m['nav.blog'](),
+    //   items: [
+    //     { name: 'Blog 1', href: '/' },
+    //     { name: 'Blog 2', href: '/' },
+    //     { name: 'Blog 3', href: '/' }
+    //   ]
+    // },
+    // {
+    //   group: m['nav.portfolio'](),
+    //   items: [
+    //     { name: 'Portfolio 1', href: '/' },
+    //     { name: 'Portfolio 2', href: '/' },
+    //     { name: 'Portfolio 3', href: '/' }
+    //   ]
+    // },
     {
       group: m['nav.contact'](),
       items: [
-        { name: 'Email', href: '/' },
-        { name: 'FAQ', href: '/' }
+        { name: 'Email', href: 'mailto:indevappfti@gmail.com' }
+        // { name: 'FAQ', href: '/' }
       ]
     }
   ]
@@ -52,9 +52,9 @@ export default function Footer() {
           </p>
           <ul className="flex items-center space-x-2">
             {[
-              { href: '#', icon: 'ph:instagram-logo-fill' },
-              { href: '#', icon: 'mage:linkedin' },
-              { href: '#', icon: 'ant-design:github-filled' }
+              { href: '#', icon: 'ph:instagram-logo-fill' }
+              // { href: '#', icon: 'mage:linkedin' },
+              // { href: '#', icon: 'ant-design:github-filled' }
             ].map(({ href, icon }) => (
               <a
                 key={icon}
@@ -75,7 +75,7 @@ export default function Footer() {
           </ul>
         </div>
 
-        <div className="grid grid-cols-2 gap-2 lg:grid-cols-3 xl:grid-cols-4">
+        <div className="grid grid-cols-2 gap-4 lg:grid-cols-3 xl:grid-cols-4">
           {navItems.map(navItem => (
             <ul key={navItem.group} className="space-y-2">
               <li>

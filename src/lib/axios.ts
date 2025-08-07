@@ -8,21 +8,9 @@ const indevproApi = Axios.create({
   baseURL: import.meta.env.VITE_API_BASE_URL,
   headers: {
     'Content-Type': 'application/json',
-    'X-Api-Key': import.meta.env.VITE_API_KEY,
-    'X-Origin': import.meta.env.VITE_API_ORIGIN
+    'X-Api-Key': import.meta.env.VITE_API_KEY
   }
 })
-
-async function refreshToken() {
-  const res = await indevproApi.post<{ data: { access_token: string } }>(
-    '/login',
-    {
-      email: import.meta.env.VITE_API_USER,
-      password: import.meta.env.VITE_API_PASSWORD
-    }
-  )
-  return res.data?.data?.access_token
-}
 
 function handleAxiosError(error: unknown): TRPCError {
   if (Axios.isAxiosError(error)) {
@@ -50,13 +38,6 @@ function handleAxiosError(error: unknown): TRPCError {
 indevproApi.interceptors.response.use(
   response => response,
   async error => {
-    if (error.response?.status === 403) {
-      const token = await refreshToken()
-      if (token) {
-        error.config.headers['X-Api-Key'] = token
-        return indevproApi.request(error.config)
-      }
-    }
     throw handleAxiosError(error)
   }
 )

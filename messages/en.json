@@ -41,5 +41,11 @@
         "description": "Through INDEVPRO, we carry out various productive activities such as competitions, collaborative learning sessions, and other creative programs to support the potential and innovation of the younger generation."
       }
     }
+  },
+  "about": {
+    "description": "INDEVPRO is an organization under the Faculty of Information Technology, Universitas Merdeka Malang, dedicated to fostering the development of students interests, creativity, and competencies in the field of technology. Through structured training programs, collaborative projects, and industry partnerships, we provide students with practical experiences and essential skills to become competitive digital professionals in the industry.",
+    "teams": {
+      "title": "Our Teams"
+    }
   }
 }

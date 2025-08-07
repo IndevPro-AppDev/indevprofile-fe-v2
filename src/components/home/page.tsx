@@ -26,7 +26,7 @@ import { m } from '~/paraglide/messages'
 
 export default function HomePage() {
   return (
-    <div className="relative w-full max-w-screen overflow-x-hidden">
+    <div className="relative container mx-auto mb-16 w-full overflow-x-hidden">
       <section className="flex h-[calc(100dvh-calc(var(--spacing)*14))] items-center justify-center">
         <div className="grid grid-cols-1 md:grid-cols-3">
           <div
@@ -53,7 +53,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="mx-auto flex min-h-dvh w-full max-w-screen-xl items-center justify-center py-6">
+      <section className="flex min-h-dvh w-full items-center justify-center">
         <div className="grid w-full grid-cols-1 gap-6 px-6 md:min-h-56 md:grid-cols-2">
           <div className="grid gap-6 md:grid-rows-3">
             <GradientCard>

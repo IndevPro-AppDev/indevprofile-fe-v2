@@ -20,7 +20,7 @@ export const membersRouter = {
     .input(
       z.object({
         limit: z.number().min(1).max(100).nullish().default(10),
-        page: z.number().nullish().default(1),
+        cursor: z.number().nullish().default(1),
         period_id: z.number().nullish()
       })
     )
@@ -30,10 +30,12 @@ export const membersRouter = {
       >('/anggotas', {
         params: {
           limit: input.limit,
-          page: input.page,
+          page: input.cursor,
           'filters[periode_id]': input.period_id || undefined
         }
       })
+
+      const data = res.data.data ?? []
 
       const meta = res.data.meta
       const nextCursor = meta
@@ -43,7 +45,7 @@ export const membersRouter = {
         : null
 
       return {
-        items: (res.data.data ?? []).map(member => memberDto(member)),
+        items: data.map(member => memberDto(member)),
         nextCursor
       }
     })
