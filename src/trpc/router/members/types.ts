@@ -10,6 +10,7 @@ export interface MemberResponseData {
   github: string | null
   linkedin: string | null
   ig: string | null
+  website: string | null
   desc: string | null
   created_at: string
   updated_at: string
@@ -55,7 +56,8 @@ export function memberDto(json: MemberResponseData): Member {
     socials: [
       { slug: 'github', url: valueOrNull(json.github) },
       { slug: 'linkedin', url: valueOrNull(json.linkedin) },
-      { slug: 'ig', url: valueOrNull(json.ig) }
+      { slug: 'ig', url: valueOrNull(json.ig) },
+      { slug: 'website', url: valueOrNull(json.website) }
     ],
     department: json.jabatan,
     image: {

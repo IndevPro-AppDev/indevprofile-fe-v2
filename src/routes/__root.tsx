@@ -42,9 +42,37 @@ export const Route = createRootRouteWithContext<RouterAppContext>()({
       },
       { name: 'robots', content: 'index, follow' },
       { name: 'googlebot', content: 'index, follow' },
+      {
+        httpEquiv: 'Content-Security-Policy',
+        content: 'upgrade-insecure-requests'
+      },
       ...seo({
         title: 'Indevpro',
-        description: 'Together We Lead, Together We Achieve.'
+        description: 'Together We Lead, Together We Achieve.',
+        image: 'https://ik.imagekit.io/indevpro/opengraph.jpg',
+        keywords: [
+          'fti unmer',
+          'universitas merdeka malang',
+          'unmer',
+          'fti unmer malang',
+          'startup',
+          'indevpro',
+          'indonesia developer',
+          'indevpro indonesia',
+          'indevpro fti unmer malang',
+          'indevpro unmer',
+          'indevpro malang',
+          'indevpro startup',
+          'indevpro developer',
+          'indevpro indonesia developer',
+          'indevpro indonesia startup',
+          'indevpro fti unmer startup',
+          'indevpro fti unmer developer',
+          'indevpro unmer startup',
+          'indevpro unmer developer',
+          'indevpro malang startup',
+          'indevpro malang developer'
+        ]
       })
     ],
     links: [

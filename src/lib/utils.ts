@@ -16,12 +16,12 @@ export const seo = ({
   title: string
   description?: string
   image?: string
-  keywords?: string
+  keywords?: string[]
 }) => {
   const tags = [
     { title },
     { name: 'description', content: description },
-    { name: 'keywords', content: keywords },
+    { name: 'keywords', content: (keywords ?? []).join(', ') },
     { name: 'twitter:title', content: title },
     { name: 'twitter:description', content: description },
     { name: 'twitter:creator', content: '@indevpro' },

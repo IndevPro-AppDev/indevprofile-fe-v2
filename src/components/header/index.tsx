@@ -16,7 +16,7 @@ import ThemeSwitcher from './theme-switcher'
 export default function Header() {
   const navItems: NavItem[] = [
     { text: m['nav.about'](), href: '/about' },
-    { text: m['nav.blog'](), href: '/blog' },
+    // { text: m['nav.blog'](), href: '/blog' },
     { text: m['nav.portfolio'](), href: '/portfolio' }
   ]
 
