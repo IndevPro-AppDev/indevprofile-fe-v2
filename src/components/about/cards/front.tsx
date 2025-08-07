@@ -20,13 +20,6 @@ export default function MemberCardFront({
       transition={{ duration: 0.6, ease: 'easeInOut' }}
       style={{ backfaceVisibility: 'hidden' }}
     >
-      <div className="relative h-full w-full">
-        <img
-          src="https://ik.imagekit.io/indevpro/twibbon.png"
-          alt="twibbon"
-          className="w-full object-cover"
-        />
-      </div>
       <div className="absolute inset-0">
         <img
           src={member.image.front}
@@ -36,6 +29,11 @@ export default function MemberCardFront({
               'https://ik.imagekit.io/indevpro/formal/fallback.png')
           }
           className="h-full w-full object-cover"
+        />
+        <img
+          src="https://ik.imagekit.io/indevpro/twibbon.png"
+          alt="twibbon"
+          className="absolute inset-0 w-full object-cover"
         />
       </div>
       <div className="to-primary-gradient-start/60 absolute inset-x-0 bottom-0 bg-gradient-to-b from-transparent">

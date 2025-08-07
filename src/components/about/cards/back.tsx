@@ -42,13 +42,6 @@ export default function MemberCardBack({
       transition={{ duration: 0.6, ease: 'easeInOut' }}
       style={{ backfaceVisibility: 'hidden' }}
     >
-      <div className="relative h-full w-full">
-        <img
-          src="https://ik.imagekit.io/indevpro/twibbon.png"
-          alt="twibbon"
-          className="w-full object-cover"
-        />
-      </div>
       <div className="absolute inset-0">
         <img
           src={member.image.back}
@@ -58,6 +51,11 @@ export default function MemberCardBack({
             (e.currentTarget.src =
               'https://ik.imagekit.io/indevpro/non-formal/fallback.png')
           }
+        />
+        <img
+          src="https://ik.imagekit.io/indevpro/twibbon.png"
+          alt="twibbon"
+          className="absolute inset-0 w-full object-cover"
         />
       </div>
       <div className="to-primary-gradient-start/60 absolute inset-x-0 bottom-0 bg-gradient-to-b from-transparent">
