@@ -97,7 +97,14 @@ export function TeamPictures({
                         transform: `translateX(${index * (isMobile ? 0.5 : 1)}rem)`
                       }}
                     >
-                      <AvatarImage src={member.imageUrl} alt={member.name} />
+                      <AvatarImage
+                        src={member.imageUrl}
+                        alt={member.name}
+                        onError={e =>
+                          (e.currentTarget.src =
+                            'https://ik.imagekit.io/indevpro/formal/fallback.png')
+                        }
+                      />
                       <AvatarFallback className="from-primary-gradient-start to-primary-gradient-end bg-gradient-to-br text-xs font-bold text-white md:text-sm lg:text-base">
                         {member.name.charAt(0).toUpperCase()}
                       </AvatarFallback>
