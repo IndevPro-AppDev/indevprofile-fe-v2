@@ -60,11 +60,14 @@ export default function MembersGrid() {
 
   return (
     <>
-      <span ref={ref}></span>
       {members.map((member, index) => (
         // eslint-disable-next-line react/no-array-index-key
         <MemberCard key={`bento-card-member-${index}`} member={member} />
       ))}
+      {isFetchingNextPage && (
+        <Skeleton className="aspect-[3/4] w-full rounded-sm" />
+      )}
+      <span ref={ref}></span>
     </>
   )
 }

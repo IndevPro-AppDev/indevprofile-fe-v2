@@ -31,6 +31,10 @@ export default function MemberCardFront({
         <img
           src={member.image.front}
           alt={member.name}
+          onError={e =>
+            (e.currentTarget.src =
+              'https://ik.imagekit.io/indevpro/formal/fallback.png')
+          }
           className="h-full w-full object-cover"
         />
       </div>
