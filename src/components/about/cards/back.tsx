@@ -44,7 +44,10 @@ export default function MemberCardBack({
     >
       <div className="absolute inset-0">
         <img
-          src={member.image.back}
+          src={
+            member.image.back ??
+            'https://ik.imagekit.io/indevpro/non-formal/fallback.png'
+          }
           alt={member.name}
           className="h-full w-full object-cover"
           onError={e =>

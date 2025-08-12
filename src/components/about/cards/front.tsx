@@ -22,7 +22,10 @@ export default function MemberCardFront({
     >
       <div className="absolute inset-0">
         <img
-          src={member.image.front}
+          src={
+            member.image.front ??
+            'https://ik.imagekit.io/indevpro/formal/fallback.png'
+          }
           alt={member.name}
           onError={e =>
             (e.currentTarget.src =
