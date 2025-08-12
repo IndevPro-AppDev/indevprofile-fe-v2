@@ -13,14 +13,14 @@ export default function PortfolioCard({
   imgSrc,
   isCenter
 }: PortfolioCardProps) {
-  const aspectRatio = 717 / 585
+  const aspectRatio = 1920 / 1080
 
   return (
     <div
       className={cn(
-        'bg-primary flex flex-col items-center justify-between border shadow-md transition-transform duration-500 ease-in-out',
+        'from-bg-gradient-start via-bg-gradient-middle to-bg-gradient-end flex flex-col items-center justify-between border bg-gradient-to-br shadow-lg transition-transform duration-300 ease-out',
         isCenter ? 'z-10 scale-100' : 'scale-75',
-        'p-5 sm:p-2 md:p-4',
+        'p-3 md:p-4 lg:p-6',
         'sm:rounded-sg rounded-xl'
       )}
     >
@@ -31,7 +31,7 @@ export default function PortfolioCard({
           width: '100%'
         }}
       >
-        <div className="bg-primary-300 mb-2 flex-1 overflow-hidden rounded-md sm:rounded-sm">
+        <div className="bg-primary-300 mb-4 flex-1 overflow-hidden rounded-md sm:rounded-sm">
           <img
             src={imgSrc}
             alt={title}
@@ -39,11 +39,11 @@ export default function PortfolioCard({
           />
         </div>
 
-        <div className="bg-primary mb-4 flex flex-col justify-center gap-[2px] rounded-md px-2 py-1 sm:rounded-sm">
-          <h3 className="text-secondary text-xs leading-tight font-bold md:text-sm">
+        <div className="flex flex-col justify-center space-y-1">
+          <h3 className="text-card-foreground font-display text-sm leading-tight md:text-base lg:text-lg">
             {title}
           </h3>
-          <p className="text-secondary text-[10px] leading-tight md:text-xs">
+          <p className="text-muted-foreground line-clamp-3 text-xs leading-tight md:text-sm lg:text-base">
             {desc}
           </p>
         </div>

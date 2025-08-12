@@ -47,5 +47,22 @@
     "teams": {
       "title": "Tim Kami"
     }
+  },
+  "portfolio": {
+    "hero": {
+      "description": "Di sinilah kami merangkum perjalanan, karya, dan pencapaian mahasiswa dalam mengembangkan potensi di dunia teknologi. Melalui pelatihan, proyek nyata, dan kolaborasi, setiap program INDEVPRO dirancang untuk mencetak talenta digital yang inovatif, adaptif, dan siap bersaing."
+    },
+    "sista": {
+      "title": "Sistem Informasi Skripsi & Tugas Akhir (Sista)",
+      "description": "Dengan berbagai fitur yang mudah digunakan, Platform ini mempermudah komunikasi antara mahasiswa dan dosen pembimbing, serta memastikan setiap tahapan tugas akhir dapat dikelola dengan efektif dan efisien."
+    },
+    "student_mobile": {
+      "title": "Student Mobile",
+      "description": "Meningkatkan pengalaman akademik Mahasiswa dengan Student Mobile!"
+    },
+    "3cc": {
+      "title": "3CC",
+      "description": "Kompetisi Mobile Legends dan Business Plan untuk generasi muda yang kreatif dan kompetitif."
+    }
   }
 }

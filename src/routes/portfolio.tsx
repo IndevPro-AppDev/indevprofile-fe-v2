@@ -1,18 +1,17 @@
-/* eslint-disable react-hooks-extra/no-direct-set-state-in-use-effect */
 import { useEffect, useState } from 'react'
 
 import { createFileRoute } from '@tanstack/react-router'
-import { motion, useMotionTemplate } from 'motion/react'
 
 import type { CarouselApi } from '~/components/ui/carousel'
 
+import HeroTitle from '~/components/portfolio/hero-title'
 import PortfolioCard from '~/components/portfolio/portfolio-card'
 import {
   Carousel,
   CarouselContent,
   CarouselItem
 } from '~/components/ui/carousel'
-import { cn } from '~/lib/utils'
+import { m } from '~/paraglide/messages'
 
 export const Route = createFileRoute('/portfolio')({
   component: PortfolioPage
@@ -20,65 +19,56 @@ export const Route = createFileRoute('/portfolio')({
 
 export default PortfolioPage
 
-const projects: {
-  id: number
-  title: string
-  desc: string
-  imgSrc: string
-}[] = [
-  {
-    id: 1,
-    title: 'Project One',
-    desc: 'Lorem ipsum dolor sit amet.',
-    imgSrc: 'https://placehold.co/600x400.png'
-  },
-  {
-    id: 2,
-    title: 'Project Two',
-    desc: 'Consectetur adipiscing elit.',
-    imgSrc: 'https://placehold.co/600x400.png'
-  },
-  {
-    id: 3,
-    title: 'Project Three',
-    desc: 'Sed do eiusmod tempor incididunt.',
-    imgSrc: 'https://placehold.co/600x400.png'
-  },
-  {
-    id: 4,
-    title: 'Project Four',
-    desc: 'Ut enim ad minim veniam.',
-    imgSrc: 'https://placehold.co/600x400.png'
-  },
-  {
-    id: 5,
-    title: 'Project Five',
-    desc: 'Duis aute irure dolor.',
-    imgSrc: 'https://placehold.co/600x400.png'
-  }
-]
-
 function PortfolioPage() {
+  const projects: {
+    id: number
+    title: string
+    description: string
+    imgSrc: string
+  }[] = [
+    {
+      id: 1,
+      title: m['portfolio.sista.title'](),
+      description: m['portfolio.sista.description'](),
+      imgSrc: 'https://ik.imagekit.io/indevpro/portfolio/thumbnail/sista.jpg'
+    },
+    {
+      id: 2,
+      title: m['portfolio.student_mobile.title'](),
+      description: m['portfolio.student_mobile.description'](),
+      imgSrc:
+        'https://ik.imagekit.io/indevpro/portfolio/thumbnail/student-mobile.jpg'
+    },
+    {
+      id: 3,
+      title: m['portfolio.3cc.title'](),
+      description: m['portfolio.3cc.description'](),
+      imgSrc: 'https://ik.imagekit.io/indevpro/portfolio/thumbnail/3cc.jpg'
+    }
+  ]
+
   const [api, setApi] = useState<CarouselApi | null>(null)
-  const [selectedIndex, setSelectedIndex] = useState(0)
-
-  const gradient = useMotionTemplate`
-    linear-gradient(
-      to bottom right,
-      var(--primary-gradient-start),
-      var(--primary-gradient-end)
-    )`
+  const [selectedIndex, setSelectedIndex] = useState(1)
 
   useEffect(() => {
     if (!api) return
 
-    const interval = setInterval(() => api.scrollNext(), 3500)
+    const interval = setInterval(() => {
+      // should scroll back to first index if project is last
+      if (selectedIndex === projects.length - 1) {
+        api.scrollTo(0)
+      } else {
+        api.scrollNext()
+      }
+    }, 3000)
     return () => clearInterval(interval)
-  }, [api])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [api, selectedIndex])
 
   useEffect(() => {
     if (!api) return
 
+    // eslint-disable-next-line react-hooks-extra/no-direct-set-state-in-use-effect
     const onSelect = () => setSelectedIndex(api.selectedScrollSnap())
     api.on('select', onSelect)
     onSelect()
@@ -89,52 +79,36 @@ function PortfolioPage() {
   }, [api])
 
   return (
-    <main className="flex flex-col items-center gap-6 overflow-hidden px-2 py-6 md:gap-12 md:px-4 md:py-12">
-      <section className="mx-auto flex w-full max-w-screen-xl flex-col gap-4 text-center md:gap-6">
-        <motion.h1
-          className={cn(
-            'mx-auto bg-clip-text text-center text-2xl font-bold text-transparent md:text-5xl'
-          )}
-          style={{ backgroundImage: gradient }}
-        >
-          Portfolio
-        </motion.h1>
-
-        <p className="text-muted-foreground mx-auto max-w-[90ch] space-y-10 text-center text-xs leading-relaxed md:text-sm">
-          INDEVPRO adalah organisasi mahasiswa di bawah naungan Fakultas
-          Teknologi Informasi, Universitas Merdeka Malang. Kami hadir sebagai
-          wadah bagi mahasiswa untuk mengembangkan minat, kreativitas, dan
-          kemampuan di bidang teknologi. <br />
-          <br /> Lewat berbagai pelatihan intensif, pengembangan proyek
-          kolaboratif, dan jembatan ke industri, INDEVPRO membekali mahasiswa
-          dengan keterampilan praktis dan pengalaman yang relevan. Di sini, kami
-          berkomitmen penuh untuk mempersiapkan mahasiswa menjadi talenta
-          profesional yang siap bersaing di dunia kerja.
+    <main className="relative mb-16 w-full">
+      <section className="container mx-auto mb-10 flex w-full flex-col items-center overflow-x-hidden px-6 pt-16">
+        <HeroTitle />
+        <p className="text-muted-foreground mt-6 max-w-[86ch] text-center text-xs md:text-sm">
+          {m['portfolio.hero.description']()}
         </p>
       </section>
 
-      <section className="relative mx-auto mb-6 w-full max-w-screen-xl overflow-hidden">
+      <section className="relative mx-auto w-full">
         <Carousel
           setApi={setApi}
-          className="mx-auto w-full max-w-screen-xl"
+          className="mx-auto w-full"
           opts={{
             loop: true,
             align: 'center',
-            dragFree: false
+            startIndex: 1
           }}
         >
           <CarouselContent className="-ml-1 flex md:-ml-2">
             {projects.map((project, index) => (
               <CarouselItem
                 key={project.id}
-                className="flex items-center justify-center"
+                className="flex items-center justify-center px-4 md:px-8 lg:px-12"
                 style={{
-                  flex: '0 0 clamp(200px, 40vw, 717px)'
+                  flex: '0 0 clamp(25vw, 60vw, 70vw)'
                 }}
               >
                 <PortfolioCard
                   title={project.title}
-                  desc={project.desc}
+                  desc={project.description}
                   imgSrc={project.imgSrc}
                   isCenter={selectedIndex === index}
                 />

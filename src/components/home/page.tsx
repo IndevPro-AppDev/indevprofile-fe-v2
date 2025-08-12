@@ -127,7 +127,7 @@ function BentoTeams() {
           {m['home.cards.teams.description']()}
         </GradientCardDescription>
         <GradientCardContent className="px-0">
-          <GradientCardFooter>
+          <GradientCardFooter className="w-full">
             <TeamPictures
               members={members}
               membersTotal={34}

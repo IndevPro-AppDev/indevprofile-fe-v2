@@ -41,8 +41,8 @@ export function TeamPictures({
   const items: Team[] = useMemo(() => [...members, itemMore], [members])
 
   return (
-    <div className="py-6">
-      <div className="relative flex flex-wrap items-center px-0">
+    <div className="w-full py-6">
+      <div className="no-scrollbar relative flex flex-wrap items-center overflow-x-scroll px-0">
         {isLoading &&
           Array.from({ length: 9 }).map((_, index) => (
             <Skeleton

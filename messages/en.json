@@ -47,5 +47,22 @@
     "teams": {
       "title": "Our Teams"
     }
+  },
+  "portfolio": {
+    "hero": {
+      "description": "Here, we showcase the journey, works, and achievements of students in developing their potential in the world of technology. Through training, real-world projects, and collaboration, every INDEVPRO program is designed to shape innovative, adaptable, and competitive digital talents."
+    },
+    "sista": {
+      "title": "Sistem Informasi Skripsi & Tugas Akhir (Sista)",
+      "description": "With various easy-to-use features, this platform facilitates communication between students and lecturer, ensuring that every stage of the dissertation can be managed effectively and efficiently."
+    },
+    "student_mobile": {
+      "title": "Student Mobile",
+      "description": "Enhance student's academic experience with Student Mobile"
+    },
+    "3cc": {
+      "title": "3CC",
+      "description": "Mobile Legends and Business Plan competition for creative and competitive young generation."
+    }
   }
 }
