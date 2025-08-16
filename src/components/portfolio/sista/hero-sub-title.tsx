@@ -45,12 +45,12 @@ export default function HeroTitle() {
     <motion.h2
       className={cn(
         'font-display text-center text-4xl font-extrabold md:leading-relaxed lg:text-5xl',
-        'mx-auto w-fit bg-clip-text text-transparent md:mx-0',
+        'mx-auto w-fit bg-clip-text text-transparent md:mx-0 md:w-[34rem]',
         'flex flex-col items-center justify-center overflow-y-hidden md:flex-row'
       )}
       style={{ backgroundImage: gradient }}
     >
-      Student Mobile
+      Sistem Informasi Skripsi <br /> & Tugas Akhir
     </motion.h2>
   )
 }

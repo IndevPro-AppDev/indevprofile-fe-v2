@@ -69,6 +69,9 @@
     "student_mobile": {
       "subtitle": "Meningkatkan pengalaman akademik Mahasiswa dengan Student Mobile!",
       "description": "Student Mobile adalah sebuah aplikasi yang dirancang untuk memudahkan mahasiswa dalam mengelola pengalaman akademik mereka. Dengan fitur-fitur unggulan seperti pelacakan poin, pembaruan jadwal, dan pengecekan ketersediaan ruang kelas, Student Mobile memungkinkan mahasiswa untuk tetap terorganisir dan efisien."
+    },
+    "sista": {
+      "subtitle": "Dengan berbagai fitur yang mudah digunakan, Platform ini mempermudah komunikasi antara mahasiswa dan dosen pembimbing, serta memastikan setiap tahapan tugas akhir dapat dikelola dengan efektif dan efisien"
     }
   }
 }

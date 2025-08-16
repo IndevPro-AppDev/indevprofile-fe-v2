@@ -58,9 +58,9 @@ export default function StudentMobilePage() {
   }, [api])
 
   return (
-    <main className="text-primary relative mb-16 flex w-full flex-col items-center">
+    <div className="text-primary relative mb-16 flex w-full flex-col items-center">
       {/* Hero Section */}
-      <section className="flex flex-col items-center justify-center gap-8 px-6 py-16 text-center md:flex-row md:gap-12 md:px-20">
+      <section className="flex flex-col items-center justify-center gap-8 px-6 py-16 text-center md:flex-row">
         <div className="flex flex-col items-center md:items-start">
           <HeroTitle />
         </div>
@@ -79,7 +79,7 @@ export default function StudentMobilePage() {
           <PaletteIcon className="h-4 w-4" />
           <span>UI/UX</span>
         </span>
-        <div className="flex flex-col items-center space-y-2">
+        <div className="flex flex-col items-center space-y-4">
           <HeroSubTitle />
           <p className="max-w-lg text-sm">
             {m['portfolio_detail.student_mobile.subtitle']()}
@@ -124,6 +124,6 @@ export default function StudentMobilePage() {
           </CarouselContent>
         </Carousel>
       </section>
-    </main>
+    </div>
   )
 }

@@ -33,7 +33,8 @@ function PortfolioPage() {
       id: 1,
       title: m['portfolio.sista.title'](),
       description: m['portfolio.sista.description'](),
-      imgSrc: 'https://ik.imagekit.io/indevpro/portfolio/thumbnail/sista.jpg'
+      imgSrc: 'https://ik.imagekit.io/indevpro/portfolio/thumbnail/sista.jpg',
+      link: '/portfolio/sista'
     },
     {
       id: 2,
