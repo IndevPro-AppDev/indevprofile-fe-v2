@@ -2,23 +2,30 @@ import { useEffect, useState } from 'react'
 
 import type { CarouselApi } from '~/components/ui/carousel'
 
-import GalleryCard from '~/components/portfolio/student-mobile/gallery-card'
-import HeroSubTitle from '~/components/portfolio/student-mobile/hero-sub-title'
-import HeroTitle from '~/components/portfolio/student-mobile/hero-title'
 import {
   Carousel,
   CarouselContent,
   CarouselItem
 } from '~/components/ui/carousel'
+import { m } from '~/paraglide/messages'
 
 import PaletteIcon from '../../icons/palette'
+import PictDemo1 from './assets/pict-demo-1.webp'
+import PictDemo2 from './assets/pict-demo-2.webp'
+import PictDemo3 from './assets/pict-demo-3.webp'
+import PictDemo4 from './assets/pict-demo-4.webp'
+import PictDesc from './assets/pict-desc.webp'
+import PictHero from './assets/pict-hero.webp'
+import GalleryCard from './gallery-card'
+import HeroSubTitle from './hero-sub-title'
+import HeroTitle from './hero-title'
 
 export default function StudentMobilePage() {
   const gallery = [
-    { id: 1, imgSrc: '/images/portfolio/phone3.png', alt: 'Screen 1' },
-    { id: 2, imgSrc: '/images/portfolio/phone3.png', alt: 'Screen 2' },
-    { id: 3, imgSrc: '/images/portfolio/phone3.png', alt: 'Screen 3' },
-    { id: 4, imgSrc: '/images/portfolio/phone3.png', alt: 'Screen 4' }
+    { id: 1, imgSrc: PictDemo1, alt: 'Screen 1' },
+    { id: 2, imgSrc: PictDemo2, alt: 'Screen 2' },
+    { id: 3, imgSrc: PictDemo3, alt: 'Screen 3' },
+    { id: 4, imgSrc: PictDemo4, alt: 'Screen 4' }
   ]
 
   const [api, setApi] = useState<CarouselApi | null>(null)
@@ -35,11 +42,12 @@ export default function StudentMobilePage() {
       }
     }, 3000)
     return () => clearInterval(interval)
-  }, [api, selectedIndex])
+  }, [api, gallery.length, selectedIndex])
 
   useEffect(() => {
     if (!api) return
 
+    // eslint-disable-next-line react-hooks-extra/no-direct-set-state-in-use-effect
     const onSelect = () => setSelectedIndex(api.selectedScrollSnap())
     api.on('select', onSelect)
     onSelect()
@@ -58,42 +66,38 @@ export default function StudentMobilePage() {
         </div>
         <div className="flex justify-center">
           <img
-            src="/images/portfolio/phone1.png"
+            src={PictHero}
             alt="App screen"
-            className="h-auto w-[240px] drop-shadow-xl sm:w-[300px] md:w-[380px] lg:w-[450px] xl:w-[500px]"
+            className="h-auto w-full drop-shadow-xl md:w-[50vw] lg:w-[45vw]"
           />
         </div>
       </section>
 
       {/* Section Title */}
-      <section className="flex flex-col items-center py-8 text-center">
+      <section className="flex flex-col items-center space-y-6 px-6 py-8 text-center">
         <span className="border-foreground flex items-center justify-center gap-2 rounded-full border px-4 py-1 text-xs tracking-wider">
           <PaletteIcon className="h-4 w-4" />
           <span>UI/UX</span>
         </span>
-        <div className="flex flex-col items-center gap-0">
+        <div className="flex flex-col items-center space-y-2">
           <HeroSubTitle />
-          <p className="max-w-lg">
-            Meningkatkan pengalaman akademis Mahasiswa dengan Student Mobile!
+          <p className="max-w-lg text-sm">
+            {m['portfolio_detail.student_mobile.subtitle']()}
           </p>
         </div>
       </section>
 
       {/* Description */}
-      <section className="flex flex-col items-center justify-center gap-10 px-6 py-16 md:flex-row md:px-20">
+      <section className="grid grid-cols-1 gap-6 px-6 py-10 md:grid-cols-2">
         <div className="flex justify-center">
           <img
-            src="/images/portfolio/phone2.png"
+            src={PictDesc}
             alt="App screen"
-            className="h-auto w-[320px] drop-shadow-xl md:w-[450px]"
+            className="h-auto w-full drop-shadow-xl md:w-[50vw] lg:w-[45vw]"
           />
         </div>
-        <p className="text-primary max-w-lg text-right">
-          Student Mobile adalah sebuah aplikasi yang dirancang untuk memudahkan
-          mahasiswa dalam mengelola pengalaman akademik mereka. Dengan
-          fitur-fitur unggulan seperti pelacakan poin, pembaruan jadwal, dan
-          pengecekan ketersediaan ruang kelas, Student Mobile memungkinkan
-          mahasiswa untuk tetap terorganisir dan efisien.
+        <p className="text-primary my-auto max-w-[56ch] text-center text-sm md:text-left lg:text-base">
+          {m['portfolio_detail.student_mobile.description']()}
         </p>
       </section>
 
@@ -102,7 +106,7 @@ export default function StudentMobilePage() {
         <Carousel
           setApi={setApi}
           opts={{ align: 'center', loop: true }}
-          className="flex h-[420px] items-center justify-center px-4 sm:h-[500px] md:h-[560px] md:px-8 lg:px-12"
+          className="flex items-center justify-center"
         >
           <CarouselContent className="gap-4 overflow-visible">
             {gallery.map((item, index) => (

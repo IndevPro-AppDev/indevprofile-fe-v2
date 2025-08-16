@@ -44,8 +44,8 @@ export default function HeroTitle() {
   return (
     <motion.h1
       className={cn(
-        'font-display text-center text-5xl font-extrabold md:text-left md:text-7xl md:leading-tight lg:text-9xl',
-        'mx-auto w-fit bg-clip-text text-transparent md:mx-0 md:w-[29.384rem]',
+        'font-display text-center text-5xl font-extrabold md:text-left md:text-6xl md:leading-tight lg:text-8xl',
+        'mx-auto w-fit bg-clip-text text-transparent md:mx-0',
         'flex flex-col items-center justify-center overflow-y-hidden md:flex-row'
       )}
       style={{ backgroundImage: gradient }}

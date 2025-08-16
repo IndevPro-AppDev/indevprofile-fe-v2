@@ -2,7 +2,7 @@ import { createFileRoute } from '@tanstack/react-router'
 
 import Page from '~/components/portfolio/student-mobile/page'
 
-export const Route = createFileRoute('/portfolio/student-mobile')({
+export const Route = createFileRoute('/portfolio_/student-mobile')({
   component: StudentMobilePage
 })
 

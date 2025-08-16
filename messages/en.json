@@ -64,5 +64,11 @@
       "title": "3CC",
       "description": "Mobile Legends and Business Plan competition for creative and competitive young generation."
     }
+  },
+  "portfolio_detail": {
+    "student_mobile": {
+      "subtitle": "Enhance students' academic experience with Student Mobile!",
+      "description": "Student Mobile is an application designed to simplify students' academic experience management. With standout features such as point tracking, schedule updates, and classroom availability checks, Student Mobile helps students stay organized and efficient."
+    }
   }
 }
