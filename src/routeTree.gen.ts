@@ -9,16 +9,11 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as StudentMobileRouteImport } from './routes/student-mobile'
 import { Route as PortfolioRouteImport } from './routes/portfolio'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as PortfolioStudentMobileRouteImport } from './routes/portfolio.student-mobile'
 
-const StudentMobileRoute = StudentMobileRouteImport.update({
-  id: '/student-mobile',
-  path: '/student-mobile',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const PortfolioRoute = PortfolioRouteImport.update({
   id: '/portfolio',
   path: '/portfolio',
@@ -34,50 +29,47 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const PortfolioStudentMobileRoute = PortfolioStudentMobileRouteImport.update({
+  id: '/student-mobile',
+  path: '/student-mobile',
+  getParentRoute: () => PortfolioRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
-  '/portfolio': typeof PortfolioRoute
-  '/student-mobile': typeof StudentMobileRoute
+  '/portfolio': typeof PortfolioRouteWithChildren
+  '/portfolio/student-mobile': typeof PortfolioStudentMobileRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
-  '/portfolio': typeof PortfolioRoute
-  '/student-mobile': typeof StudentMobileRoute
+  '/portfolio': typeof PortfolioRouteWithChildren
+  '/portfolio/student-mobile': typeof PortfolioStudentMobileRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
-  '/portfolio': typeof PortfolioRoute
-  '/student-mobile': typeof StudentMobileRoute
+  '/portfolio': typeof PortfolioRouteWithChildren
+  '/portfolio/student-mobile': typeof PortfolioStudentMobileRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/about' | '/portfolio' | '/student-mobile'
+  fullPaths: '/' | '/about' | '/portfolio' | '/portfolio/student-mobile'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/about' | '/portfolio' | '/student-mobile'
-  id: '__root__' | '/' | '/about' | '/portfolio' | '/student-mobile'
+  to: '/' | '/about' | '/portfolio' | '/portfolio/student-mobile'
+  id: '__root__' | '/' | '/about' | '/portfolio' | '/portfolio/student-mobile'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
-  PortfolioRoute: typeof PortfolioRoute
-  StudentMobileRoute: typeof StudentMobileRoute
+  PortfolioRoute: typeof PortfolioRouteWithChildren
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/student-mobile': {
-      id: '/student-mobile'
-      path: '/student-mobile'
-      fullPath: '/student-mobile'
-      preLoaderRoute: typeof StudentMobileRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/portfolio': {
       id: '/portfolio'
       path: '/portfolio'
@@ -99,14 +91,32 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/portfolio/student-mobile': {
+      id: '/portfolio/student-mobile'
+      path: '/student-mobile'
+      fullPath: '/portfolio/student-mobile'
+      preLoaderRoute: typeof PortfolioStudentMobileRouteImport
+      parentRoute: typeof PortfolioRoute
+    }
   }
 }
+
+interface PortfolioRouteChildren {
+  PortfolioStudentMobileRoute: typeof PortfolioStudentMobileRoute
+}
+
+const PortfolioRouteChildren: PortfolioRouteChildren = {
+  PortfolioStudentMobileRoute: PortfolioStudentMobileRoute,
+}
+
+const PortfolioRouteWithChildren = PortfolioRoute._addFileChildren(
+  PortfolioRouteChildren,
+)
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
-  PortfolioRoute: PortfolioRoute,
-  StudentMobileRoute: StudentMobileRoute,
+  PortfolioRoute: PortfolioRouteWithChildren,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
