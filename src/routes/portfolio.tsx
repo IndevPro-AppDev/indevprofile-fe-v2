@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react'
 
+import type { LinkComponentProps } from '@tanstack/react-router'
+
 import { createFileRoute } from '@tanstack/react-router'
 
 import type { CarouselApi } from '~/components/ui/carousel'
@@ -25,6 +27,7 @@ function PortfolioPage() {
     title: string
     description: string
     imgSrc: string
+    link?: Required<LinkComponentProps['to']>
   }[] = [
     {
       id: 1,
@@ -37,7 +40,8 @@ function PortfolioPage() {
       title: m['portfolio.student_mobile.title'](),
       description: m['portfolio.student_mobile.description'](),
       imgSrc:
-        'https://ik.imagekit.io/indevpro/portfolio/thumbnail/student-mobile.jpg'
+        'https://ik.imagekit.io/indevpro/portfolio/thumbnail/student-mobile.jpg',
+      link: '/portfolio/student-mobile'
     },
     {
       id: 3,
@@ -111,6 +115,7 @@ function PortfolioPage() {
                   desc={project.description}
                   imgSrc={project.imgSrc}
                   isCenter={selectedIndex === index}
+                  link={project.link}
                 />
               </CarouselItem>
             ))}

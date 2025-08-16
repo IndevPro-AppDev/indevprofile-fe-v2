@@ -21,7 +21,7 @@ export default function GalleryCard({
         isCenter ? 'z-10 scale-100 opacity-100' : 'z-0 scale-80 opacity-70'
       )}
     >
-      <div className="relative scale-65 px-4 shadow-md md:scale-60 lg:scale-70 xl:scale-90">
+      <div className="relative scale-65 px-4 shadow-md md:scale-60 lg:scale-70 xl:scale-80">
         <DeviceFrameset device="iPhone X" color="black">
           <img
             src={imgSrc}

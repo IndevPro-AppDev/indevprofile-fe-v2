@@ -1,3 +1,7 @@
+import type { LinkComponentProps } from '@tanstack/react-router'
+
+import { Link } from '@tanstack/react-router'
+
 import { cn } from '~/lib/utils'
 
 interface PortfolioCardProps {
@@ -5,13 +9,15 @@ interface PortfolioCardProps {
   desc: string
   imgSrc: string
   isCenter?: boolean
+  link?: Required<LinkComponentProps['to']>
 }
 
 export default function PortfolioCard({
   title,
   desc,
   imgSrc,
-  isCenter
+  isCenter,
+  link
 }: PortfolioCardProps) {
   const aspectRatio = 1920 / 1080
 
@@ -31,18 +37,24 @@ export default function PortfolioCard({
           width: '100%'
         }}
       >
-        <div className="bg-primary-300 mb-4 flex-1 overflow-hidden rounded-md sm:rounded-sm">
+        <Link
+          to={link}
+          className="bg-primary-300 mb-4 flex-1 overflow-hidden rounded-md sm:rounded-sm"
+          disabled={!link}
+        >
           <img
             src={imgSrc}
             alt={title}
             className="h-full w-full rounded-md object-cover sm:rounded-sm"
           />
-        </div>
+        </Link>
 
         <div className="flex flex-col justify-center space-y-1">
-          <h3 className="text-card-foreground font-display text-sm leading-tight md:text-base lg:text-lg">
-            {title}
-          </h3>
+          <Link to={link} disabled={!link}>
+            <h3 className="text-card-foreground font-display text-sm leading-tight md:text-base lg:text-lg">
+              {title}
+            </h3>
+          </Link>
           <p className="text-muted-foreground line-clamp-3 text-xs leading-tight md:text-sm lg:text-base">
             {desc}
           </p>
