@@ -13,6 +13,7 @@ import { Route as PortfolioRouteImport } from './routes/portfolio'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as PortfolioStudentMobileRouteImport } from './routes/portfolio_.student-mobile'
+import { Route as PortfolioSistaRouteImport } from './routes/portfolio_.sista'
 
 const PortfolioRoute = PortfolioRouteImport.update({
   id: '/portfolio',
@@ -34,17 +35,24 @@ const PortfolioStudentMobileRoute = PortfolioStudentMobileRouteImport.update({
   path: '/portfolio/student-mobile',
   getParentRoute: () => rootRouteImport,
 } as any)
+const PortfolioSistaRoute = PortfolioSistaRouteImport.update({
+  id: '/portfolio_/sista',
+  path: '/portfolio/sista',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/portfolio': typeof PortfolioRoute
+  '/portfolio/sista': typeof PortfolioSistaRoute
   '/portfolio/student-mobile': typeof PortfolioStudentMobileRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/portfolio': typeof PortfolioRoute
+  '/portfolio/sista': typeof PortfolioSistaRoute
   '/portfolio/student-mobile': typeof PortfolioStudentMobileRoute
 }
 export interface FileRoutesById {
@@ -52,20 +60,38 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/portfolio': typeof PortfolioRoute
+  '/portfolio_/sista': typeof PortfolioSistaRoute
   '/portfolio_/student-mobile': typeof PortfolioStudentMobileRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/about' | '/portfolio' | '/portfolio/student-mobile'
+  fullPaths:
+    | '/'
+    | '/about'
+    | '/portfolio'
+    | '/portfolio/sista'
+    | '/portfolio/student-mobile'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/about' | '/portfolio' | '/portfolio/student-mobile'
-  id: '__root__' | '/' | '/about' | '/portfolio' | '/portfolio_/student-mobile'
+  to:
+    | '/'
+    | '/about'
+    | '/portfolio'
+    | '/portfolio/sista'
+    | '/portfolio/student-mobile'
+  id:
+    | '__root__'
+    | '/'
+    | '/about'
+    | '/portfolio'
+    | '/portfolio_/sista'
+    | '/portfolio_/student-mobile'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
   PortfolioRoute: typeof PortfolioRoute
+  PortfolioSistaRoute: typeof PortfolioSistaRoute
   PortfolioStudentMobileRoute: typeof PortfolioStudentMobileRoute
 }
 
@@ -99,6 +125,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PortfolioStudentMobileRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/portfolio_/sista': {
+      id: '/portfolio_/sista'
+      path: '/portfolio/sista'
+      fullPath: '/portfolio/sista'
+      preLoaderRoute: typeof PortfolioSistaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -106,6 +139,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
   PortfolioRoute: PortfolioRoute,
+  PortfolioSistaRoute: PortfolioSistaRoute,
   PortfolioStudentMobileRoute: PortfolioStudentMobileRoute,
 }
 export const routeTree = rootRouteImport

@@ -69,6 +69,9 @@
     "student_mobile": {
       "subtitle": "Enhance students' academic experience with Student Mobile!",
       "description": "Student Mobile is an application designed to simplify students' academic experience management. With standout features such as point tracking, schedule updates, and classroom availability checks, Student Mobile helps students stay organized and efficient."
+    },
+    "sista": {
+      "subtitle": "With various easy-to-use features, this platform facilitates communication between students and lecturer, ensuring that every stage of the dissertation can be managed effectively and efficiently"
     }
   }
 }
