@@ -25,14 +25,14 @@ export default function Footer() {
     //     { name: 'Blog 3', href: '/' }
     //   ]
     // },
-    // {
-    //   group: m['nav.portfolio'](),
-    //   items: [
-    //     { name: 'Portfolio 1', href: '/' },
-    //     { name: 'Portfolio 2', href: '/' },
-    //     { name: 'Portfolio 3', href: '/' }
-    //   ]
-    // },
+    {
+      group: m['nav.portfolio'](),
+      items: [
+        { name: 'Sista', href: '/portfolio/sista' },
+        { name: 'Student Mobile', href: '/portfolio/student-mobile' }
+        // { name: 'Portfolio 3', href: '/' }
+      ]
+    },
     {
       group: m['nav.contact'](),
       items: [
@@ -75,7 +75,7 @@ export default function Footer() {
           </ul>
         </div>
 
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid grid-cols-2 gap-4 lg:grid-cols-3">
           {navItems.map(navItem => (
             <ul key={navItem.group} className="space-y-2">
               <li>
