@@ -108,7 +108,7 @@ function PortfolioPage() {
                 key={project.id}
                 className="flex items-center justify-center px-4 md:px-8 lg:px-12"
                 style={{
-                  flex: '0 0 clamp(25vw, 60vw, 70vw)'
+                  flex: '0 0 clamp(30vw, 65vw, 75vw)'
                 }}
               >
                 <PortfolioCard

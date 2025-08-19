@@ -19,8 +19,6 @@ export default function PortfolioCard({
   isCenter,
   link
 }: PortfolioCardProps) {
-  const aspectRatio = 1920 / 1080
-
   return (
     <div
       className={cn(
@@ -30,13 +28,7 @@ export default function PortfolioCard({
         'sm:rounded-sg rounded-xl'
       )}
     >
-      <div
-        className="flex w-full flex-col justify-between"
-        style={{
-          aspectRatio: `${aspectRatio}`,
-          width: '100%'
-        }}
-      >
+      <div className="flex aspect-[4/3] w-full flex-col justify-between">
         <Link
           to={link}
           className="bg-primary-300 mb-4 flex-1 overflow-hidden rounded-md sm:rounded-sm"
@@ -45,7 +37,7 @@ export default function PortfolioCard({
           <img
             src={imgSrc}
             alt={title}
-            className="h-full w-full rounded-md object-cover sm:rounded-sm"
+            className="aspect-[4/3] w-full rounded-md object-cover sm:rounded-sm"
           />
         </Link>
 
