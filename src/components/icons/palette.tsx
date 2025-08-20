@@ -27,7 +27,7 @@ function IconPalette(props: IconPaletteProps) {
           y2="21.3749"
           gradientUnits="userSpaceOnUse"
         >
-          <stop stop-color="#2B3E5C" />
+          <stop stopColor="#2B3E5C" />
           <stop offset="1" stopColor="#5A7EB9" />
         </linearGradient>
       </defs>

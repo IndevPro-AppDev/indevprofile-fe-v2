@@ -1,12 +1,16 @@
 import { useEffect, useState } from 'react'
 
+import { motion } from 'motion/react'
+
 import type { CarouselApi } from '~/components/ui/carousel'
 
+import { Button } from '~/components/ui/button'
 import {
   Carousel,
   CarouselContent,
   CarouselItem
 } from '~/components/ui/carousel'
+import { cn } from '~/lib/utils'
 import { m } from '~/paraglide/messages'
 
 import PaletteIcon from '../../icons/palette'
@@ -29,12 +33,13 @@ export default function StudentMobilePage() {
   ]
 
   const [api, setApi] = useState<CarouselApi | null>(null)
-  const [selectedIndex, setSelectedIndex] = useState(0)
+  const [selectedIndex, setSelectedIndex] = useState(1)
 
   useEffect(() => {
     if (!api) return
 
     const interval = setInterval(() => {
+      // should scroll back to first index if project is last
       if (selectedIndex === gallery.length - 1) {
         api.scrollTo(0)
       } else {
@@ -42,7 +47,8 @@ export default function StudentMobilePage() {
       }
     }, 3000)
     return () => clearInterval(interval)
-  }, [api, gallery.length, selectedIndex])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [api, selectedIndex])
 
   useEffect(() => {
     if (!api) return
@@ -60,25 +66,38 @@ export default function StudentMobilePage() {
   return (
     <div className="text-primary relative mb-16 flex w-full flex-col items-center">
       {/* Hero Section */}
-      <section className="flex flex-col items-center justify-center gap-8 px-6 py-16 text-center md:flex-row">
+      <section className="flex min-h-dvh flex-col items-center justify-center gap-8 px-6 py-16 text-center md:flex-row">
         <div className="flex flex-col items-center md:items-start">
           <HeroTitle />
         </div>
-        <div className="flex justify-center">
+        <motion.div
+          className="flex justify-center"
+          whileInView={{ opacity: 1, scale: 1, y: 0, filter: 'blur(0px)' }}
+          initial={{ opacity: 0, scale: 0, y: 20, filter: 'blur(6px)' }}
+          transition={{ delay: 0.5, stiffness: 180, damping: 20, mass: 0.5 }}
+          viewport={{ once: true }}
+        >
           <img
             src={PictHero}
             alt="App screen"
             className="h-auto w-full drop-shadow-xl md:w-[50vw] lg:w-[45vw]"
           />
-        </div>
+        </motion.div>
       </section>
 
       {/* Section Title */}
       <section className="flex flex-col items-center space-y-6 px-6 py-8 text-center">
-        <span className="border-foreground flex items-center justify-center gap-2 rounded-full border px-4 py-1 text-xs tracking-wider">
-          <PaletteIcon className="h-4 w-4" />
-          <span>UI/UX</span>
-        </span>
+        <Button variant="brand">
+          <PaletteIcon className="size-5" />
+          <span
+            className={cn(
+              'bg-clip-text text-transparent',
+              'from-primary to-muted-foreground/60 bg-gradient-to-b'
+            )}
+          >
+            UI/UX
+          </span>
+        </Button>
         <div className="flex flex-col items-center space-y-4">
           <HeroSubTitle />
           <p className="max-w-lg text-sm">
@@ -89,13 +108,19 @@ export default function StudentMobilePage() {
 
       {/* Description */}
       <section className="grid grid-cols-1 gap-6 px-6 py-10 md:grid-cols-2">
-        <div className="flex justify-center">
+        <motion.div
+          className="flex justify-center"
+          whileInView={{ opacity: 1, scale: 1, y: 0, filter: 'blur(0px)' }}
+          initial={{ opacity: 0, scale: 0, y: 20, filter: 'blur(6px)' }}
+          transition={{ stiffness: 202, damping: 23, mass: 0.2 }}
+          viewport={{ once: true }}
+        >
           <img
             src={PictDesc}
             alt="App screen"
-            className="h-auto w-full drop-shadow-xl md:w-[50vw] lg:w-[45vw]"
+            className="h-auto w-full object-cover object-center drop-shadow-xl md:w-[60vw] lg:w-[50vw]"
           />
-        </div>
+        </motion.div>
         <p className="text-primary my-auto max-w-[56ch] text-center text-sm md:text-left lg:text-base">
           {m['portfolio_detail.student_mobile.description']()}
         </p>

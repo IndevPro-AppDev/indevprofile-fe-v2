@@ -28,7 +28,7 @@ export default function PortfolioCard({
         'sm:rounded-sg rounded-xl'
       )}
     >
-      <div className="flex aspect-[4/3] w-full flex-col justify-between">
+      <div className="flex h-auto w-full flex-col justify-between">
         <Link
           to={link}
           className="bg-primary-300 mb-4 flex-1 overflow-hidden rounded-md sm:rounded-sm"
@@ -37,7 +37,7 @@ export default function PortfolioCard({
           <img
             src={imgSrc}
             alt={title}
-            className="aspect-[4/3] w-full rounded-md object-cover sm:rounded-sm"
+            className="h-[9.875rem] w-full rounded-md object-cover sm:rounded-sm"
           />
         </Link>
 

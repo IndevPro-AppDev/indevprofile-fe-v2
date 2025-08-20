@@ -1,4 +1,8 @@
+import { motion } from 'motion/react'
+
 import CodeIcon from '~/components/icons/code'
+import { Button } from '~/components/ui/button'
+import { cn } from '~/lib/utils'
 import { m } from '~/paraglide/messages'
 
 import SistaMacbook from './assets/sista-macbook.webp'
@@ -14,20 +18,33 @@ export default function PortfolioDetailSistaPage() {
             Sista
           </div>
         </div>
-        <div className="flex flex-col items-center justify-center pt-24">
+        <motion.div
+          className="flex flex-col items-center justify-center pt-24"
+          whileInView={{ opacity: 1, scale: 1, y: 0, filter: 'blur(0px)' }}
+          initial={{ opacity: 0, scale: 0, y: 20, filter: 'blur(6px)' }}
+          transition={{ delay: 0.5, stiffness: 180, damping: 20, mass: 0.5 }}
+          viewport={{ once: true }}
+        >
           <img
             src={SistaPlatforms}
             alt="Sista Platforms"
             className="border-muted-foreground/20 w-full max-w-2xl drop-shadow-2xl"
           />
-        </div>
+        </motion.div>
       </section>
 
       <section className="flex flex-col items-center space-y-6 px-6 py-8 text-center">
-        <span className="border-foreground flex items-center justify-center gap-2 rounded-full border px-4 py-1 text-xs tracking-wider">
-          <CodeIcon className="h-4 w-4" />
-          <span>Software Development</span>
-        </span>
+        <Button variant="brand">
+          <CodeIcon className="size-5" />
+          <span
+            className={cn(
+              'bg-clip-text text-transparent',
+              'from-primary to-muted-foreground/60 bg-gradient-to-b'
+            )}
+          >
+            Software Development
+          </span>
+        </Button>
         <div className="flex flex-col items-center justify-center space-y-4">
           <HeroSubTitle />
           <p className="max-w-lg text-sm">
@@ -37,11 +54,19 @@ export default function PortfolioDetailSistaPage() {
       </section>
 
       <section className="flex flex-col items-center justify-center">
-        <img
-          src={SistaMacbook}
-          alt="Sista Macbook"
-          className="border-muted-foreground/20 w-full max-w-2xl drop-shadow-2xl"
-        />
+        <motion.div
+          className="relative h-auto w-full"
+          whileInView={{ opacity: 1, scale: 1, y: 0, filter: 'blur(0px)' }}
+          initial={{ opacity: 0, scale: 0, y: 20, filter: 'blur(6px)' }}
+          transition={{ delay: 0.5, stiffness: 180, damping: 20, mass: 0.5 }}
+          viewport={{ once: true }}
+        >
+          <img
+            src={SistaMacbook}
+            alt="Sista Macbook"
+            className="border-muted-foreground/20 w-full max-w-2xl drop-shadow-2xl"
+          />
+        </motion.div>
       </section>
     </div>
   )
