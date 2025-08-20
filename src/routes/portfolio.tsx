@@ -65,7 +65,7 @@ function PortfolioPage() {
       } else {
         api.scrollNext()
       }
-    }, 3000)
+    }, 6000)
     return () => clearInterval(interval)
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [api, selectedIndex])
