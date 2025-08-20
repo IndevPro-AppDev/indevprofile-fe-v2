@@ -37,7 +37,7 @@ export default function PortfolioCard({
           <img
             src={imgSrc}
             alt={title}
-            className="h-[9.875rem] w-full rounded-md object-cover sm:rounded-sm"
+            className="h-[9.875rem] w-full rounded-md object-cover sm:rounded-sm md:h-auto"
           />
         </Link>
 
