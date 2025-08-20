@@ -12,7 +12,7 @@ import HeroSubTitle from './hero-sub-title'
 export default function PortfolioDetailSistaPage() {
   return (
     <div className="text-primary relative mb-16 flex w-full flex-col items-center">
-      <section className="relative container mx-auto flex flex-col items-center justify-center gap-8 overflow-x-hidden px-6 py-16 text-center md:flex-row">
+      <section className="relative container mx-auto flex h-dvh flex-col items-center justify-center gap-8 overflow-x-hidden px-6 py-16 text-center md:flex-row">
         <div className="absolute inset-0 flex items-center justify-center">
           <div className="text-muted-foreground/20 pointer-events-none relative -translate-y-16 text-center text-[9rem] font-bold uppercase md:-translate-y-24 md:text-[16rem] lg:text-[20rem] xl:text-[24rem]">
             Sista
