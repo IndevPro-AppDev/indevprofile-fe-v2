@@ -49,6 +49,20 @@ function PortfolioPage() {
       title: m['portfolio.3cc.title'](),
       description: m['portfolio.3cc.description'](),
       imgSrc: 'https://ik.imagekit.io/indevpro/portfolio/thumbnail/3cc.jpg'
+    },
+    {
+      id: 4,
+      title: m['portfolio.nextframe.title'](),
+      description: m['portfolio.nextframe.description'](),
+      imgSrc:
+        'https://ik.imagekit.io/indevpro/portfolio/thumbnail/nextframe-2025.jpg'
+    },
+    {
+      id: 5,
+      title: m['portfolio.indev_mengajar.title'](),
+      description: m['portfolio.indev_mengajar.description'](),
+      imgSrc:
+        'https://ik.imagekit.io/indevpro/portfolio/thumbnail/indev-mengajar.jpg'
     }
   ]
 
